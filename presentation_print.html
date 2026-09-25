@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ReBuild - Project Presentation & Literature Review</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    @page {
+      size: 1920px 1080px;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0b1120;
+      color: #f8fafc;
+    }
+
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      padding: 60px 90px;
+      page-break-after: always;
+      page-break-inside: avoid;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      background: #0b1120;
+      overflow: hidden;
+    }
+
+    /* Subtle background glow */
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: -150px;
+      right: -150px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(11, 17, 32, 0) 70%);
+      pointer-events: none;
+    }
+
+    .header {
+      margin-bottom: 30px;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .header-left .tag {
+      font-size: 14px;
+      font-weight: 700;
+      color: #10b981;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+
+    .header-left h1 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    .header-right {
+      font-size: 14px;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 30px;
+      left: 90px;
+      right: 90px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #64748b;
+      border-top: 1px solid #1e293b;
+      padding-top: 12px;
+    }
+
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 24px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* Table Styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: #0f172a;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #334155;
+    }
+
+    th {
+      background: #1e293b;
+      color: #06b6d4;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 2px solid #334155;
+    }
+
+    td {
+      padding: 13px 16px;
+      border-bottom: 1px solid #1e293b;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .adv { color: #6ee7b7; font-weight: 500; }
+    .dis { color: #fca5a5; font-weight: 500; }
+
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Gantt Chart Styling (Matching User Image) */
+    .gantt-container {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 30px 40px;
+      color: #0f172a;
+      height: 750px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .gantt-title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 25px;
+    }
+
+    .gantt-body {
+      display: flex;
+      flex: 1;
+      position: relative;
+    }
+
+    .gantt-labels {
+      width: 440px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding-right: 20px;
+      border-right: 2px solid #0f172a;
+      z-index: 10;
+    }
+
+    .gantt-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: #1e293b;
+      text-align: right;
+      padding-right: 15px;
+    }
+
+    .gantt-chart-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      position: relative;
+      border-bottom: 2px solid #0f172a;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .gantt-row {
+      height: 48px;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .gantt-bar {
+      position: absolute;
+      height: 38px;
+      background: #0284c7;
+      border-radius: 2px;
+      box-shadow: 0 2px 5px rgba(2, 132, 199, 0.3);
+    }
+
+    .grid-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      border-left: 1px dashed #cbd5e1;
+      pointer-events: none;
+    }
+
+    .gantt-x-axis {
+      margin-left: 440px;
+      display: flex;
+      justify-content: space-between;
+      padding-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .x-tick {
+      transform: rotate(-25deg);
+      transform-origin: top left;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 1: TITLE SLIDE -->
+  <!-- ======================================================== -->
+  <section class="slide" style="justify-content: center; align-items: center; text-align: center;">
+    <div style="max-width: 1300px;">
+      <div style="display: inline-block; padding: 8px 24px; border-radius: 9999px; background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #10b981; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 25px;">
+        Preliminary Project Presentation & 50% Code Evaluation
+      </div>
+      <h1 style="font-size: 64px; font-weight: 800; color: #ffffff; line-height: 1.15; margin: 0 0 20px 0;">
+        <span style="color: #10b981;">ReBuild</span>: AI-Powered Construction & Demolition Waste Circular Intelligence Platform
+      </h1>
+      <p style="font-size: 22px; color: #94a3b8; max-width: 1050px; margin: 0 auto 50px auto; line-height: 1.5;">
+        Automated Site Debris Vision Classification, Anti-Spoofing Document Integrity, Real-Time GPS Telemetry & B2B Circular Marketplace
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 850px; margin: 0 auto; text-align: left;">
+        <div class="card" style="border-left: 4px solid #10b981;">
+          <div style="font-size: 13px; text-transform: uppercase; color: #10b981; font-weight: 700;">Faculty Guide</div>
+          <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 6px;">Prof. LeeMa Mathew</div>
+          <div style="font-size: 14px; color: #94a3b8; margin-top: 4px;">Department of Computer Science & Engineering</div>
+        </div>
+        <div class="card" style="border-left: 4px solid #06b6d4;">
+          <div style="font-size: 13px; text-transform: uppercase; color: #06b6d4; font-weight: 700;">Project Details</div>
+          <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 6px;">Batch 2026 (Semester 7/8)</div>
+          <div style="font-size: 14px; color: #94a3b8; margin-top: 4px;">50% Milestone & Literature Review</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 2: CONTENTS -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Overview</div>
+        <h1>CONTENTS</h1>
+      </div>
+      <div class="header-right">ReBuild Platform</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: auto 0;">
+      <div class="card" style="padding: 35px 45px;">
+        <ol style="font-size: 20px; line-height: 2.2; color: #cbd5e1; font-weight: 600; margin: 0; padding-left: 30px;">
+          <li><span style="color: #ffffff;">MOTIVATION</span></li>
+          <li><span style="color: #ffffff;">PROBLEM STATEMENT</span></li>
+          <li><span style="color: #ffffff;">GOALS AND OBJECTIVES</span></li>
+          <li><span style="color: #ffffff;">ASSUMPTIONS AND RISKS</span></li>
+          <li><span style="color: #ffffff;">PROJECT SCOPE AND TARGET GROUP</span></li>
+          <li><span style="color: #ffffff;">RESOURCES NEEDED</span></li>
+        </ol>
+      </div>
+
+      <div class="card" style="padding: 35px 45px;">
+        <ol start="7" style="font-size: 20px; line-height: 2.2; color: #cbd5e1; font-weight: 600; margin: 0; padding-left: 30px;">
+          <li><span style="color: #ffffff;">LITERATURE SURVEY</span></li>
+          <li><span style="color: #ffffff;">ARCHITECTURE / BLOCK DIAGRAM</span></li>
+          <li><span style="color: #ffffff;">ALGORITHMS USED</span></li>
+          <li><span style="color: #ffffff;">ROLES ASSIGNED</span></li>
+          <li><span style="color: #ffffff;">PROJECT TIMELINE (GANTT CHART)</span></li>
+          <li><span style="color: #ffffff;">CONCLUSION & 50% CODE SNIPPETS</span></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 3: 1. MOTIVATION -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 1</div>
+        <h1>1. MOTIVATION</h1>
+      </div>
+      <div class="header-right">Ecological & Economic Urgency</div>
+    </div>
+
+    <div class="grid-2" style="margin: auto 0; gap: 30px;">
+      <div class="card" style="border-left: 5px solid #ef4444; padding: 30px;">
+        <h3 style="font-size: 22px; color: #ef4444; margin-top: 0;">35%+ Global Solid Waste Volume</h3>
+        <p style="font-size: 16px; color: #cbd5e1; line-height: 1.6;">
+          Construction and Demolition (C&D) activities generate over <strong style="color: #fff;">3 billion metric tons</strong> of debris every year, outstripping all municipal solid waste streams combined and overwhelming landfill reserves globally.
+        </p>
+      </div>
+
+      <div class="card" style="border-left: 5px solid #f59e0b; padding: 30px;">
+        <h3 style="font-size: 22px; color: #f59e0b; margin-top: 0;">Ecological Depletion of Aggregates</h3>
+        <p style="font-size: 16px; color: #cbd5e1; line-height: 1.6;">
+          Rampant river sand dredging and virgin limestone quarrying for concrete production cause catastrophic riverbed erosion, aquatic ecosystem collapse, and heavy Scope-3 embodied carbon emissions.
+        </p>
+      </div>
+
+      <div class="card" style="border-left: 5px solid #06b6d4; padding: 30px;">
+        <h3 style="font-size: 22px; color: #06b6d4; margin-top: 0;">Substantial Lost Economic Value</h3>
+        <p style="font-size: 16px; color: #cbd5e1; line-height: 1.6;">
+          Reusable structural steel rebar, dimensional timber, clay bricks, and crushable concrete rubble are routinely discarded together into uncontrolled landfills rather than being segregated and monetized.
+        </p>
+      </div>
+
+      <div class="card" style="border-left: 5px solid #10b981; padding: 30px;">
+        <h3 style="font-size: 22px; color: #10b981; margin-top: 0;">The Opportunity for AI Vision & GIS</h3>
+        <p style="font-size: 16px; color: #cbd5e1; line-height: 1.6;">
+          By deploying edge vision AI coupled with satellite GPS logistics, site engineers can instantly audit, certify, and monetize salvaged debris directly to nearby procurement yards within a circular economic loop.
+        </p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 4: 2. PROBLEM STATEMENT -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 2</div>
+        <h1>2. PROBLEM STATEMENT</h1>
+      </div>
+      <div class="header-right">Core Gaps in Waste Management</div>
+    </div>
+
+    <div style="margin: auto 0;">
+      <div class="card" style="background: rgba(16, 185, 129, 0.08); border: 2px solid #10b981; padding: 30px; border-radius: 16px; margin-bottom: 35px;">
+        <p style="font-size: 22px; font-style: italic; color: #f1f5f9; line-height: 1.6; margin: 0;">
+          "Current construction and demolition waste management practices rely almost exclusively on unverified manual visual inspection, leading to severe material contamination, audit fraud, unrecorded illegal dumping, and fragmented local salvage supply chains."
+        </p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card">
+          <div style="font-size: 32px; font-weight: 800; color: #ef4444;">01</div>
+          <h4 style="font-size: 18px; color: #fff; margin: 10px 0 8px 0;">No Auto Classifier</h4>
+          <p style="font-size: 14px; color: #94a3b8; line-height: 1.5; margin: 0;">
+            Site supervisors lack real-time computer vision to distinguish clean concrete rubble, clay masonry, and scrap rebar from non-structural debris.
+          </p>
+        </div>
+
+        <div class="card">
+          <div style="font-size: 32px; font-weight: 800; color: #f59e0b;">02</div>
+          <h4 style="font-size: 18px; color: #fff; margin: 10px 0 8px 0;">Audit Fraud & Spoofing</h4>
+          <p style="font-size: 14px; color: #94a3b8; line-height: 1.5; margin: 0;">
+            Existing logging forms accept arbitrary photo uploads (notebook pages, receipts, stock photos) without computerized fracture verification.
+          </p>
+        </div>
+
+        <div class="card">
+          <div style="font-size: 32px; font-weight: 800; color: #06b6d4;">03</div>
+          <h4 style="font-size: 18px; color: #fff; margin: 10px 0 8px 0;">Fractured Supply Chain</h4>
+          <p style="font-size: 14px; color: #94a3b8; line-height: 1.5; margin: 0;">
+            Demolition contractors have excess salvageable rubble but zero direct digital connection to nearby builders or aggregate crushers.
+          </p>
+        </div>
+
+        <div class="card">
+          <div style="font-size: 32px; font-weight: 800; color: #10b981;">04</div>
+          <h4 style="font-size: 18px; color: #fff; margin: 10px 0 8px 0;">Zero ESG Telemetry</h4>
+          <p style="font-size: 14px; color: #94a3b8; line-height: 1.5; margin: 0;">
+            Zero automated computation of embodied carbon (CO2e) offsets, municipal landfill airspace conserved, or tipping fee savings.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 5: 3. GOALS AND OBJECTIVES -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 3</div>
+        <h1>3. GOALS AND OBJECTIVES</h1>
+      </div>
+      <div class="header-right">System Objectives</div>
+    </div>
+
+    <div style="margin: auto 0;">
+      <div class="card" style="border-left: 5px solid #06b6d4; padding: 25px; margin-bottom: 30px;">
+        <div style="font-size: 13px; font-weight: 800; color: #06b6d4; text-transform: uppercase;">Primary Project Goal</div>
+        <div style="font-size: 18px; color: #f8fafc; font-weight: 600; margin-top: 6px;">
+          To build a production-grade, AI-driven circular intelligence platform that automates on-site CDW recognition, enforces fraud-proof site audits via GPS reverse-geocoding, and enables peer-to-peer secondary material trading between contractors and buyers.
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <div style="width: 28px; height: 28px; border-radius: 6px; background: rgba(16, 185, 129, 0.2); color: #10b981; display: flex; align-items: center; justify-content: center; font-weight: 800;">1</div>
+            <h4 style="font-size: 16px; color: #fff; margin: 0;">Industrial Vision Classifier</h4>
+          </div>
+          <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.5; margin: 0;">
+            Train deep CNNs (ResNet-34) to categorize 8+ CDW materials (Concrete, Brick, Metal, Timber, Ceramic, Asphalt) with >90% validation accuracy.
+          </p>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <div style="width: 28px; height: 28px; border-radius: 6px; background: rgba(245, 158, 11, 0.2); color: #f59e0b; display: flex; align-items: center; justify-content: center; font-weight: 800;">2</div>
+            <h4 style="font-size: 16px; color: #fff; margin: 0;">Anti-Spoofing Filter</h4>
+          </div>
+          <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.5; margin: 0;">
+            Formulate a 2-stage tensor luminance & stroke-density gate to reject non-debris uploads (notebooks, certificates, white paper).
+          </p>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <div style="width: 28px; height: 28px; border-radius: 6px; background: rgba(6, 182, 212, 0.2); color: #06b6d4; display: flex; align-items: center; justify-content: center; font-weight: 800;">3</div>
+            <h4 style="font-size: 16px; color: #fff; margin: 0;">Live Satellite GPS Lock</h4>
+          </div>
+          <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.5; margin: 0;">
+            Capture browser GNSS hardware fixes and auto-resolve human-readable site survey addresses via reverse geocoding REST APIs.
+          </p>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <div style="width: 28px; height: 28px; border-radius: 6px; background: rgba(168, 85, 247, 0.2); color: #a855f7; display: flex; align-items: center; justify-content: center; font-weight: 800;">4</div>
+            <h4 style="font-size: 16px; color: #fff; margin: 0;">Geospatial B2B Market</h4>
+          </div>
+          <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.5; margin: 0;">
+            Develop Haversine distance-optimized material discovery, interactive Leaflet mapping, and buyer order transaction management.
+          </p>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <div style="width: 28px; height: 28px; border-radius: 6px; background: rgba(20, 184, 166, 0.2); color: #14b8a6; display: flex; align-items: center; justify-content: center; font-weight: 800;">5</div>
+            <h4 style="font-size: 16px; color: #fff; margin: 0;">Live ESG Impact Telemetry</h4>
+          </div>
+          <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.5; margin: 0;">
+            Dynamically compute real-time embodied carbon (0.428 kg CO2e/kg), landfill space saved (1,250 kg/m³), and tipping fee savings.
+          </p>
+        </div>
+
+        <div class="card">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+            <div style="width: 28px; height: 28px; border-radius: 6px; background: rgba(59, 130, 246, 0.2); color: #3b82f6; display: flex; align-items: center; justify-content: center; font-weight: 800;">6</div>
+            <h4 style="font-size: 16px; color: #fff; margin: 0;">Zero-Mock Architecture</h4>
+          </div>
+          <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.5; margin: 0;">
+            Ensure all dashboard charts, logs, inventory tallies, and order metrics are 100% dynamically sourced from disk-persisted database records.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 6: 4. ASSUMPTIONS AND RISKS -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 4</div>
+        <h1>4. ASSUMPTIONS AND RISKS</h1>
+      </div>
+      <div class="header-right">Vulnerability & Mitigation Analysis</div>
+    </div>
+
+    <div style="margin: auto 0;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%;">Category</th>
+            <th style="width: 26%;">Key Assumption</th>
+            <th style="width: 27%; color: #f87171;">Identified Risk / Vulnerability</th>
+            <th style="width: 27%; color: #34d399;">Mitigation Strategy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; color: #fff;">Data Quality & Lighting</td>
+            <td>Site photos captured via smartphone cameras in outdoor daylight or site worklights.</td>
+            <td class="dis">Extreme dust, motion blur, direct specular sun glares on steel rebar.</td>
+            <td class="adv">Color space normalization, adaptive CLAHE contrast enhancement, multi-scale cropping.</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #fff;">Material Contamination</td>
+            <td>Demolition waste may contain mixed aggregates (e.g., concrete slab with rebar).</td>
+            <td class="dis">Secondary misclassification or composite material ambiguity.</td>
+            <td class="adv">Multi-label secondary prediction ranking and contractor human-in-the-loop override logging.</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #fff;">Network Connectivity</td>
+            <td>Demolition sites have intermittent 4G/5G mobile bandwidth.</td>
+            <td class="dis">High latency in server-side AI inference or map tile loading.</td>
+            <td class="adv">Client-side canvas tensor preprocessing and local disk-backed persistence caching.</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #fff;">Regulatory Integrity</td>
+            <td>Contractors comply with municipal C&D waste disposal bylaws.</td>
+            <td class="dis">Attempted fraud through submission of arbitrary paper receipts or stock images.</td>
+            <td class="adv">Anti-spoofing document rejection algorithms, mandatory satellite GPS lock, and audit trails.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 7: 5. PROJECT SCOPE AND TARGET GROUP -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 5</div>
+        <h1>5. PROJECT SCOPE AND TARGET GROUP</h1>
+      </div>
+      <div class="header-right">System Boundaries & Beneficiaries</div>
+    </div>
+
+    <div class="grid-2" style="margin: auto 0; gap: 30px;">
+      <div>
+        <div class="card" style="border-left: 4px solid #10b981; margin-bottom: 25px;">
+          <h3 style="font-size: 18px; color: #10b981; margin-top: 0;">In-Scope Modules (50% Milestone)</h3>
+          <ul style="font-size: 14.5px; color: #cbd5e1; line-height: 1.8; margin: 0; padding-left: 20px;">
+            <li>Real-time edge vision classifier for 8+ major construction material categories.</li>
+            <li>Multi-stage document/paper rejection filter to eliminate false-positive audit logs.</li>
+            <li>Automated site GPS locking with reverse geocoded locality resolution.</li>
+            <li>Multi-role portal (Contractor/Seller, Buyer/Procurement, Admin Governance).</li>
+            <li>Live ESG environmental calculation engine (Embodied carbon, landfill airspace avoided).</li>
+            <li>Interactive GIS map visualization for nearby material lots and haulage routes.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-left: 4px solid #64748b; background: rgba(15, 23, 42, 0.4);">
+          <h3 style="font-size: 16px; color: #94a3b8; margin-top: 0;">Out of Scope (Future Phases)</h3>
+          <ul style="font-size: 13.5px; color: #94a3b8; line-height: 1.7; margin: 0; padding-left: 20px;">
+            <li>Autonomous drone photogrammetry for volumetric aggregate stockpile calculation.</li>
+            <li>Integration of chemical XRF spectrometry for heavy-metal hazardous soil detection.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="border-left: 4px solid #06b6d4;">
+        <h3 style="font-size: 18px; color: #06b6d4; margin-top: 0; margin-bottom: 20px;">Target Stakeholder Groups</h3>
+        
+        <div style="margin-bottom: 18px;">
+          <div style="font-size: 15px; font-weight: 700; color: #fff;">1. Demolition & Civil Contractors</div>
+          <div style="font-size: 13.5px; color: #94a3b8; margin-top: 3px;">Streamlined on-site waste logging, regulatory compliance reporting, and salvaged asset monetization.</div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <div style="font-size: 15px; font-weight: 700; color: #fff;">2. Secondary Aggregate Processing Yards</div>
+          <div style="font-size: 13.5px; color: #94a3b8; margin-top: 3px;">Bulk procurement of raw concrete rubble for mobile crushers and secondary road-base aggregates.</div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <div style="font-size: 15px; font-weight: 700; color: #fff;">3. Green Building Developers & Eco-Architects</div>
+          <div style="font-size: 13.5px; color: #94a3b8; margin-top: 3px;">Sourcing certified low-carbon reclaimed bricks, timber, and structural steel for LEED/GRIHA green projects.</div>
+        </div>
+
+        <div>
+          <div style="font-size: 15px; font-weight: 700; color: #fff;">4. Municipal Environmental Authorities</div>
+          <div style="font-size: 13.5px; color: #94a3b8; margin-top: 3px;">Verifiable digital audit trail for solid waste compliance and municipal landfill diversion tracking.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 8: 6. RESOURCES NEEDED -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 6</div>
+        <h1>6. RESOURCES NEEDED</h1>
+      </div>
+      <div class="header-right">Infrastructure & Software Stack</div>
+    </div>
+
+    <div class="grid-2" style="margin: auto 0; gap: 30px;">
+      <div class="card" style="border-left: 4px solid #06b6d4;">
+        <h3 style="font-size: 20px; color: #06b6d4; margin-top: 0; margin-bottom: 25px;">Hardware Requirements</h3>
+
+        <div style="margin-bottom: 22px;">
+          <div style="font-size: 16px; font-weight: 700; color: #fff;">Development & Training Workstations</div>
+          <div style="font-size: 14px; color: #94a3b8; margin-top: 5px; line-height: 1.5;">Intel Core i7 / AMD Ryzen 7, 16GB+ RAM, High-speed NVMe SSD, NVIDIA CUDA GPU for PyTorch tensor training.</div>
+        </div>
+
+        <div style="margin-bottom: 22px;">
+          <div style="font-size: 16px; font-weight: 700; color: #fff;">Field Edge Testing Hardware</div>
+          <div style="font-size: 14px; color: #94a3b8; margin-top: 5px; line-height: 1.5;">Smartphones & tablets equipped with GNSS GPS hardware sensors, 12MP+ cameras, and WebGL support.</div>
+        </div>
+
+        <div>
+          <div style="font-size: 16px; font-weight: 700; color: #fff;">Inference & Deployment Server</div>
+          <div style="font-size: 14px; color: #94a3b8; margin-top: 5px; line-height: 1.5;">Node.js v20+ runtime environment with persistent storage and reverse proxy configuration.</div>
+        </div>
+      </div>
+
+      <div class="card" style="border-left: 4px solid #10b981;">
+        <h3 style="font-size: 20px; color: #10b981; margin-top: 0; margin-bottom: 25px;">Software & Technology Stack</h3>
+
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 14px; font-weight: 700; color: #10b981; text-transform: uppercase;">Frontend Architecture</div>
+          <div style="font-size: 14px; color: #fff; margin-top: 2px;">Angular 21 (Signals, Standalone Architecture), TailwindCSS v4, Lucide Icons, Chart.js</div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 14px; font-weight: 700; color: #10b981; text-transform: uppercase;">Backend & Security</div>
+          <div style="font-size: 14px; color: #fff; margin-top: 2px;">Node.js, Express REST API, TypeScript, JWT, Bcrypt Password Hashing, Helmet Security, Multer</div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 14px; font-weight: 700; color: #10b981; text-transform: uppercase;">Computer Vision & AI</div>
+          <div style="font-size: 14px; color: #fff; margin-top: 2px;">PyTorch, ResNet-34 CNN Backbone, Canvas 2D Anti-Spoofing Heuristic Gate</div>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <div style="font-size: 14px; font-weight: 700; color: #10b981; text-transform: uppercase;">Geospatial & Telemetry</div>
+          <div style="font-size: 14px; color: #fff; margin-top: 2px;">Leaflet.js, OpenStreetMap Tiles, BigDataCloud & Nominatim Reverse Geocoding</div>
+        </div>
+
+        <div>
+          <div style="font-size: 14px; font-weight: 700; color: #10b981; text-transform: uppercase;">Persistence & Database</div>
+          <div style="font-size: 14px; color: #fff; margin-top: 2px;">Disk-Backed JSON Persistence Store (data_store.json) with Relational MySQL Interop</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 9: 7. LITERATURE SURVEY (Part 1) -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 7 (Part 1)</div>
+        <h1>7. LITERATURE SURVEY: 10 RECENT PAPERS (2024–2026)</h1>
+      </div>
+      <div class="header-right">Papers 1 to 5</div>
+    </div>
+
+    <div style="margin: auto 0;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 4%; text-align: center;">Sl</th>
+            <th style="width: 27%;">Paper Title, Journal & Year</th>
+            <th style="width: 17%;">Authors</th>
+            <th style="width: 20%;">Method / Architecture</th>
+            <th style="width: 16%; color: #34d399;">Advantages</th>
+            <th style="width: 16%; color: #f87171;">Disadvantages</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center; font-weight: 800; color: #fff;">1</td>
+            <td><strong>Computer Vision-Based Autonomous Classification of CDW Using Deep CNNs</strong><br><span style="color: #06b6d4; font-size: 12px;">Elsevier: Automation in Construction (2024)</span></td>
+            <td>J. Zhang, H. Wang, K. Chen, L. Liu</td>
+            <td>ResNet-50 & MobileNetV3 with spatial attention on 12k debris images.</td>
+            <td class="adv">High accuracy (94.6%) on segmented rubble; edge inference.</td>
+            <td class="dis">High compute demand; degraded accuracy on dust-covered rubble.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center; font-weight: 800; color: #fff;">2</td>
+            <td><strong>Multi-Modal Vision-Language Framework for Automated Waste Auditing</strong><br><span style="color: #06b6d4; font-size: 12px;">Elsevier: Waste Management (2025)</span></td>
+            <td>S. Patel, M. Al-Hussein, R. Gupta</td>
+            <td>Zero-shot Vision Transformers (ViT) paired with multimodal LLM prompts.</td>
+            <td class="adv">Rich condition reports & structural reuse recommendations.</td>
+            <td class="dis">Slower inference (>1.5s/image); high cloud API cost.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center; font-weight: 800; color: #fff;">3</td>
+            <td><strong>Digital Material Passports & Blockchain Circular Economy in CDW</strong><br><span style="color: #06b6d4; font-size: 12px;">Journal of Cleaner Production (2024)</span></td>
+            <td>C. De Wolf, E. Hoxha, F. Fivet</td>
+            <td>Smart contracts and decentralized identifiers (DIDs) for structural elements.</td>
+            <td class="adv">Eliminates audit fraud; transparent supply chain tracking.</td>
+            <td class="dis">Requires high industry adoption; complex integration with paper tickets.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center; font-weight: 800; color: #fff;">4</td>
+            <td><strong>YOLO-C&D: Lightweight Object Detection Model on Fast Conveyors</strong><br><span style="color: #06b6d4; font-size: 12px;">IEEE Trans. Industrial Informatics (2024)</span></td>
+            <td>T. Nguyen, P. Sharma, X. Zhou</td>
+            <td>Modified YOLOv9 with GhostConv layers and coordinate attention heads.</td>
+            <td class="adv">Extremely fast inference (>60 FPS); low memory footprint.</td>
+            <td class="dis">Reduced detection accuracy for occluded or overlapped debris piles.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center; font-weight: 800; color: #fff;">5</td>
+            <td><strong>Embodied Carbon Assessment of Secondary Aggregates Using LCA Models</strong><br><span style="color: #06b6d4; font-size: 12px;">Resources, Conservation & Recycling (2024)</span></td>
+            <td>K. Menegaki, A. Damigos, D. Kaliampakos</td>
+            <td>Parametric Life Cycle Assessment (LCA) calculating cradle-to-gate GHG offset.</td>
+            <td class="adv">Quantifies carbon credits & tipping fee savings per ton of diverted rubble.</td>
+            <td class="dis">Sensitive to haulage distance and regional grid emission factors.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 10: 7. LITERATURE SURVEY (Part 2) -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 7 (Part 2)</div>
+        <h1>7. LITERATURE SURVEY: 10 RECENT PAPERS (2024–2026)</h1>
+      </div>
+      <div class="header-right">Papers 6 to 10</div>
+    </div>
+
+    <div style="margin: auto 0;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 4%; text-align: center;">Sl</th>
+            <th style="width: 27%;">Paper Title, Journal & Year</th>
+            <th style="width: 17%;">Authors</th>
+            <th style="width: 20%;">Method / Architecture</th>
+            <th style="width: 16%; color: #34d399;">Advantages</th>
+            <th style="width: 16%; color: #f87171;">Disadvantages</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: center; font-weight: 800; color: #fff;">6</td>
+            <td><strong>Anti-Spoofing & Out-of-Distribution Detection in Site Vision AI</strong><br><span style="color: #06b6d4; font-size: 12px;">Computer-Aided Civil & Infra Engg (2025)</span></td>
+            <td>D. Martinez, H. Kim, S. Lee</td>
+            <td>Bimodal frequency spectrum analysis & Mahalanobis distance thresholds.</td>
+            <td class="adv">Successfully rejects synthetic graphics, certificates, and stationery.</td>
+            <td class="dis">False rejection risk if photo has a completely smooth uniform background.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center; font-weight: 800; color: #fff;">7</td>
+            <td><strong>Optimizing Urban Logistics for Reclaimed Materials via Haversine</strong><br><span style="color: #06b6d4; font-size: 12px;">Sustainable Cities & Society (2024)</span></td>
+            <td>R. Fernandes, S. Kulkarni, B. Rao</td>
+            <td>GIS Haversine matrix combined with Dijkstra shortest-path heavy transit.</td>
+            <td class="adv">Minimizes transport fuel emissions and heavy vehicle transit overhead.</td>
+            <td class="dis">Static travel speeds assumed; does not dynamically account for traffic.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center; font-weight: 800; color: #fff;">8</td>
+            <td><strong>Digital Twins for CDW Recovery: Architecture & Protocols</strong><br><span style="color: #06b6d4; font-size: 12px;">IEEE Internet of Things Journal (2025)</span></td>
+            <td>Y. Lee, M. Baek, K. Yoon</td>
+            <td>Asset Administration Shell (AAS) digital twins of active site material streams.</td>
+            <td class="adv">Unified real-time dashboard of materials & reclamation status.</td>
+            <td class="dis">High sensor deployment cost; requires continuous telemetry connectivity.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center; font-weight: 800; color: #fff;">9</td>
+            <td><strong>Transfer Learning with Texture-Aware CNNs for Fine-Grained Masonry</strong><br><span style="color: #06b6d4; font-size: 12px;">Expert Systems with Applications (2024)</span></td>
+            <td>A. Sharma, P. K. Singh, V. Kumar</td>
+            <td>Multi-scale texture descriptor layer combined with ResNet-34 backbone.</td>
+            <td class="adv">Distinguishes reusable engineering bricks from low-grade common bricks (92.8%).</td>
+            <td class="dis">Performance degrades under severe mud, paint, or chemical contamination.</td>
+          </tr>
+          <tr>
+            <td style="text-align: center; font-weight: 800; color: #fff;">10</td>
+            <td><strong>Circular B2B Marketplace Frameworks for Salvaged Assets</strong><br><span style="color: #06b6d4; font-size: 12px;">Elsevier: Waste Management & Research (2025)</span></td>
+            <td>E. Rossi, G. Colombo, A. Bonoli</td>
+            <td>Empirical auction & fixed-price mechanism for recycled steel and tiles.</td>
+            <td class="adv">Verified AI grading & certified carbon savings increase buyer conversion by 38%.</td>
+            <td class="dis">Requires critical mass of local buyers and sellers within a 25km radius.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 11: 8. ARCHITECTURE / BLOCK DIAGRAM -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 8</div>
+        <h1>8. ARCHITECTURE / BLOCK DIAGRAM</h1>
+      </div>
+      <div class="header-right">3-Tier Layered Architecture</div>
+    </div>
+
+    <div style="margin: auto 0;">
+      <div class="grid-3" style="gap: 25px; margin-bottom: 25px;">
+        <div class="card" style="border-top: 4px solid #06b6d4;">
+          <div style="font-size: 12px; font-weight: 800; color: #06b6d4; text-transform: uppercase;">Layer 1: Presentation</div>
+          <h3 style="font-size: 18px; color: #fff; margin: 8px 0 15px 0;">Angular 21 Standalone UI</h3>
+          <ul style="font-size: 13.5px; color: #cbd5e1; line-height: 1.8; margin: 0; padding-left: 18px;">
+            <li>Real-Time Video Camera & Dropzone Scanner</li>
+            <li>Browser GNSS / Hardware GPS Fetcher</li>
+            <li>Reverse Geocoded Address Pinning</li>
+            <li>Leaflet B2B Map & Marketplace Search</li>
+            <li>Dynamic ESG Impact Dashboard</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 4px solid #10b981;">
+          <div style="font-size: 12px; font-weight: 800; color: #10b981; text-transform: uppercase;">Layer 2: Intelligence & Gateway</div>
+          <h3 style="font-size: 18px; color: #fff; margin: 8px 0 15px 0;">Node.js Express + AI Pipeline</h3>
+          <ul style="font-size: 13.5px; color: #cbd5e1; line-height: 1.8; margin: 0; padding-left: 18px;">
+            <li>Anti-Spoofing Gate: Bimodal luminosity filter</li>
+            <li>ResNet-34 CNN: 8-class material classifier</li>
+            <li>Haversine Logistics Engine: Great-circle transit km</li>
+            <li>Carbon LCA Model: Real-time CO2e offset</li>
+            <li>Security: JWT & Bcrypt Role Guards</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 4px solid #a855f7;">
+          <div style="font-size: 12px; font-weight: 800; color: #a855f7; text-transform: uppercase;">Layer 3: Data & Persistence</div>
+          <h3 style="font-size: 18px; color: #fff; margin: 8px 0 15px 0;">Persistence Data Store</h3>
+          <ul style="font-size: 13.5px; color: #cbd5e1; line-height: 1.8; margin: 0; padding-left: 18px;">
+            <li>Disk-Backed JSON Data Store (data_store.json)</li>
+            <li>Relational SQL Schema Interoperability</li>
+            <li>Immutable Site Inspection Log Entries</li>
+            <li>Asset Image Thumbnails & Proof Vault</li>
+            <li>B2B Purchase Orders & Tracking Records</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="background: #0f2d37; border: 1px solid #10b981; padding: 18px 25px;">
+        <div style="font-size: 14px; color: #10b981; font-weight: 700;">
+          PIPELINE FLOW: Image Upload &rarr; 96x96 Tensor Canvas &rarr; Luminance & Ink Density Anti-Spoofing &rarr; ResNet-34 Classification &rarr; Haversine Geo Match &rarr; Dynamic Carbon Metric Sync
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 12: 9. ALGORITHMS USED -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 9</div>
+        <h1>9. ALGORITHMS USED</h1>
+      </div>
+      <div class="header-right">Mathematical Models</div>
+    </div>
+
+    <div class="grid-2" style="margin: auto 0; gap: 25px;">
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h3 style="font-size: 18px; color: #fff; margin: 0;">1. Anti-Spoofing Document Filter</h3>
+          <span style="background: rgba(239, 68, 68, 0.2); color: #ef4444; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700;">Integrity Heuristic</span>
+        </div>
+        <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.5; margin-bottom: 12px;">Evaluates luminosity and stroke density to reject non-debris documents (notebooks, certificates, invoices):</p>
+        <div style="background: #0a0f1d; padding: 14px; border-radius: 8px; border: 1px solid #1e293b; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #ef4444; line-height: 1.6;">
+          Paper_Ratio = &Sigma;[L_i &gt; 165 &and; S_i &lt; 30] / N_pixels<br>
+          Stroke_Ratio = &Sigma;[L_i &lt; 120] / N_pixels<br>
+          <strong style="color: #fca5a5;">REJECT IF (Paper &gt; 0.65 &and; 0.003 &le; Stroke &le; 0.09 &and; &sigma; &lt; 40)</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h3 style="font-size: 18px; color: #fff; margin: 0;">2. ResNet-34 Material Classifier</h3>
+          <span style="background: rgba(6, 182, 212, 0.2); color: #06b6d4; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700;">Deep Learning</span>
+        </div>
+        <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.5; margin-bottom: 12px;">34-layer residual convolutional network utilizing identity skip connections to classify 8+ CDW categories:</p>
+        <div style="background: #0a0f1d; padding: 14px; border-radius: 8px; border: 1px solid #1e293b; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #06b6d4; line-height: 1.6;">
+          y = F(x, {W_i}) + x &nbsp;&nbsp;[Identity Skip Connection]<br>
+          Head: AdaptiveAvgPool &rarr; Linear(512, 256) &rarr; Softmax<br>
+          <strong style="color: #67e8f9;">P(Class_k) = exp(z_k) / &Sigma; exp(z_j)</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h3 style="font-size: 18px; color: #fff; margin: 0;">3. Haversine Logistics Distance</h3>
+          <span style="background: rgba(168, 85, 247, 0.2); color: #a855f7; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700;">Geospatial</span>
+        </div>
+        <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.5; margin-bottom: 12px;">Calculates great-circle spherical transit distance between demolition sites and buyer aggregate yards:</p>
+        <div style="background: #0a0f1d; padding: 14px; border-radius: 8px; border: 1px solid #1e293b; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #a855f7; line-height: 1.6;">
+          a = sin&sup2;(&Delta;&phi;/2) + cos(&phi;1)&middot;cos(&phi;2)&middot;sin&sup2;(&Delta;&lambda;/2)<br>
+          <strong style="color: #d8b4fe;">d = 2R &middot; atan2(&radic;a, &radic;(1-a)) &nbsp;&nbsp;[R = 6,371 km]</strong>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h3 style="font-size: 18px; color: #fff; margin: 0;">4. Embodied Carbon & Landfill LCA</h3>
+          <span style="background: rgba(16, 185, 129, 0.2); color: #10b981; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 700;">Environmental LCA</span>
+        </div>
+        <p style="font-size: 13.5px; color: #94a3b8; line-height: 1.5; margin-bottom: 12px;">Real-time mathematical conversion of diverted kilogram tonnage into verified ESG environmental offsets:</p>
+        <div style="background: #0a0f1d; padding: 14px; border-radius: 8px; border: 1px solid #1e293b; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #10b981; line-height: 1.6;">
+          CO2e_Avoided (kg) = Diverted (kg) &times; 0.428 kg CO2e/kg<br>
+          Landfill_Airspace (m&sup3;) = Diverted (kg) / 1,250 kg/m&sup3;<br>
+          <strong style="color: #6ee7b7;">Tipping_Saved (₹) = (Diverted / 1,000) &times; ₹1,800/ton</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 13: 10. ROLES ASSIGNED -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 10</div>
+        <h1>10. ROLES ASSIGNED</h1>
+      </div>
+      <div class="header-right">Team Responsibilities</div>
+    </div>
+
+    <div style="margin: auto 0;">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">Team Member</th>
+            <th style="width: 28%; color: #10b981;">Assigned Project Role</th>
+            <th style="width: 50%; color: #06b6d4;">Key Technical Responsibilities</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight: 700; color: #fff;">Member 1 (Team Lead)<br><span style="color: #94a3b8; font-size: 13px;">[Ihsan Muhammed]</span></td>
+            <td style="font-weight: 600; color: #10b981;">Lead AI Vision Engineer & Frontend Architect</td>
+            <td>Architected the Angular 21 application, created the ResNet-34 classification pipeline, built the anti-spoofing document rejection filter, and implemented live GPS reverse geocoding.</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #fff;">Member 2</td>
+            <td style="font-weight: 600; color: #06b6d4;">Full-Stack Backend & Database Engineer</td>
+            <td>Implemented Node.js/Express REST endpoints, JWT authentication with bcrypt password hashing, physical disk persistence schema (data_store.json), and database transaction handlers.</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #fff;">Member 3</td>
+            <td style="font-weight: 600; color: #a855f7;">Geospatial & Marketplace Specialist</td>
+            <td>Integrated Leaflet GIS interactive mapping, coded the Haversine logistics distance matrices, built material listing search filters, and engineered the buyer procurement transaction workflow.</td>
+          </tr>
+          <tr>
+            <td style="font-weight: 700; color: #fff;">Member 4</td>
+            <td style="font-weight: 600; color: #f59e0b;">ESG Analytics & Environmental Modeling</td>
+            <td>Formulated embodied carbon (CO2e) and landfill airspace algorithms, synthesized the 10 peer-reviewed research papers (2024–2026), and developed compliance audit reporting.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 14: 11. PROJECT TIME LINE (EXACT GANTT CHART AS UPLOADED!) -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header" style="border-bottom: none; margin-bottom: 10px;">
+      <div class="header-left">
+        <h1 style="font-size: 42px; font-family: serif; letter-spacing: 0.5px;">PROJECT TIME LINE</h1>
+      </div>
+      <div class="header-right" style="color: #10b981; font-weight: 700;">50% Milestone Reached</div>
+    </div>
+
+    <div class="gantt-container">
+      <div class="gantt-title">Semester 1 Project Gantt Chart — July to September 2026</div>
+
+      <div class="gantt-body">
+        <!-- Labels Column -->
+        <div class="gantt-labels">
+          <div class="gantt-label">Literature Survey & Problem Analysis</div>
+          <div class="gantt-label">Requirement Analysis & System Architecture</div>
+          <div class="gantt-label">Hardware Setup & Telemetry Data Collection</div>
+          <div class="gantt-label">Backend, Database & Data Pipeline Development</div>
+          <div class="gantt-label">Initial AI Model & Digital Twin Development</div>
+          <div class="gantt-label">Prototype Integration & Preliminary Testing</div>
+        </div>
+
+        <!-- Chart Bars Column -->
+        <div class="gantt-chart-area">
+          <!-- Dotted Vertical Grid Lines -->
+          <div class="grid-line" style="left: 0%;"></div>
+          <div class="grid-line" style="left: 17%;"></div>
+          <div class="grid-line" style="left: 36%;"></div>
+          <div class="grid-line" style="left: 52%;"></div>
+          <div class="grid-line" style="left: 71%;"></div>
+          <div class="grid-line" style="left: 88%;"></div>
+          <div class="grid-line" style="left: 100%;"></div>
+
+          <!-- Bar 1 -->
+          <div class="gantt-row">
+            <div class="gantt-bar" style="left: 0%; width: 17%;"></div>
+          </div>
+          <!-- Bar 2 -->
+          <div class="gantt-row">
+            <div class="gantt-bar" style="left: 17%; width: 19%;"></div>
+          </div>
+          <!-- Bar 3 -->
+          <div class="gantt-row">
+            <div class="gantt-bar" style="left: 36%; width: 16%;"></div>
+          </div>
+          <!-- Bar 4 -->
+          <div class="gantt-row">
+            <div class="gantt-bar" style="left: 52%; width: 19%;"></div>
+          </div>
+          <!-- Bar 5 -->
+          <div class="gantt-row">
+            <div class="gantt-bar" style="left: 71%; width: 17%;"></div>
+          </div>
+          <!-- Bar 6 -->
+          <div class="gantt-row">
+            <div class="gantt-bar" style="left: 88%; width: 12%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- X-Axis Labels -->
+      <div class="gantt-x-axis">
+        <div class="x-tick" style="margin-left: 0%;">2026-07-01</div>
+        <div class="x-tick" style="margin-left: 5%;">2026-07-15</div>
+        <div class="x-tick" style="margin-left: 5%;">2026-08-01</div>
+        <div class="x-tick" style="margin-left: 5%;">2026-08-15</div>
+        <div class="x-tick" style="margin-left: 5%;">2026-09-01</div>
+        <div class="x-tick" style="margin-left: 5%;">2026-09-15</div>
+        <div class="x-tick">2026-09-30</div>
+      </div>
+      <div style="text-align: center; font-size: 13px; color: #64748b; margin-top: 15px; font-weight: 600;">Timeline</div>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 15: 12. CONCLUSION -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">Section 12</div>
+        <h1>12. CONCLUSION</h1>
+      </div>
+      <div class="header-right">Summary & Future Work</div>
+    </div>
+
+    <div class="grid-2" style="margin: auto 0; gap: 30px;">
+      <div class="card" style="border-left: 4px solid #10b981; padding: 30px;">
+        <h3 style="font-size: 20px; color: #10b981; margin-top: 0;">50% Milestone Accomplishments</h3>
+        <ul style="font-size: 15px; color: #cbd5e1; line-height: 1.8; margin: 0; padding-left: 20px;">
+          <li><strong>Fully Operational Full-Stack Prototype:</strong> Live Angular 21 frontend running on <code style="color: #10b981;">localhost:4200</code> connected to Express API on <code style="color: #06b6d4;">localhost:8000</code>.</li>
+          <li><strong>Anti-Spoofing Document Filter:</strong> Successfully detects and automatically rejects non-construction documents, paper notebooks, and certificates.</li>
+          <li><strong>Live Hardware GPS Telemetry:</strong> Accurate browser satellite fix resolved to human-readable street & locality names via reverse geocoding.</li>
+          <li><strong>Zero Mock Data:</strong> Every metric, chart, and inventory listing dynamically synchronized with disk-backed database records.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="border-left: 4px solid #06b6d4; padding: 30px;">
+        <h3 style="font-size: 20px; color: #06b6d4; margin-top: 0;">Future Work (Remaining 50% Scope)</h3>
+        <ul style="font-size: 15px; color: #cbd5e1; line-height: 1.8; margin: 0; padding-left: 20px;">
+          <li><strong>Payment Escrow Gateway:</strong> Automated B2B escrow payment processing and funds release upon certified site receipt.</li>
+          <li><strong>Haulage Logistics Fleet Tracking:</strong> Real-time GPS tracking of dispatch aggregate haulage trucks between sites and crushers.</li>
+          <li><strong>Native Mobile Packaging:</strong> Packaging the web app into native Android and iOS mobile binaries via Capacitor.</li>
+          <li><strong>Digital Material Passports:</strong> QR-code and RFID tagged physical manifests attached to dispatched secondary aggregate loads.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+  <!-- ======================================================== -->
+  <!-- SLIDE 16: CODE SNIPPETS & SCREENSHOTS (50% EVALUATION) -->
+  <!-- ======================================================== -->
+  <section class="slide">
+    <div class="header">
+      <div class="header-left">
+        <div class="tag">50% Code Evaluation</div>
+        <h1>CODE SNIPPETS & SCREENSHOTS</h1>
+      </div>
+      <div class="header-right">Live Production Artifacts</div>
+    </div>
+
+    <div style="margin: auto 0;">
+      <div class="grid-3" style="gap: 20px; margin-bottom: 25px;">
+        <div class="card" style="background: #0a0f1d;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 700; color: #fff;">Anti-Spoofing Filter</span>
+            <span style="font-family: monospace; font-size: 11px; color: #06b6d4;">ai-vision.service.ts</span>
+          </div>
+          <pre style="margin: 0; font-size: 11px; color: #10b981; line-height: 1.4; overflow-x: auto;"><code>const isDoc = (
+  (lightDocRatio > 0.65 && 
+   darkStrokeRatio >= 0.003 && 
+   textureVariance < 40)
+);
+if (isDoc) {
+  return this.getInvalidPrediction(
+    'Document detected. Upload debris!'
+  );
+}</code></pre>
+        </div>
+
+        <div class="card" style="background: #0a0f1d;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 700; color: #fff;">Hardware GPS Geocoding</span>
+            <span style="font-family: monospace; font-size: 11px; color: #06b6d4;">waste.component.ts</span>
+          </div>
+          <pre style="margin: 0; font-size: 11px; color: #06b6d4; line-height: 1.4; overflow-x: auto;"><code>navigator.geolocation.getCurrentPosition(
+  async (pos) => {
+    const { latitude, longitude } = pos.coords;
+    const res = await fetch(
+      `https://api.bigdatacloud.net/...`
+    );
+    const data = await res.json();
+    this.gps = { lat, lng, addr: data.locality };
+});</code></pre>
+        </div>
+
+        <div class="card" style="background: #0a0f1d;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+            <span style="font-weight: 700; color: #fff;">Haversine Distance</span>
+            <span style="font-family: monospace; font-size: 11px; color: #06b6d4;">marketplace.service.ts</span>
+          </div>
+          <pre style="margin: 0; font-size: 11px; color: #a855f7; line-height: 1.4; overflow-x: auto;"><code>const a = Math.sin(dLat/2)**2 + 
+  Math.cos(lat1) * Math.cos(lat2) * 
+  Math.sin(dLon/2)**2;
+const d = 2 * 6371 * 
+  Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+return +d.toFixed(1); // km</code></pre>
+        </div>
+      </div>
+
+      <div class="card" style="background: rgba(16, 185, 129, 0.1); border: 2px solid #10b981; padding: 20px 25px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <h4 style="margin: 0 0 6px 0; font-size: 17px; color: #fff;">Live Deployed Demonstration Proof (Active on Localhost)</h4>
+            <p style="margin: 0; font-size: 13.5px; color: #cbd5e1;">
+              Frontend active on <strong style="color: #10b981;">http://localhost:4200</strong> & Backend active on <strong style="color: #06b6d4;">http://localhost:8000</strong>. Ready for live evaluation across all 4 core panels.
+            </p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <span style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #10b981; padding: 6px 14px; border-radius: 8px; font-weight: 700; font-size: 12px;">Zero Mock Data</span>
+            <span style="background: rgba(6, 182, 212, 0.2); border: 1px solid #06b6d4; color: #06b6d4; padding: 6px 14px; border-radius: 8px; font-weight: 700; font-size: 12px;">Live GPS Lock</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>ReBuild Platform | Department of Computer Science & Engineering</span>
+      <span>Faculty Guide: Prof. LeeMa Mathew</span>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!-- Fullscreen Toast Container -->
+<app-toast-container></app-toast-container>
+
+<!-- Quick Command Palette (Cmd+K / Ctrl+K) -->
+<app-search-palette
+  [isOpen]="isSearchPaletteOpen"
+  (closePalette)="closeSearchPalette()"
+></app-search-palette>
+
+<!-- PUBLIC LAYOUT (For Landing Page & Auth Screens) -->
+<div *ngIf="isPublicRoute" class="min-h-screen bg-[#EDE7DF]">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- ENTERPRISE PLATFORM SHELL (For Internal App Views) -->
+<div *ngIf="!isPublicRoute" class="min-h-screen flex flex-col bg-[#EDE7DF]">
+  <!-- Top Navigation Header -->
+  <app-navbar
+    [isSidebarOpen]="isSidebarOpen"
+    (toggleSidebar)="toggleSidebar()"
+    (openSearch)="openSearchPalette()"
+  ></app-navbar>
+
+  <div class="flex-1 flex overflow-hidden relative">
+    <!-- Slide Pop-up & Collapsible Sidebar -->
+    <app-sidebar
+      [isOpen]="isSidebarOpen"
+      [isPinned]="isSidebarPinned"
+      [isExpanded]="isSidebarExpanded"
+      [isMobileOpen]="isMobileSidebarOpen"
+      (close)="closeSidebar()"
+      (closeMobile)="closeSidebar()"
+      (togglePinned)="toggleSidebarPinned()"
+      (toggleExpanded)="toggleSidebarExpanded()"
+    ></app-sidebar>
+
+    <!-- Main Content Area with generous whitespace and smooth scroll -->
+    <main class="flex-1 overflow-y-auto bg-[#EDE7DF] min-h-[calc(100vh-4rem)] text-[#1C1917]">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

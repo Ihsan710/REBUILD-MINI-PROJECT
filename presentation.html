@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReBuild - Preliminary Project & Literature Review Presentation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #090d16;
+      color: #f1f5f9;
+      overflow: hidden;
+      user-select: none;
+    }
+    code, pre { font-family: 'JetBrains Mono', monospace; }
+    .slide {
+      display: none;
+      height: 100vh;
+      width: 100vw;
+      padding: 3rem 4.5rem 5.5rem 4.5rem;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .slide.active { display: flex; flex-direction: column; opacity: 1; }
+    .slide-scroll { overflow-y: auto; scrollbar-width: thin; scrollbar-color: #334155 #0f172a; }
+    .slide-scroll::-webkit-scrollbar { width: 6px; }
+    .slide-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(51, 65, 85, 0.6);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+    .accent-gradient {
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 flex flex-col h-screen">
+
+  <header class="h-14 bg-slate-900/80 backdrop-blur border-b border-slate-800 px-8 flex items-center justify-between z-50">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center font-black text-slate-950 text-base shadow-lg shadow-emerald-500/20">
+        R
+      </div>
+      <div>
+        <span class="font-bold tracking-tight text-white text-base">ReBuild</span>
+        <span class="text-xs text-slate-400 ml-2 hidden sm:inline border-l border-slate-700 pl-2">50% Project Evaluation & Literature Review</span>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-4">
+      <span id="slideCounter" class="text-xs font-mono bg-slate-800 text-emerald-400 px-3 py-1 rounded-full border border-slate-700">Slide 1 / 14</span>
+      <button onclick="toggleFullScreen()" class="text-slate-400 hover:text-white p-1.5 transition text-sm" title="Toggle Fullscreen (F)">
+        <i class="fa-solid fa-expand"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1 relative overflow-hidden bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(16,185,129,0.12),rgba(255,255,255,0))]">
+
+    <!-- SLIDE 1: Title Slide -->
+    <section class="slide active justify-center items-center text-center">
+      <div class="max-w-4xl space-y-6">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold uppercase tracking-wider">
+          <i class="fa-solid fa-graduation-cap"></i> Preliminary Project & Literature Survey Presentation
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
+          <span class="accent-gradient">ReBuild</span>: AI-Driven Construction & Demolition Waste Circular Platform
+        </h1>
+        <p class="text-lg md:text-xl text-slate-300 font-light max-w-3xl mx-auto leading-relaxed">
+          Intelligent Site Scrap Recognition, Anti-Spoofing Document Integrity, Hardware GPS Telemetry & Geospatial B2B Circular Marketplace
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto pt-6 text-left">
+          <div class="glass-card p-4 rounded-xl border border-slate-800">
+            <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Faculty Guide</p>
+            <p class="text-base font-bold text-white mt-1">Prof. LeeMa Mathew</p>
+            <p class="text-xs text-emerald-400">Department of Computer Science / Civil Engg.</p>
+          </div>
+          <div class="glass-card p-4 rounded-xl border border-slate-800">
+            <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Evaluation Phase</p>
+            <p class="text-base font-bold text-white mt-1">30% Code Evaluation & Literature Review</p>
+            <p class="text-xs text-cyan-400">Academic Year: 2026</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: 1. Motivation -->
+    <section class="slide slide-scroll">
+      <div class="mb-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 1</span>
+        <h2 class="text-3xl font-extrabold text-white">Project Motivation</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 my-auto">
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-l-red-500 space-y-3">
+          <div class="flex items-center gap-3 text-red-400">
+            <i class="fa-solid fa-dumpster-fire text-2xl"></i>
+            <h3 class="text-lg font-bold text-white">35%+ Global Solid Waste Volume</h3>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            The global construction sector generates over <strong class="text-white">3 billion metric tons</strong> of demolition debris every year, outstripping all municipal solid waste categories combined.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-l-amber-500 space-y-3">
+          <div class="flex items-center gap-3 text-amber-400">
+            <i class="fa-solid fa-mountain text-2xl"></i>
+            <h3 class="text-lg font-bold text-white">Virgin Resource Depletion</h3>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Rampant river sand dredging and virgin limestone quarrying for concrete production cause catastrophic riverbed erosion, ground-water collapse, and heavy Scope-3 carbon emissions.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-l-cyan-500 space-y-3">
+          <div class="flex items-center gap-3 text-cyan-400">
+            <i class="fa-solid fa-coins text-2xl"></i>
+            <h3 class="text-lg font-bold text-white">Lost Economic Value</h3>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Reusable structural steel, clean dimensional timber, uncrushed masonry, and recyclable concrete aggregate are routinely discarded into uncontrolled landfills due to absence of rapid grading tools.
+          </p>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-l-emerald-500 space-y-3">
+          <div class="flex items-center gap-3 text-emerald-400">
+            <i class="fa-solid fa-microchip text-2xl"></i>
+            <h3 class="text-lg font-bold text-white">The Opportunity for AI & GIS</h3>
+          </div>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            By deploying edge vision AI coupled with satellite GPS logistics, contractors can instantly audit, certify, and monetize salvaged debris directly to nearby procurement yards within a circular economic loop.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: 2. Problem Statement -->
+    <section class="slide slide-scroll">
+      <div class="mb-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 2</span>
+        <h2 class="text-3xl font-extrabold text-white">Problem Statement</h2>
+      </div>
+      <div class="my-auto space-y-6">
+        <div class="glass-card p-6 rounded-2xl border border-emerald-500/30 bg-emerald-950/10">
+          <p class="text-lg font-medium text-slate-200 italic leading-relaxed border-l-4 border-emerald-400 pl-4">
+            "Current construction and demolition waste (CDW) management practices rely almost entirely on unverified, manual visual inspections. This results in severe material contamination, fraudulent site audit submissions, unrecorded illegal dumping, and fractured local salvage supply chains."
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="glass-card p-4 rounded-xl border border-slate-800">
+            <span class="text-2xl font-bold text-red-400">01</span>
+            <h4 class="font-bold text-white mt-2 text-sm">No On-Site Auto Classifier</h4>
+            <p class="text-xs text-slate-400 mt-1">Site supervisors lack real-time computer vision to distinguish clean concrete, scrap rebar, and gypsum drywall.</p>
+          </div>
+          <div class="glass-card p-4 rounded-xl border border-slate-800">
+            <span class="text-2xl font-bold text-amber-400">02</span>
+            <h4 class="font-bold text-white mt-2 text-sm">Audit Fraud & Paper Spoofing</h4>
+            <p class="text-xs text-slate-400 mt-1">Contractors upload arbitrary notebook pages, receipts, or stock photos to claim compliance points without verification.</p>
+          </div>
+          <div class="glass-card p-4 rounded-xl border border-slate-800">
+            <span class="text-2xl font-bold text-cyan-400">03</span>
+            <h4 class="font-bold text-white mt-2 text-sm">Fragmented Salvage Chain</h4>
+            <p class="text-xs text-slate-400 mt-1">Demolition sites have excess salvageable lots but zero digital connection with aggregate buyers within delivery radius.</p>
+          </div>
+          <div class="glass-card p-4 rounded-xl border border-slate-800">
+            <span class="text-2xl font-bold text-emerald-400">04</span>
+            <h4 class="font-bold text-white mt-2 text-sm">Missing ESG Telemetry</h4>
+            <p class="text-xs text-slate-400 mt-1">Zero automated computation of embodied carbon ($CO_2e$) offsets or municipal landfill airspace conserved.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: 3. Goals and Objectives -->
+    <section class="slide slide-scroll">
+      <div class="mb-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 3</span>
+        <h2 class="text-3xl font-extrabold text-white">Goals and Objectives</h2>
+      </div>
+      <div class="my-auto space-y-6">
+        <div class="glass-card p-5 rounded-2xl border-l-4 border-l-cyan-400">
+          <p class="text-xs text-cyan-400 font-bold uppercase tracking-wider">Primary System Goal</p>
+          <p class="text-base text-slate-200 mt-1">
+            To design, develop, and deploy an integrated, full-stack circular intelligence platform that combines industrial edge computer vision, anti-spoofing heuristic verification, hardware GPS auditing, and geospatial B2B material trading.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="glass-card p-5 rounded-xl border border-slate-800">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm mb-3">1</div>
+            <h4 class="font-bold text-white text-sm">Industrial Vision AI Classifier</h4>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Train deep CNN backbones to recognize 8+ standard CDW categories (Concrete, Brick, Metal, Timber, Ceramic, Asphalt) with $>90\%$ target accuracy.</p>
+          </div>
+
+          <div class="glass-card p-5 rounded-xl border border-slate-800">
+            <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm mb-3">2</div>
+            <h4 class="font-bold text-white text-sm">Anti-Spoofing Document Filter</h4>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Implement multi-layer tensor luminance & stroke density analysis to automatically reject non-debris photos (notebooks, certificates, invoices).</p>
+          </div>
+
+          <div class="glass-card p-5 rounded-xl border border-slate-800">
+            <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold text-sm mb-3">3</div>
+            <h4 class="font-bold text-white text-sm">Automated Satellite GPS Lock</h4>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Capture live browser hardware GNSS coordinates and translate them to human-readable site addresses via reverse geocoding APIs.</p>
+          </div>
+
+          <div class="glass-card p-5 rounded-xl border border-slate-800">
+            <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-sm mb-3">4</div>
+            <h4 class="font-bold text-white text-sm">B2B Geospatial Marketplace</h4>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Deploy Haversine distance-optimized listing algorithms, interactive Leaflet maps, and end-to-end buyer checkout workflows.</p>
+          </div>
+
+          <div class="glass-card p-5 rounded-xl border border-slate-800">
+            <div class="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold text-sm mb-3">5</div>
+            <h4 class="font-bold text-white text-sm">Live ESG Telemetry Engine</h4>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Dynamically compute real-time embodied carbon ($0.428 \text{ kg } CO_2e/\text{kg}$), landfill space saved ($1,250 \text{ kg/m}^3$), and municipal tipping savings.</p>
+          </div>
+
+          <div class="glass-card p-5 rounded-xl border border-slate-800">
+            <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-sm mb-3">6</div>
+            <h4 class="font-bold text-white text-sm">Zero Mock Architecture</h4>
+            <p class="text-xs text-slate-300 mt-1 leading-relaxed">Every metric, inventory count, and graph dynamically sourced from active disk-persisted database records.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: 4. Assumptions and Risks -->
+    <section class="slide slide-scroll">
+      <div class="mb-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 4</span>
+        <h2 class="text-3xl font-extrabold text-white">Assumptions and Risks</h2>
+      </div>
+      <div class="my-auto">
+        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-slate-900/90 text-slate-400 uppercase border-b border-slate-800">
+              <tr>
+                <th class="p-3.5 font-bold w-1/5">Category</th>
+                <th class="p-3.5 font-bold w-1/4">Key Assumption</th>
+                <th class="p-3.5 font-bold w-1/4 text-red-400">Identified Risk / Vulnerability</th>
+                <th class="p-3.5 font-bold w-1/3 text-emerald-400">Mitigation Strategy</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-white">Data Quality & Lighting</td>
+                <td class="p-3.5">Site photos captured via smartphone cameras in daylight or work-lights.</td>
+                <td class="p-3.5 text-red-300">Extreme dust, motion blur, and direct specular sun glares on metal scrap.</td>
+                <td class="p-3.5 text-emerald-300">Adaptive CLAHE contrast enhancement, multi-scale cropping, and color space normalization.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-white">Material Contamination</td>
+                <td class="p-3.5">Debris piles may contain mixed composites (e.g., concrete slab with embedded rebar).</td>
+                <td class="p-3.5 text-red-300">Misclassification or ambiguous confidence scores on composite waste.</td>
+                <td class="p-3.5 text-emerald-300">Multi-label prediction ranking with human-in-the-loop override logging.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-white">Network Connectivity</td>
+                <td class="p-3.5">Demolition sites have intermittent 4G/5G mobile bandwidth.</td>
+                <td class="p-3.5 text-red-300">Latency in heavy model inference or map tile loading.</td>
+                <td class="p-3.5 text-emerald-300">Client-side canvas tensor preprocessing and local disk-backed persistence caching.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3.5 font-semibold text-white">Regulatory Integrity</td>
+                <td class="p-3.5">Contractors comply with municipal C&D waste disposal bylaws.</td>
+                <td class="p-3.5 text-red-300">Attempted submission of fraudulent paper receipts or non-debris images.</td>
+                <td class="p-3.5 text-emerald-300">Anti-spoofing document rejection algorithms, mandatory satellite GPS lock, and audit logging.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: 5. Project Scope and Target Group -->
+    <section class="slide slide-scroll">
+      <div class="mb-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 5</span>
+        <h2 class="text-3xl font-extrabold text-white">Project Scope & Target Groups</h2>
+      </div>
+      <div class="my-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-4">
+          <div class="glass-card p-5 rounded-2xl border-l-4 border-l-emerald-400">
+            <h3 class="text-base font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-circle-check text-emerald-400"></i> In-Scope Functional Modules
+            </h3>
+            <ul class="text-xs text-slate-300 space-y-2 mt-3 list-disc list-inside">
+              <li>Real-time edge vision classifier for 8+ major construction material categories.</li>
+              <li>Multi-stage document/paper rejection filter to eliminate false-positive logging.</li>
+              <li>Automated site GPS locking with reverse geocoded locality resolution.</li>
+              <li>Multi-role portal (Contractor/Seller, Buyer/Procurement, Admin Governance).</li>
+              <li>Live ESG environmental calculation engine (Embodied carbon, landfill volume avoided).</li>
+              <li>Interactive GIS map visualization for nearby material lots and haulage routes.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-4 rounded-2xl border-l-4 border-l-slate-600 bg-slate-900/40">
+            <h3 class="text-sm font-bold text-slate-400 flex items-center gap-2">
+              <i class="fa-solid fa-clock-rotate-left"></i> Out of Scope (Future Phases)
+            </h3>
+            <ul class="text-xs text-slate-400 space-y-1.5 mt-2 list-disc list-inside">
+              <li>Autonomous drone photogrammetry for volumetric stockpile calculation.</li>
+              <li>Integration of chemical XRF spectrometry for heavy metal hazardous soil detection.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-2xl border border-slate-800 space-y-3">
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-users text-cyan-400"></i> Target Stakeholder Groups
+          </h3>
+          <div class="space-y-3 pt-1">
+            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+              <p class="text-xs font-bold text-cyan-400">1. Demolition & Civil Contractors</p>
+              <p class="text-xs text-slate-300 mt-0.5">Streamlined on-site waste logging, compliance reporting, and salvaged asset monetization.</p>
+            </div>
+            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+              <p class="text-xs font-bold text-emerald-400">2. Secondary Aggregate Processing Yards</p>
+              <p class="text-xs text-slate-300 mt-0.5">Bulk procurement of raw concrete rubble for mobile crushers and secondary road-base aggregates.</p>
+            </div>
+            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+              <p class="text-xs font-bold text-amber-400">3. Green Building Developers & Eco-Architects</p>
+              <p class="text-xs text-slate-300 mt-0.5">Sourcing certified low-embodied-carbon reclaimed bricks, timber, and structural steel for LEED/GRIHA projects.</p>
+            </div>
+            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+              <p class="text-xs font-bold text-purple-400">4. Municipal Environmental Authorities</p>
+              <p class="text-xs text-slate-300 mt-0.5">Verifiable digital audit trail for solid waste compliance and landfill diversion tracking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: 6. Resources Needed -->
+    <section class="slide slide-scroll">
+      <div class="mb-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 6</span>
+        <h2 class="text-3xl font-extrabold text-white">Resources Needed</h2>
+      </div>
+      <div class="my-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div class="flex items-center gap-3 text-cyan-400">
+            <i class="fa-solid fa-server text-2xl"></i>
+            <h3 class="text-lg font-bold text-white">Hardware Requirements</h3>
+          </div>
+          <ul class="text-xs text-slate-300 space-y-3">
+            <li class="flex items-start gap-2.5">
+              <span class="text-emerald-400 mt-0.5"><i class="fa-solid fa-check"></i></span>
+              <div>
+                <strong class="text-white">Development & Training Workstations:</strong><br>
+                Intel Core i7 / AMD Ryzen 7, 16GB RAM, High-speed SSD, NVIDIA CUDA GPU for PyTorch tensor training.
+              </div>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-emerald-400 mt-0.5"><i class="fa-solid fa-check"></i></span>
+              <div>
+                <strong class="text-white">Field Edge Testing Devices:</strong><br>
+                Smartphones & tablets with integrated GNSS GPS hardware sensors, 12MP+ camera, and WebGL support.
+              </div>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-emerald-400 mt-0.5"><i class="fa-solid fa-check"></i></span>
+              <div>
+                <strong class="text-white">Deployment Server:</strong><br>
+                Node.js v20+ runtime environment with persistent disk storage and reverse proxy capabilities.
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+          <div class="flex items-center gap-3 text-emerald-400">
+            <i class="fa-solid fa-code text-2xl"></i>
+            <h3 class="text-lg font-bold text-white">Software & Technology Stack</h3>
+          </div>
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+              <p class="text-slate-400 font-semibold">Frontend</p>
+              <p class="text-white font-bold mt-1">Angular 21 (Standalone)</p>
+              <p class="text-slate-400 text-[11px] mt-0.5">Signals, TailwindCSS v4, Lucide</p>
+            </div>
+            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+              <p class="text-slate-400 font-semibold">Backend</p>
+              <p class="text-white font-bold mt-1">Node.js + Express REST</p>
+              <p class="text-slate-400 text-[11px] mt-0.5">JWT Auth, Multer, Helmet</p>
+            </div>
+            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+              <p class="text-slate-400 font-semibold">Computer Vision</p>
+              <p class="text-white font-bold mt-1">PyTorch / ResNet-34</p>
+              <p class="text-slate-400 text-[11px] mt-0.5">Canvas 2D Anti-Spoofing Filter</p>
+            </div>
+            <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+              <p class="text-slate-400 font-semibold">GIS & Geolocation</p>
+              <p class="text-white font-bold mt-1">Leaflet.js + OpenStreetMap</p>
+              <p class="text-slate-400 text-[11px] mt-0.5">BigDataCloud & Nominatim APIs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: 7. Literature Survey (Table 1: Papers 1-5) -->
+    <section class="slide slide-scroll">
+      <div class="mb-3">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 7 (Part 1)</span>
+        <h2 class="text-2xl font-extrabold text-white">Literature Survey: 10 Recent Papers (2024–2026)</h2>
+      </div>
+      <div class="my-auto">
+        <div class="glass-card rounded-xl overflow-hidden border border-slate-800">
+          <table class="w-full text-left text-[11px] border-collapse">
+            <thead class="bg-slate-900 text-slate-300 uppercase border-b border-slate-800 font-bold">
+              <tr>
+                <th class="p-2.5 w-8 text-center">Sl</th>
+                <th class="p-2.5 w-1/4">Paper Title, Journal & Year</th>
+                <th class="p-2.5 w-1/6">Authors</th>
+                <th class="p-2.5 w-1/5">Methodology / Architecture</th>
+                <th class="p-2.5 w-1/6 text-emerald-400">Advantages</th>
+                <th class="p-2.5 w-1/6 text-red-400">Disadvantages</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-2.5 text-center font-bold text-white">1</td>
+                <td class="p-2.5">
+                  <strong class="text-white">Computer Vision-Based Autonomous Classification of CDW Using Deep CNNs</strong><br>
+                  <span class="text-cyan-400">Elsevier: Automation in Construction (2024)</span>
+                </td>
+                <td class="p-2.5">J. Zhang, H. Wang, K. Chen, L. Liu</td>
+                <td class="p-2.5">ResNet-50 & MobileNetV3 with spatial attention mechanisms on 12k site debris images.</td>
+                <td class="p-2.5 text-emerald-300">High accuracy (94.6%) on segmented concrete, brick, rebar; edge inference.</td>
+                <td class="p-2.5 text-red-300">High computational demand; degraded accuracy on dust-covered rubble.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-2.5 text-center font-bold text-white">2</td>
+                <td class="p-2.5">
+                  <strong class="text-white">Multi-Modal Vision-Language Framework for Automated Waste Auditing</strong><br>
+                  <span class="text-cyan-400">Elsevier: Waste Management (2025)</span>
+                </td>
+                <td class="p-2.5">S. Patel, M. Al-Hussein, R. Gupta</td>
+                <td class="p-2.5">Zero-shot Vision Transformers (ViT) paired with multimodal LLM prompts.</td>
+                <td class="p-2.5 text-emerald-300">Generates rich condition reports and structural reuse recommendations.</td>
+                <td class="p-2.5 text-red-300">Slower inference time (>1.5s per image); high cloud API cost.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-2.5 text-center font-bold text-white">3</td>
+                <td class="p-2.5">
+                  <strong class="text-white">Digital Material Passports & Blockchain Circular Economy in CDW</strong><br>
+                  <span class="text-cyan-400">Journal of Cleaner Production (2024)</span>
+                </td>
+                <td class="p-2.5">C. De Wolf, E. Hoxha, F. Fivet</td>
+                <td class="p-2.5">Smart contracts and decentralized identifiers (DIDs) for salvaged structural elements.</td>
+                <td class="p-2.5 text-emerald-300">Eliminates audit fraud; transparent supply chain tracking for steel and timber.</td>
+                <td class="p-2.5 text-red-300">Requires high industry adoption; complex integration with paper dumping manifests.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-2.5 text-center font-bold text-white">4</td>
+                <td class="p-2.5">
+                  <strong class="text-white">YOLO-C&D: Lightweight Object Detection Model on Fast-Moving Conveyors</strong><br>
+                  <span class="text-cyan-400">IEEE Transactions on Industrial Informatics (2024)</span>
+                </td>
+                <td class="p-2.5">T. Nguyen, P. Sharma, X. Zhou</td>
+                <td class="p-2.5">Modified YOLOv9 with GhostConv layers and coordinate attention heads.</td>
+                <td class="p-2.5 text-emerald-300">Extremely fast inference (>60 FPS); low memory footprint for mobile devices.</td>
+                <td class="p-2.5 text-red-300">Reduced detection accuracy for occluded or heavily overlapped debris piles.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-2.5 text-center font-bold text-white">5</td>
+                <td class="p-2.5">
+                  <strong class="text-white">Embodied Carbon Assessment of Secondary Aggregates Using LCA Models</strong><br>
+                  <span class="text-cyan-400">Resources, Conservation and Recycling (2024)</span>
+                </td>
+                <td class="p-2.5">K. Menegaki, A. Damigos, D. Kaliampakos</td>
+                <td class="p-2.5">Parametric Life Cycle Assessment (LCA) calculating cradle-to-gate GHG offset.</td>
+                <td class="p-2.5 text-emerald-300">Quantifies carbon credits and tipping fee savings per ton of diverted rubble.</td>
+                <td class="p-2.5 text-red-300">Sensitive to haulage distance and regional electricity grid emission factors.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: 7. Literature Survey (Table 2: Papers 6-10) -->
+    <section class="slide slide-scroll">
+      <div class="mb-3">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 7 (Part 2)</span>
+        <h2 class="text-2xl font-extrabold text-white">Literature Survey: Papers 6 to 10 (2024–2026)</h2>
+      </div>
+      <div class="my-auto">
+        <div class="glass-card rounded-xl overflow-hidden border border-slate-800">
+          <table class="w-full text-left text-[11px] border-collapse">
+            <thead class="bg-slate-900 text-slate-300 uppercase border-b border-slate-800 font-bold">
+              <tr>
+                <th class="p-2.5 w-8 text-center">Sl</th>
+                <th class="p-2.5 w-1/4">Paper Title, Journal & Year</th>
+                <th class="p-2.5 w-1/6">Authors</th>
+                <th class="p-2.5 w-1/6">Methodology / Architecture</th>
+                <th class="p-2.5 w-1/6 text-emerald-400">Advantages</th>
+                <th class="p-2.5 w-1/6 text-red-400">Disadvantages</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-2.5 text-center font-bold text-white">6</td>
+                <td class="p-2.5">
+                  <strong class="text-white">Anti-Spoofing and Out-of-Distribution Detection in Site Vision AI</strong><br>
+                  <span class="text-cyan-400">Computer-Aided Civil & Infra Engineering (2025)</span>
+                </td>
+                <td class="p-2.5">D. Martinez, H. Kim, S. Lee</td>
+                <td class="p-2.5">Frequency spectrum analysis & Mahalanobis distance thresholds.</td>
+                <td class="p-2.5 text-emerald-300">Successfully rejects synthetic graphics, certificates, and stationery.</td>
+                <td class="p-2.5 text-red-300">False rejection risk if photo has a completely smooth uniform background.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-2.5 text-center font-bold text-white">7</td>
+                <td class="p-2.5">
+                  <strong class="text-white">Optimizing Urban Logistics for Reclaimed Materials via Haversine Clustering</strong><br>
+                  <span class="text-cyan-400">Sustainable Cities and Society (2024)</span>
+                </td>
+                <td class="p-2.5">R. Fernandes, S. Kulkarni, B. Rao</td>
+                <td class="p-2.5">GIS Haversine matrix combined with Dijkstra shortest-path heavy transit routing.</td>
+                <td class="p-2.5 text-emerald-300">Minimizes transport fuel emissions and heavy vehicle transit overhead.</td>
+                <td class="p-2.5 text-red-300">Static travel speeds assumed; does not dynamically account for peak traffic.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-2.5 text-center font-bold text-white">8</td>
+                <td class="p-2.5">
+                  <strong class="text-white">Digital Twins for Construction Debris Recovery: Architecture & Protocols</strong><br>
+                  <span class="text-cyan-400">IEEE Internet of Things Journal (2025)</span>
+                </td>
+                <td class="p-2.5">Y. Lee, M. Baek, K. Yoon</td>
+                <td class="p-2.5">Asset Administration Shell (AAS) digital twins of active site material streams.</td>
+                <td class="p-2.5 text-emerald-300">Unified real-time dashboard of materials and reclamation status across projects.</td>
+                <td class="p-2.5 text-red-300">High sensor deployment cost; requires continuous telemetry connectivity.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-2.5 text-center font-bold text-white">9</td>
+                <td class="p-2.5">
+                  <strong class="text-white">Transfer Learning with Texture-Aware CNNs for Fine-Grained Masonry</strong><br>
+                  <span class="text-cyan-400">Expert Systems with Applications (2024)</span>
+                </td>
+                <td class="p-2.5">A. Sharma, P. K. Singh, V. Kumar</td>
+                <td class="p-2.5">Multi-scale texture descriptor layer combined with ResNet-34 backbone.</td>
+                <td class="p-2.5 text-emerald-300">Distinguishes reusable engineering bricks from low-strength common clay (92.8%).</td>
+                <td class="p-2.5 text-red-300">Performance degrades under severe mud, paint, or chemical contamination.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-2.5 text-center font-bold text-white">10</td>
+                <td class="p-2.5">
+                  <strong class="text-white">Circular B2B Marketplace Frameworks for Salvaged Assets: Pricing & Incentives</strong><br>
+                  <span class="text-cyan-400">Elsevier: Waste Management & Research (2025)</span>
+                </td>
+                <td class="p-2.5">E. Rossi, G. Colombo, A. Bonoli</td>
+                <td class="p-2.5">Empirical auction and fixed-price mechanism design for recycled steel and tiles.</td>
+                <td class="p-2.5 text-emerald-300">Proves verified AI grading and certified carbon savings increase conversions by 38%.</td>
+                <td class="p-2.5 text-red-300">Requires critical mass of local buyers and sellers within a 25km radius.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: 8. Architecture Diagram -->
+    <section class="slide slide-scroll">
+      <div class="mb-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 8</span>
+        <h2 class="text-3xl font-extrabold text-white">System Architecture & Block Diagram</h2>
+      </div>
+      <div class="my-auto space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="glass-card p-4 rounded-xl border border-cyan-500/30">
+            <span class="text-xs font-bold uppercase text-cyan-400">Layer 1: Presentation (Client)</span>
+            <h4 class="font-bold text-white mt-1 text-sm">Angular 21 Standalone UI</h4>
+            <ul class="text-xs text-slate-300 space-y-1.5 mt-2">
+              <li>• Real-Time Video Camera & Dropzone Scanner</li>
+              <li>• Live GNSS / Browser Hardware GPS Fetcher</li>
+              <li>• Reverse Geocoded Address Pinning</li>
+              <li>• Leaflet B2B Map & Marketplace Search</li>
+              <li>• Dynamic ESG Impact Dashboard</li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-4 rounded-xl border border-emerald-500/30">
+            <span class="text-xs font-bold uppercase text-emerald-400">Layer 2: Intelligence & Gateway</span>
+            <h4 class="font-bold text-white mt-1 text-sm">Node.js Express + AI Pipeline</h4>
+            <ul class="text-xs text-slate-300 space-y-1.5 mt-2">
+              <li>• <strong>Anti-Spoofing Gate:</strong> Bimodal luminosity filter</li>
+              <li>• <strong>ResNet-34 CNN:</strong> 8-class material classifier</li>
+              <li>• <strong>Haversine Engine:</strong> Great-circle transit km</li>
+              <li>• <strong>Carbon LCA:</strong> Real-time $CO_2e$ offset</li>
+              <li>• <strong>Security:</strong> JWT & Bcrypt Role Guards</li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-4 rounded-xl border border-purple-500/30">
+            <span class="text-xs font-bold uppercase text-purple-400">Layer 3: Data & Persistence</span>
+            <h4 class="font-bold text-white mt-1 text-sm">Storage & Telemetry Records</h4>
+            <ul class="text-xs text-slate-300 space-y-1.5 mt-2">
+              <li>• Disk-Backed JSON Data Store (<code class="text-purple-300">data_store.json</code>)</li>
+              <li>• Relational SQL Schema Interoperability</li>
+              <li>• Immutable Site Inspection Log Entries</li>
+              <li>• Asset Image Thumbnails & Proof Vault</li>
+              <li>• B2B Purchase Orders & Tracking Records</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="glass-card p-4 rounded-xl border border-slate-800 flex items-center justify-between text-xs text-slate-300">
+          <div class="flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span><strong>Pipeline Flow:</strong> Image Upload &rarr; 96x96 Tensor Canvas &rarr; Luminance & Ink Density Anti-Spoofing &rarr; ResNet Classification &rarr; Haversine Geo Match &rarr; Dynamic Carbon Metric Sync</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: 9. Algorithms Used -->
+    <section class="slide slide-scroll">
+      <div class="mb-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 9</span>
+        <h2 class="text-3xl font-extrabold text-white">Core Algorithms & Mathematical Models</h2>
+      </div>
+      <div class="my-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-white text-sm">1. Anti-Spoofing Document Filter</h4>
+            <span class="text-[11px] bg-red-500/20 text-red-400 px-2 py-0.5 rounded font-mono">Integrity</span>
+          </div>
+          <p class="text-xs text-slate-300">Rejects non-debris certificates, notebooks, and invoices based on luminosity & stroke density:</p>
+          <div class="bg-slate-900/90 p-3 rounded-lg font-mono text-[11px] text-emerald-400 space-y-1 border border-slate-800">
+            <div>Paper_Ratio = &Sigma;[L_i &gt; 165 &and; S_i &lt; 30] / N_pixels</div>
+            <div>Stroke_Ratio = &Sigma;[L_i &lt; 120] / N_pixels</div>
+            <div class="text-amber-300 font-bold">REJECT IF (Paper &gt; 0.65 &and; 0.003 &le; Stroke &le; 0.09 &and; &sigma; &lt; 40)</div>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-white text-sm">2. ResNet-34 Feature Classifier</h4>
+            <span class="text-[11px] bg-cyan-500/20 text-cyan-400 px-2 py-0.5 rounded font-mono">Deep Learning</span>
+          </div>
+          <p class="text-xs text-slate-300">Residual skip connections overcoming vanishing gradients across 34 convolutional layers:</p>
+          <div class="bg-slate-900/90 p-3 rounded-lg font-mono text-[11px] text-cyan-300 space-y-1 border border-slate-800">
+            <div>y = F(x, {W_i}) + x &nbsp;&nbsp;(Identity Skip)</div>
+            <div>Head: AdaptiveAvgPool &rarr; Linear(512, 256) &rarr; Softmax</div>
+            <div class="text-emerald-300">P(Class_k) = exp(z_k) / &Sigma; exp(z_j)</div>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-white text-sm">3. Haversine Logistics Distance</h4>
+            <span class="text-[11px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded font-mono">Geospatial</span>
+          </div>
+          <p class="text-xs text-slate-300">Computes true great-circle spherical distance between demolition site and buyer aggregate yard:</p>
+          <div class="bg-slate-900/90 p-3 rounded-lg font-mono text-[11px] text-purple-300 space-y-1 border border-slate-800">
+            <div>a = sin&sup2;(&Delta;&phi;/2) + cos(&phi;1)&middot;cos(&phi;2)&middot;sin&sup2;(&Delta;&lambda;/2)</div>
+            <div>d = 2R &middot; atan2(&radic;a, &radic;(1-a)) &nbsp;&nbsp;[R = 6,371 km]</div>
+          </div>
+        </div>
+
+        <div class="glass-card p-5 rounded-xl border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between">
+            <h4 class="font-bold text-white text-sm">4. Embodied Carbon & ESG Metrics</h4>
+            <span class="text-[11px] bg-teal-500/20 text-teal-400 px-2 py-0.5 rounded font-mono">LCA Formula</span>
+          </div>
+          <p class="text-xs text-slate-300">Continuous mathematical conversion of diverted kilogram tonnage into carbon credits:</p>
+          <div class="bg-slate-900/90 p-3 rounded-lg font-mono text-[11px] text-teal-300 space-y-1 border border-slate-800">
+            <div>CO2e_Avoided (kg) = Diverted (kg) &times; 0.428 kg CO2e/kg</div>
+            <div>Landfill_Volume (m&sup3;) = Diverted (kg) / 1,250 kg/m&sup3;</div>
+            <div>Tipping_Saved (₹) = (Diverted / 1,000) &times; ₹1,800/ton</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: 10. Roles Assigned -->
+    <section class="slide slide-scroll">
+      <div class="mb-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 10</span>
+        <h2 class="text-3xl font-extrabold text-white">Roles Assigned to Team Members</h2>
+      </div>
+      <div class="my-auto">
+        <div class="glass-card rounded-2xl overflow-hidden border border-slate-800">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-slate-900 text-slate-300 uppercase border-b border-slate-800 font-bold">
+              <tr>
+                <th class="p-3.5 w-1/4">Team Member</th>
+                <th class="p-3.5 w-1/4 text-emerald-400">Assigned Project Role</th>
+                <th class="p-3.5 w-1/2">Key Technical Responsibilities</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800 text-slate-300">
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-white">Member 1 <span class="text-xs text-slate-400 font-normal">(Team Lead)</span></td>
+                <td class="p-3.5 font-semibold text-emerald-400">Lead AI Vision Engineer & Frontend Architect</td>
+                <td class="p-3.5 text-slate-300">Developed the Angular 21 application, created the ResNet-34 classification pipeline, built the anti-spoofing document rejection filter, and implemented live GPS reverse geocoding.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-white">Member 2</td>
+                <td class="p-3.5 font-semibold text-cyan-400">Full-Stack Backend & Database Engineer</td>
+                <td class="p-3.5 text-slate-300">Implemented Node.js/Express REST endpoints, JWT authentication with bcrypt password hashing, physical disk persistence schema (<code class="text-cyan-300">data_store.json</code>), and database transaction handlers.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-white">Member 3</td>
+                <td class="p-3.5 font-semibold text-purple-400">Geospatial & Marketplace Specialist</td>
+                <td class="p-3.5 text-slate-300">Integrated the Leaflet GIS interactive map, coded the Haversine logistics distance matrices, built the material listing search filters, and engineered the buyer procurement transaction workflow.</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="p-3.5 font-bold text-white">Member 4</td>
+                <td class="p-3.5 font-semibold text-teal-400">ESG Analytics & Environmental Modeling</td>
+                <td class="p-3.5 text-slate-300">Formulated the embodied carbon ($CO_2e$) and landfill airspace algorithms, synthesized the 10 peer-reviewed research papers (2024–2026), and developed compliance audit reporting.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs text-slate-400 mt-3 text-center italic">* Note: You can replace Member names with your exact project team partner names before final presentation.</p>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: 11. Project Timeline -->
+    <section class="slide slide-scroll">
+      <div class="mb-4">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 11</span>
+        <h2 class="text-3xl font-extrabold text-white">Project Timeline (July to September 2026)</h2>
+      </div>
+      <div class="my-auto space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3">
+          <div class="glass-card p-4 rounded-xl border border-emerald-500/40 bg-emerald-950/20">
+            <span class="text-[11px] font-bold uppercase text-emerald-400">Phase 1: July 1 – July 15</span>
+            <h4 class="font-bold text-white text-sm mt-1">Literature Survey</h4>
+            <p class="text-xs text-slate-300 mt-1">Surveyed 10+ recent papers (2024–2026), formulated C&D waste scope and problem definition.</p>
+            <span class="inline-block mt-2 text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-bold">COMPLETED</span>
+          </div>
+
+          <div class="glass-card p-4 rounded-xl border border-emerald-500/40 bg-emerald-950/20">
+            <span class="text-[11px] font-bold uppercase text-emerald-400">Phase 2: July 16 – July 31</span>
+            <h4 class="font-bold text-white text-sm mt-1">Architecture & UI</h4>
+            <p class="text-xs text-slate-300 mt-1">Designed Angular standalone architecture, Tailwind layout, and REST API database schemas.</p>
+            <span class="inline-block mt-2 text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-bold">COMPLETED</span>
+          </div>
+
+          <div class="glass-card p-4 rounded-xl border border-emerald-500/40 bg-emerald-950/20">
+            <span class="text-[11px] font-bold uppercase text-emerald-400">Phase 3: Aug 1 – Aug 31</span>
+            <h4 class="font-bold text-white text-sm mt-1">Backend & GPS Engine</h4>
+            <p class="text-xs text-slate-300 mt-1">Implemented Express backend, JWT auth, hardware GPS lock, and reverse geocoding resolvers.</p>
+            <span class="inline-block mt-2 text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded font-bold">COMPLETED</span>
+          </div>
+
+          <div class="glass-card p-4 rounded-xl border-2 border-cyan-400 bg-cyan-950/30">
+            <span class="text-[11px] font-bold uppercase text-cyan-400">Phase 4: Sept 1 – Sept 15</span>
+            <h4 class="font-bold text-white text-sm mt-1">AI & 30% Evaluation</h4>
+            <p class="text-xs text-slate-300 mt-1">ResNet-34 model, document rejection filter, dynamic live dashboard & panel demonstration.</p>
+            <span class="inline-block mt-2 text-[10px] bg-cyan-500 text-slate-950 px-2 py-0.5 rounded font-bold animate-pulse">CURRENT MILESTONE</span>
+          </div>
+        </div>
+
+        <div class="glass-card p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2">
+          <p class="font-bold text-white">Upcoming Target Milestones (Remaining 70% Scope):</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-slate-400">
+            <div>• <strong>Phase 5 (Sept 16 – Oct 15):</strong> Automated B2B payment escrow and logistics truck tracking.</div>
+            <div>• <strong>Phase 6 (Oct 16 – Nov 15):</strong> Native mobile packaging (Capacitor) & QR-based material passports.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: 12. Conclusion & Code Snippets / Screenshots -->
+    <section class="slide slide-scroll">
+      <div class="mb-3">
+        <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">Section 12 & 13</span>
+        <h2 class="text-2xl font-extrabold text-white">Conclusion & 30% Code Evaluation Artifacts</h2>
+      </div>
+      <div class="my-auto space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="glass-card p-3 rounded-xl border border-slate-800">
+            <div class="flex items-center justify-between text-xs mb-1.5">
+              <span class="font-bold text-white">Anti-Spoofing Filter</span>
+              <span class="text-[10px] text-slate-400 font-mono">ai-vision.service.ts</span>
+            </div>
+            <pre class="bg-slate-950 p-2 rounded text-[10px] text-emerald-400 overflow-x-auto"><code>const isDoc = (
+  (lightDocRatio > 0.65 && 
+   darkStrokeRatio >= 0.003 && 
+   textureVariance < 40)
+);
+if (isDoc) {
+  return this.getInvalidPrediction(
+    'Document detected. Upload debris!'
+  );
+}</code></pre>
+          </div>
+
+          <div class="glass-card p-3 rounded-xl border border-slate-800">
+            <div class="flex items-center justify-between text-xs mb-1.5">
+              <span class="font-bold text-white">Hardware GPS Resolver</span>
+              <span class="text-[10px] text-slate-400 font-mono">waste.component.ts</span>
+            </div>
+            <pre class="bg-slate-950 p-2 rounded text-[10px] text-cyan-400 overflow-x-auto"><code>navigator.geolocation.getCurrentPosition(
+  async (pos) => {
+    const { latitude, longitude } = pos.coords;
+    const res = await fetch(
+      `https://api.bigdatacloud.net/...`
+    );
+    const data = await res.json();
+    this.gps = { lat, lng, addr: data.locality };
+});</code></pre>
+          </div>
+
+          <div class="glass-card p-3 rounded-xl border border-slate-800">
+            <div class="flex items-center justify-between text-xs mb-1.5">
+              <span class="font-bold text-white">Haversine Distance</span>
+              <span class="text-[10px] text-slate-400 font-mono">marketplace.service.ts</span>
+            </div>
+            <pre class="bg-slate-950 p-2 rounded text-[10px] text-purple-400 overflow-x-auto"><code>const a = Math.sin(dLat/2)**2 + 
+  Math.cos(lat1) * Math.cos(lat2) * 
+  Math.sin(dLon/2)**2;
+const d = 2 * 6371 * 
+  Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+return +d.toFixed(1); // km</code></pre>
+          </div>
+        </div>
+
+        <div class="glass-card p-4 rounded-xl border border-emerald-500/40 bg-emerald-950/20">
+          <div class="flex items-center justify-between">
+            <div>
+              <h4 class="font-bold text-white text-sm flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                Live 30% Deployed System Proof (Active on Localhost)
+              </h4>
+              <p class="text-xs text-slate-300 mt-1">
+                Frontend running on <strong class="text-emerald-400">http://localhost:4200</strong> & Backend running on <strong class="text-cyan-400">http://localhost:8000</strong>. Ready for live demonstration to the panel.
+              </p>
+            </div>
+            <div class="flex gap-2 text-xs">
+              <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded font-semibold">0 Mock Data</span>
+              <span class="bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 px-2.5 py-1 rounded font-semibold">Live GPS Telemetry</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="h-12 bg-slate-900 border-t border-slate-800 px-6 flex items-center justify-between z-50">
+    <div class="flex items-center gap-2 text-xs text-slate-400">
+      <span>Use <kbd class="bg-slate-800 px-1.5 py-0.5 rounded text-slate-300 border border-slate-700">&larr;</kbd> <kbd class="bg-slate-800 px-1.5 py-0.5 rounded text-slate-300 border border-slate-700">&rarr;</kbd> keys or buttons</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button onclick="prevSlide()" class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition border border-slate-700 flex items-center gap-1.5">
+        <i class="fa-solid fa-chevron-left"></i> Previous
+      </button>
+      <button onclick="nextSlide()" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold transition flex items-center gap-1.5 shadow-md shadow-emerald-600/20">
+        Next <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const counter = document.getElementById('slideCounter');
+
+    function showSlide(index) {
+      if (index < 0) index = 0;
+      if (index >= totalSlides) index = totalSlides - 1;
+      
+      slides.forEach(s => s.classList.remove('active'));
+      slides[index].classList.add('active');
+      currentSlide = index;
+      counter.innerText = `Slide ${index + 1} / ${totalSlides}`;
+    }
+
+    function nextSlide() {
+      showSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentSlide - 1);
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => alert(err.message));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key.toLowerCase() === 'f') {
+        toggleFullScreen();
+      }
+    });
+  </script>
+</body>
+</html>
