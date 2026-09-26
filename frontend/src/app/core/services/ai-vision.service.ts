@@ -117,13 +117,20 @@ export class AiVisionService {
     const startTime = performance.now();
     const fileName = (file instanceof File ? file.name : '').toLowerCase();
 
-    // 1. Try Backend REST API first with an responsive abort controller
+    // 1. Run local client-side anti-spoofing and canvas feature analysis first
+    // This immediately detects ID cards, personal badges, certificates, notebooks, selfies, and flat documents
+    const localResult = await this.analyzeImageLocally(file, fileName, startTime);
+    if (!localResult.isValidMaterial) {
+      return localResult;
+    }
+
+    // 2. Query backend REST API for deep PyTorch neural network confirmation
     try {
       const formData = new FormData();
       formData.append('image', file);
 
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 750);
+      const timeoutId = setTimeout(() => controller.abort(), 1200);
 
       const response = await fetch(this.API_URL, {
         method: 'POST',
@@ -142,14 +149,14 @@ export class AiVisionService {
             duration
           );
         }
-        const detectedMaterial = (data.detectedMaterial as MaterialCategory) || 'Concrete';
-        const boundingBox = data.boundingBox || { x: 12, y: 12, width: 75, height: 75 };
+        const detectedMaterial = (data.detectedMaterial as MaterialCategory) || localResult.detectedMaterial;
+        const boundingBox = data.boundingBox || localResult.boundingBox || { x: 12, y: 12, width: 75, height: 75 };
         return {
           detectedMaterial,
-          confidence: data.confidence || 92.0,
+          confidence: data.confidence || localResult.confidence,
           isValidMaterial: true,
-          secondaryPrediction: data.secondaryPrediction || { material: 'Stone', confidence: 5.8 },
-          detectedFeatures: data.detectedFeatures || ['AI Neural ResNet-34 Feature Tensor Match'],
+          secondaryPrediction: data.secondaryPrediction || localResult.secondaryPrediction,
+          detectedFeatures: data.detectedFeatures || localResult.detectedFeatures,
           boundingBox,
           isConfirmed: false,
           isUserCorrected: false,
@@ -160,27 +167,27 @@ export class AiVisionService {
         };
       }
     } catch (_) {
-      // Backend not running or timeout -> Seamlessly fallback to local browser tensor analysis
+      // Backend not running or timeout -> Seamlessly use verified local canvas analysis result
     }
 
-    // 2. Ultra-fast local browser canvas tensor analysis
-    return this.analyzeImageLocally(file, fileName, startTime);
+    return localResult;
   }
 
   private analyzeImageLocally(file: File | Blob, fileName: string, startTime: number): Promise<AIPredictionResult> {
     return new Promise((resolve) => {
-      // 1. REJECT OBVIOUS NON-CONSTRUCTION FILENAMES (Explicit Certificates, Diplomas, Notebooks)
+      // 1. REJECT OBVIOUS NON-CONSTRUCTION FILENAMES
       const nonConstructionKeywords = [
         'certificate', 'diploma', 'licence', 'license', 'award', 'degree',
         'notebook', 'homework', 'assignment', 'handwriting', 'handwritten',
-        'receipt', 'invoice'
+        'receipt', 'invoice', 'id_card', 'idcard', 'student', 'badge', 'passport',
+        'portrait', 'profile', 'selfie', 'screenshot', 'screen_shot'
       ];
       if (nonConstructionKeywords.some(kw => fileName.includes(kw))) {
         return resolve(this.getInvalidPrediction(
-          'Non-construction image detected (Certificate / Document / Notebook). The uploaded image contains document or certificate features rather than physical construction debris.',
+          'Non-construction image detected (ID Card / Badge / Certificate / Document). The uploaded image contains document or personal card features rather than physical construction debris.',
           [
-            'Document / Certificate keyword detected',
-            'Non-CDW asset: Zero construction aggregate',
+            'Non-construction asset identifier detected',
+            'Non-CDW asset: Zero construction aggregate or structural element',
             'Validation Status: REJECTED'
           ],
           Math.max(14, Math.round(performance.now() - startTime))
@@ -226,10 +233,11 @@ export class AiVisionService {
           let totalB = 0;
           let totalBrightness = 0;
           let totalSaturation = 0;
-          let lightDocumentPixels = 0; // Bright paper/sheet pixels (white, cream, light cyan/blue)
-          let darkStrokeCount = 0;     // Text letters, printed ink, ruled lines
-          let extremeWhiteCount = 0;
-          let midTonePixelCount = 0;
+          let lightDocumentPixels = 0; // Bright paper/sheet pixels (white, cream, light cyan/blue > 165)
+          let extremeWhiteCount = 0;   // High white plastic/paper (> 200)
+          let darkStrokeCount = 0;     // Text letters, printed ink, ruled lines, dark lanyard (< 120)
+          let midTonePixelCount = 0;   // Midtones where real aggregates live (60-165)
+          let skinPixelCount = 0;      // Portrait / face skin tones
 
           for (let i = 0; i < data.length; i += 4) {
             const r = data[i];
@@ -252,12 +260,12 @@ export class AiVisionService {
               lightDocumentPixels++;
             }
 
-            // Extreme paper white
-            if (brightness > 220) {
+            // Extreme paper/card white (brightness > 200)
+            if (brightness > 200) {
               extremeWhiteCount++;
             }
 
-            // Detect dark text letters or thin ink strokes
+            // Detect dark text letters, printed ink strokes, or lanyard (< 120)
             if (brightness < 120) {
               darkStrokeCount++;
             }
@@ -265,6 +273,11 @@ export class AiVisionService {
             // Mid-tone range where real physical construction waste (concrete, bricks, stone, timber) lives
             if (brightness >= 60 && brightness <= 165) {
               midTonePixelCount++;
+            }
+
+            // Human skin tone detection for ID cards / badges / selfies
+            if (r > 95 && g > 40 && b > 20 && (r - g) > 12 && (r - b) > 15 && r > g && g > b) {
+              skinPixelCount++;
             }
           }
 
@@ -278,6 +291,7 @@ export class AiVisionService {
           const darkStrokeRatio = darkStrokeCount / pixelCount;
           const extremeWhiteRatio = extremeWhiteCount / pixelCount;
           const midToneRatio = midTonePixelCount / pixelCount;
+          const skinRatio = skinPixelCount / pixelCount;
 
           let varianceSum = 0;
           for (let i = 0; i < data.length; i += 4) {
@@ -289,17 +303,35 @@ export class AiVisionService {
           const duration = Math.max(16, Math.round(performance.now() - startTime));
 
           // -------------------------------------------------------------
-          // STAGE A: CERTIFICATE / DOCUMENT / NOTEBOOK DETECTION
+          // STAGE A: STUDENT ID / BADGE / DOCUMENT / NOTEBOOK REJECTION
           // -------------------------------------------------------------
-          // A document/certificate is characterized by:
-          // 1. Predominantly flat light paper (>65% light background)
-          // 2. Small discrete text characters (dark strokes between 0.3% and 9%)
-          // 3. Flat background texture (variance < 40)
-          // 4. NOT physical metal extrusions/pipes (which have heavy shadows > 15% and variance > 45)
+          // 1. Student ID Card / Personal Badge / Portrait Photo Detection
+          const isIdCardOrBadge = (
+            (extremeWhiteRatio > 0.45 && avgBrightness > 175) ||
+            (extremeWhiteRatio > 0.35 && darkStrokeRatio > 0.04 && avgBrightness > 160) ||
+            (lightDocRatio > 0.60 && darkStrokeRatio > 0.03 && avgBrightness > 160) ||
+            (skinRatio > 0.005 && (extremeWhiteRatio > 0.25 || lightDocRatio > 0.35))
+          );
+
+          if (isIdCardOrBadge) {
+            return cleanupAndResolve(this.getInvalidPrediction(
+              'Non-construction image detected (Student ID Card / Personal Badge / Document). The uploaded image contains an identification card, badge, or document rather than physical construction debris. Please upload a clear photo of concrete rubble, bricks, structural steel, or timber.',
+              [
+                `Card/sheet surface ratio: ${(Math.max(extremeWhiteRatio, lightDocRatio) * 100).toFixed(0)}%`,
+                `Printed text / badge feature ratio: ${(darkStrokeRatio * 100).toFixed(1)}%`,
+                skinRatio > 0.005 ? `Portrait identification photo detected (${(skinRatio * 100).toFixed(1)}% skin tone)` : 'High laminate/cardboard surface reflectance',
+                'Zero construction aggregate or mineral matrix',
+                'CDW Verification Result: REJECTED (Invalid Material)'
+              ],
+              duration
+            ));
+          }
+
+          // 2. Paper Document / Certificate / Notebook Page Detection
           const isDocumentOrCertificate = (
-            (lightDocRatio > 0.65 && darkStrokeRatio >= 0.003 && darkStrokeRatio <= 0.09 && textureVariance < 40) ||
-            (lightDocRatio > 0.78 && textureVariance < 28) ||
-            (avgBrightness > 195 && textureVariance < 24)
+            (lightDocRatio > 0.65 && darkStrokeRatio >= 0.003 && darkStrokeRatio <= 0.25) ||
+            (lightDocRatio > 0.75) ||
+            (avgBrightness > 195)
           );
 
           if (isDocumentOrCertificate) {
@@ -315,7 +347,7 @@ export class AiVisionService {
             ));
           }
 
-          // Reject blank / pitch black / completely flat images
+          // 3. Reject blank / pitch black / completely flat images
           if (textureVariance < 6 || avgBrightness < 25 || avgBrightness > 250) {
             return cleanupAndResolve(this.getInvalidPrediction(
               'Unusable image quality: Image is either pitch-black, overexposed, or completely flat. Please upload a clear, well-lit photo of physical construction materials.',
@@ -325,7 +357,7 @@ export class AiVisionService {
           }
 
           // -------------------------------------------------------------
-          // STAGE B: PHYSICAL CONSTRUCTION MATERIAL CLASSIFICATION (12 CLASSES)
+          // STAGE B: PHYSICAL CONSTRUCTION MATERIAL CLASSIFICATION (7 CORE CLASSES)
           // -------------------------------------------------------------
           let detected: MaterialCategory | 'Unknown' = 'Unknown';
           let confidence = 0;
@@ -360,8 +392,12 @@ export class AiVisionService {
             secondaryConf = 3.1;
             features = ['High specular highlight contrast', 'Structural steel rebar & pipe geometry', 'Metallic sheen index'];
           }
-          // 4. Drywall / Gypsum Board (Chalky off-white/light grey, balanced neutral tone, very low saturation)
-          else if (avgBrightness >= 170 && avgBrightness <= 235 && Math.abs(avgR - avgG) < 12 && Math.abs(avgG - avgB) < 12 && avgSaturation <= 12) {
+          // 4. Drywall / Gypsum Board (Chalky off-white/light grey, balanced neutral tone, very low saturation, no skin tone, low dark strokes)
+          else if (
+            avgBrightness >= 150 && avgBrightness <= 210 &&
+            Math.abs(avgR - avgG) < 12 && Math.abs(avgG - avgB) < 12 &&
+            avgSaturation <= 12 && darkStrokeRatio < 0.05 && skinRatio < 0.003
+          ) {
             detected = 'Drywall';
             confidence = 92.5;
             secondary = 'Wood';
@@ -384,8 +420,12 @@ export class AiVisionService {
             secondaryConf = 5.8;
             features = ['Natural crystalline granite quartz flecks', 'Dimensional masonry blocks', 'High compressive strength fracture'];
           }
-          // 7. Concrete & Masonry Rubble (Cementitious balanced grey, midtone aggregate texture)
-          else if (Math.abs(avgR - avgG) < 22 && Math.abs(avgG - avgB) < 22 && avgBrightness >= 60 && avgBrightness <= 180) {
+          // 7. Concrete & Masonry Rubble (Cementitious balanced grey, midtone aggregate texture, genuine aggregate variance)
+          else if (
+            Math.abs(avgR - avgG) < 22 && Math.abs(avgG - avgB) < 22 &&
+            avgBrightness >= 60 && avgBrightness <= 165 &&
+            midToneRatio > 0.35 && extremeWhiteRatio < 0.25
+          ) {
             detected = 'Concrete';
             confidence = 91.7;
             secondary = 'Stone';
