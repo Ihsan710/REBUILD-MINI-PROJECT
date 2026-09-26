@@ -490,7 +490,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                 <th class="pb-3 font-semibold">Location</th>
                 <th class="pb-3 font-semibold">Date</th>
                 <th class="pb-3 font-semibold">Status</th>
-                <th class="pb-3 font-semibold text-right">Legal WTN</th>
+                <th class="pb-3 font-semibold text-right">Dispatch Receipt</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-[#E5DFD7]">
@@ -524,12 +524,12 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                     type="button"
                     (click)="openWtnModal(record)"
                     class="ml-auto px-2.5 py-1 rounded-xl text-[10px] font-bold bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7] hover:bg-[#DCFCE7] transition-all flex items-center gap-1 cursor-pointer shadow-xs"
-                    title="View & Download Official Digital Waste Transfer Note with QR & PDF"
+                    title="View & Download Material Dispatch & Transfer Receipt with QR & PDF"
                   >
                     <svg class="w-3.5 h-3.5 text-[#16A34A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
-                    <span>WTN Note</span>
+                    <span>Receipt</span>
                   </button>
                 </td>
               </tr>
@@ -569,7 +569,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
               <p class="text-[#1C1917] leading-relaxed">{{ selectedRecord.notes || 'No operational notes attached.' }}</p>
             </div>
 
-            <!-- Generate WTN button -->
+            <!-- Generate Dispatch Receipt button -->
             <button
               type="button"
               (click)="openWtnModal(selectedRecord)"
@@ -578,13 +578,13 @@ import { BadgeComponent } from '../../shared/components/badge.component';
               <svg class="w-4 h-4 text-[#86EFAC]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              <span>View Official WTN Manifest (QR + PDF)</span>
+              <span>View Dispatch Receipt (QR + PDF)</span>
             </button>
           </div>
         </div>
       </div>
 
-      <!-- DIGITAL WASTE TRANSFER NOTE (WTN) MODAL WITH SCANNABLE QR & PDF -->
+      <!-- MATERIAL DISPATCH & TRANSFER RECEIPT MODAL WITH SCANNABLE QR & PDF -->
       <div *ngIf="currentWtnRecord" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 backdrop-blur-sm animate-fade-in" (click)="closeWtnModal()">
         <div class="bg-white rounded-3xl border border-[#E5DFD7] max-w-3xl w-full max-h-[92vh] overflow-y-auto shadow-2xl text-[#1C1917]" (click)="$event.stopPropagation()">
           
@@ -592,17 +592,17 @@ import { BadgeComponent } from '../../shared/components/badge.component';
           <div class="p-6 border-b border-[#E5DFD7] flex items-start justify-between bg-gradient-to-r from-[#FBF9F6] to-[#F5EFEB] rounded-t-3xl">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-2xl bg-[#1B4332] text-white flex items-center justify-center text-xl font-bold">
-                ⚖️
+                📋
               </div>
               <div>
                 <div class="flex items-center gap-2">
                   <span class="text-[10px] font-mono font-bold uppercase px-2 py-0.5 rounded-full bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7]">
-                    STATUTORY DUTY OF CARE MANIFEST
+                    MATERIAL TRANSFER RECEIPT
                   </span>
-                  <span class="text-xs font-mono text-[#78716C]">{{ currentWtnRecord.wtnCode || ('WTN-' + currentWtnRecord.id.toUpperCase()) }}</span>
+                  <span class="text-xs font-mono text-[#78716C]">{{ currentWtnRecord.wtnCode || ('REC-' + currentWtnRecord.id.toUpperCase()) }}</span>
                 </div>
-                <h3 class="text-xl font-black text-[#1C1917] mt-0.5">Digital Waste Transfer Note (WTN)</h3>
-                <p class="text-xs text-[#78716C]">Government of Karnataka / MoEFCC C&D Waste Management Rules 2016 Compliant</p>
+                <h3 class="text-xl font-black text-[#1C1917] mt-0.5">Material Dispatch & Transfer Receipt</h3>
+                <p class="text-xs text-[#78716C]">ReBuild Circular Platform • Verified Consignment & Material Chain of Custody</p>
               </div>
             </div>
             <button (click)="closeWtnModal()" class="w-8 h-8 rounded-full hover:bg-black/5 flex items-center justify-center text-[#78716C] hover:text-[#1C1917] text-lg font-bold cursor-pointer">
@@ -617,16 +617,16 @@ import { BadgeComponent } from '../../shared/components/badge.component';
               <!-- LEFT: SCANNABLE QR CODE & CRYPTOGRAPHIC VERIFICATION -->
               <div class="md:col-span-5 flex flex-col items-center justify-center p-5 rounded-2xl bg-[#FBF9F6] border border-[#E5DFD7] text-center space-y-3">
                 <div class="text-[10px] font-mono font-bold text-[#1E7E34] tracking-wider uppercase">
-                  SECURE LIVE WEIGHBRIDGE QR
+                  VERIFIED DISPATCH QR TOKEN
                 </div>
                 <div class="p-3 bg-white rounded-2xl shadow-sm border border-[#E2DDD5] inline-block">
-                  <img *ngIf="qrCodeDataUrl" [src]="qrCodeDataUrl" alt="WTN QR Code" class="w-44 h-44 object-contain rounded-lg" />
+                  <img *ngIf="qrCodeDataUrl" [src]="qrCodeDataUrl" alt="Receipt QR Code" class="w-44 h-44 object-contain rounded-lg" />
                   <div *ngIf="!qrCodeDataUrl" class="w-44 h-44 flex items-center justify-center text-xs text-[#78716C]">
                     Generating QR...
                   </div>
                 </div>
                 <div class="text-[11px] text-[#78716C] leading-snug">
-                  Scan with smartphone camera to inspect official blockchain / digital audit record.
+                  Scan with smartphone camera to inspect digital chain of custody record.
                 </div>
 
                 <button
@@ -640,7 +640,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                 <!-- Scanner Simulation Output Box -->
                 <div *ngIf="isVerifyingQR && qrVerificationPayload" class="w-full text-left p-3 rounded-xl bg-[#EBF7EE] border border-[#BBF7D0] text-[11px] space-y-1 animate-fade-in font-mono">
                   <div class="text-[#1E7E34] font-bold flex items-center gap-1">
-                    <span>✓</span> <span>Terminal Scan Verified</span>
+                    <span>✓</span> <span>Consignment Verified</span>
                   </div>
                   <div class="text-[#2D6A4F]">Ref: {{ qrVerificationPayload.manifestId }}</div>
                   <div class="text-[#2D6A4F]">Cargo: {{ qrVerificationPayload.certifiedMaterial }}</div>
@@ -711,7 +711,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
           <div class="p-6 border-t border-[#E5DFD7] bg-[#FBF9F6] flex flex-col sm:flex-row items-center justify-between gap-3 rounded-b-3xl">
             <div class="text-xs text-[#78716C] flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-[#16A34A]"></span>
-              <span>Legally binding document under MoEFCC Environmental Protection Act.</span>
+              <span>Verified digital consignment manifest and material chain-of-custody transfer record.</span>
             </div>
             <div class="flex items-center gap-2.5 w-full sm:w-auto">
               <button
@@ -729,7 +729,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                 <svg class="w-4 h-4 text-[#86EFAC]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                <span>Download Official PDF (A4)</span>
+                <span>Download Receipt PDF (A4)</span>
               </button>
             </div>
           </div>
@@ -1186,9 +1186,9 @@ export class WasteComponent implements OnInit {
     this.isVerifyingQR = false;
     this.qrVerificationPayload = null;
 
-    const manifestRef = record.wtnCode || ('WTN-' + record.id.toUpperCase());
+    const manifestRef = record.wtnCode || ('REC-' + record.id.toUpperCase());
     const payload = JSON.stringify({
-      manifest: manifestRef,
+      receipt_id: manifestRef,
       material: record.material,
       condition: record.condition,
       mass_kg: record.quantityKg,
@@ -1202,8 +1202,8 @@ export class WasteComponent implements OnInit {
       ai_confidence: (record.aiPrediction?.confidence || 94.2) + '%',
       carrier: record.carrierVehicle || 'KA-04-ME-9182',
       destination: record.destinationFacility || 'Bangalore GreenReclaim C&D Yard #2',
-      regulatory_standard: 'MoEFCC C&D Waste Management Rules 2016 (Form C)',
-      verification_status: 'VERIFIED_LEGAL_CHAIN_OF_CUSTODY'
+      consignment_standard: 'ReBuild Circular Materials Consignment Standard',
+      verification_status: 'VERIFIED_CHAIN_OF_CUSTODY'
     }, null, 2);
 
     try {
@@ -1234,16 +1234,16 @@ export class WasteComponent implements OnInit {
     this.isVerifyingQR = true;
     const r = this.currentWtnRecord;
     this.qrVerificationPayload = {
-      manifestId: r.wtnCode || ('WTN-' + r.id.toUpperCase()),
+      manifestId: r.wtnCode || ('REC-' + r.id.toUpperCase()),
       timestamp: new Date().toLocaleTimeString(),
       siteName: r.projectName,
       certifiedMaterial: r.material,
       verifiedWeight: `${r.quantityKg.toLocaleString()} kg (${(r.quantityKg / 1000).toFixed(2)} tonnes)`,
       carrierVehicle: r.carrierVehicle || 'KA-04-ME-9182',
       securityHash: 'SHA256: 7f8a9e2d3b4c102a99e8d' + r.id.substring(0, 4),
-      terminalStatus: 'PASSED_STATUTORY_WEIGHBRIDGE_CHECK'
+      terminalStatus: 'VERIFIED_DISPATCH_RECORD'
     };
-    this.toast.info('QR Code Decoded', 'Cryptographic authenticity verified by weighbridge terminal simulator.');
+    this.toast.info('QR Code Decoded', 'Cryptographic authenticity verified by dispatch scanner simulator.');
     this.cdr.detectChanges();
   }
 
@@ -1254,7 +1254,7 @@ export class WasteComponent implements OnInit {
   async downloadWtnPdf() {
     if (!this.currentWtnRecord) return;
     const record = this.currentWtnRecord;
-    const wtn = record.wtnCode || ('WTN-' + record.id.toUpperCase());
+    const wtn = record.wtnCode || ('REC-' + record.id.toUpperCase());
 
     const doc = new jsPDF({
       orientation: 'portrait',
@@ -1262,16 +1262,16 @@ export class WasteComponent implements OnInit {
       format: 'a4'
     });
 
-    // 1. Regulatory Header Banner
+    // 1. Header Banner
     doc.setFillColor(27, 67, 50); // Deep Forest Green (#1B4332)
     doc.rect(0, 0, 210, 24, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(13);
-    doc.text('REBUILD CIRCULAR PLATFORM | OFFICIAL WASTE TRANSFER NOTE (WTN)', 105, 11, { align: 'center' });
+    doc.text('REBUILD CIRCULAR PLATFORM | MATERIAL DISPATCH & TRANSFER RECEIPT', 105, 11, { align: 'center' });
     doc.setFontSize(8);
     doc.setFont('helvetica', 'normal');
-    doc.text('Statutory Duty of Care Manifest | Form C (MoEFCC C&D Waste Management Rules 2016)', 105, 17, { align: 'center' });
+    doc.text('Verified Consignment Manifest & Circular Material Chain-of-Custody Record', 105, 17, { align: 'center' });
 
     // 2. Document Reference Box
     doc.setFillColor(245, 243, 239);
@@ -1279,7 +1279,7 @@ export class WasteComponent implements OnInit {
     doc.setTextColor(28, 25, 23);
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(9);
-    doc.text(`MANIFEST REF: ${wtn}`, 18, 36);
+    doc.text(`RECEIPT REF: ${wtn}`, 18, 36);
     doc.setFont('helvetica', 'normal');
     doc.text(`DATE OF DISPATCH: ${new Date(record.createdAt).toLocaleString()}`, 110, 36);
 
@@ -1305,7 +1305,7 @@ export class WasteComponent implements OnInit {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(8.5);
     doc.setTextColor(30, 126, 52);
-    doc.text('SECTION B: WASTE DESCRIPTION & COMPUTER VISION CLASSIFICATION', 18, 82.5);
+    doc.text('SECTION B: MATERIAL DESCRIPTION & COMPUTER VISION CLASSIFICATION', 18, 82.5);
 
     doc.setTextColor(60, 60, 60);
     doc.setFont('helvetica', 'normal');
@@ -1314,7 +1314,7 @@ export class WasteComponent implements OnInit {
     doc.text(`Quantity / Measured Mass: ${record.quantityKg.toLocaleString()} kg (${(record.quantityKg / 1000).toFixed(2)} metric tonnes)`, 18, 94);
     doc.text(`AI Model Architecture: ResNet-34 Deep CNN (99.7% Accuracy)`, 18, 99);
     doc.text(`AI Inference Confidence: ${record.aiPrediction?.confidence || 94.2}%`, 18, 104);
-    doc.text(`Hazard & Contamination Screening: CLEARED (Non-hazardous inert mineral CDW)`, 18, 109);
+    doc.text(`Quality & Integrity Screening: CLEARED (Non-hazardous inert mineral CDW)`, 18, 109);
 
     // 5. Section C: Carrier & Transport Logistics
     doc.setFillColor(235, 247, 238);
@@ -1322,15 +1322,15 @@ export class WasteComponent implements OnInit {
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(8.5);
     doc.setTextColor(30, 126, 52);
-    doc.text('SECTION C: AUTHORIZED CARRIER & DESTINATION FACILITY', 18, 119.5);
+    doc.text('SECTION C: LOGISTICS CARRIER & DESTINATION FACILITY', 18, 119.5);
 
     doc.setTextColor(60, 60, 60);
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8);
     doc.text(`Registered Vehicle No: ${record.carrierVehicle || 'KA-04-ME-9182 (Tipper Truck)'}`, 18, 126);
-    doc.text(`Carrier Permittee: ReBuild Certified Logistics Fleet #4 (Permit: PCB-WM-2026)`, 18, 131);
+    doc.text(`Carrier Permittee: ReBuild Certified Logistics Fleet #4`, 18, 131);
     doc.text(`Destination Facility: ${record.destinationFacility || 'Bangalore GreenReclaim C&D Processing Yard #2'}`, 18, 136);
-    doc.text(`Permitted Waste Operation: Direct Circular Secondary Aggregate Crushing`, 18, 141);
+    doc.text(`Intended Operation: Direct Circular Secondary Material Crushing & Reuse`, 18, 141);
 
     // 6. Section D: Official Scannable QR Code & Chain of Custody
     doc.setFillColor(245, 243, 239);
@@ -1355,7 +1355,7 @@ export class WasteComponent implements OnInit {
     doc.text('Status: DIGITALLY SEALED & VERIFIED AT WEIGHBRIDGE', 68, 180);
     doc.setTextColor(30, 126, 52);
     doc.setFont('helvetica', 'bold');
-    doc.text('✓ LAWFUL TRANSFER AUTHORIZED UNDER STATUTORY DUTY OF CARE', 68, 188);
+    doc.text('✓ VERIFIED MATERIAL TRANSFER & CIRCULAR DISPATCH RECEIPT', 68, 188);
 
     // 7. Signatures Box
     doc.setDrawColor(200, 200, 200);
@@ -1375,17 +1375,17 @@ export class WasteComponent implements OnInit {
     doc.text('SIGNATURE OF TRANSFEREE (CARRIER/RECYCLER)', 112, 210);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(28, 25, 23);
-    doc.text('Authorized Weighbridge Officer', 112, 222);
+    doc.text('Authorized Dispatch Officer', 112, 222);
     doc.setFont('helvetica', 'normal');
     doc.text('ReBuild Network Terminal #BLR-02', 112, 227);
 
     // 8. Footer
     doc.setFontSize(7);
     doc.setTextColor(150, 150, 150);
-    doc.text('Generated by ReBuild Circular Waste Intelligence Platform | www.rebuild-project.org | Form C', 105, 285, { align: 'center' });
+    doc.text('Generated by ReBuild Circular Waste Intelligence Platform | www.rebuild-project.org | Dispatch Receipt', 105, 285, { align: 'center' });
 
-    doc.save(`WTN_${wtn}.pdf`);
-    this.toast.success('WTN Downloaded', `Official manifest PDF saved as WTN_${wtn}.pdf`);
+    doc.save(`Receipt_${wtn}.pdf`);
+    this.toast.success('Receipt Downloaded', `Official dispatch receipt saved as Receipt_${wtn}.pdf`);
   }
 
   exportManifest() {
