@@ -74,11 +74,15 @@ export class WasteService {
   }
 
   logWaste(recordData: Omit<WasteRecord, 'id' | 'createdAt' | 'status'>): WasteRecord {
+    const wtnCode = recordData.wtnCode || ('WTN-' + new Date().getFullYear() + '-' + Math.random().toString(36).substring(2, 7).toUpperCase());
     const newRecord: WasteRecord = {
       ...recordData,
       id: 'wst-' + Date.now().toString(36),
       createdAt: new Date().toISOString(),
-      status: recordData.condition === 'Reusable' ? 'Listed on Marketplace' : 'Verified'
+      status: recordData.condition === 'Reusable' ? 'Listed on Marketplace' : 'Verified',
+      wtnCode,
+      carrierVehicle: recordData.carrierVehicle || ('KA-04-ME-' + (Math.floor(Math.random() * 8999) + 1000)),
+      destinationFacility: recordData.destinationFacility || 'Karnataka EcoRecycle Secondary Aggregates Yard'
     };
 
     // Optimistic UI update

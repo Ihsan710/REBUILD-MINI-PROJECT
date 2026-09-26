@@ -54,6 +54,20 @@ export interface Project {
   budgetSaved: number; // in currency
 }
 
+export interface VolumetricEstimate {
+  estimatedVolumeM3: number;
+  bulkDensityKgM3: number;
+  suggestedWeightKg: number;
+  pileGeometry: string;
+  packingFactor: number;
+}
+
+export interface HazardAssessment {
+  isContaminated: boolean;
+  hazardLevel: 'None' | 'Low' | 'Moderate' | 'Hazardous';
+  warnings: string[];
+}
+
 export interface AIPredictionResult {
   detectedMaterial: MaterialCategory;
   confidence: number; // 0 to 100
@@ -67,6 +81,8 @@ export interface AIPredictionResult {
   isUserCorrected: boolean;
   inferenceTimeMs: number;
   modelArchitecture: string;
+  volumetricEstimate?: VolumetricEstimate;
+  hazardAssessment?: HazardAssessment;
 }
 
 export interface WasteRecord {
@@ -89,6 +105,9 @@ export interface WasteRecord {
   status: 'Verified' | 'Pending Review' | 'Listed on Marketplace' | 'Recycled';
   notes?: string;
   marketplaceListingId?: string;
+  wtnCode?: string;
+  carrierVehicle?: string;
+  destinationFacility?: string;
 }
 
 export interface MarketplaceListing {
