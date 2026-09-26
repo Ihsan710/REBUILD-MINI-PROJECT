@@ -4,7 +4,7 @@
       "id": "usr-ihsan-contractor",
       "name": "Ihsan Al-Mansoor",
       "email": "ihsan@skylinebuilders.com",
-      "password_hash": "$2b$12$jb78BdQb8aGzBdKCkLXJwebYC4JEUhsvUzN3i7cMoKasTaLfLaqbW",
+      "password_hash": "$2b$12$igEs/KB8EifytfzDxkb0/.sKgC3tHwBQ7ipJ0/bETYCZM/MPbSF/a",
       "role": "contractor",
       "company_name": "Skyline Infrastructure & Developers",
       "location": "Indiranagar, Bangalore",
@@ -15,7 +15,7 @@
       "id": "usr-vikram-contractor",
       "name": "Vikram Mehta",
       "email": "vikram@lntinfra.com",
-      "password_hash": "$2b$12$jb78BdQb8aGzBdKCkLXJwebYC4JEUhsvUzN3i7cMoKasTaLfLaqbW",
+      "password_hash": "$2b$12$igEs/KB8EifytfzDxkb0/.sKgC3tHwBQ7ipJ0/bETYCZM/MPbSF/a",
       "role": "contractor",
       "company_name": "Larsen & Toubro Civil Infra",
       "location": "Electronic City, Bangalore",
@@ -26,7 +26,7 @@
       "id": "usr-arjun-contractor",
       "name": "Arjun Verma",
       "email": "arjun@metrocorp.in",
-      "password_hash": "$2b$12$jb78BdQb8aGzBdKCkLXJwebYC4JEUhsvUzN3i7cMoKasTaLfLaqbW",
+      "password_hash": "$2b$12$igEs/KB8EifytfzDxkb0/.sKgC3tHwBQ7ipJ0/bETYCZM/MPbSF/a",
       "role": "contractor",
       "company_name": "BMRCL Metro Infrastructure Corp",
       "location": "Outer Ring Road, Bangalore",
@@ -37,7 +37,7 @@
       "id": "usr-rajesh-contractor",
       "name": "Rajesh Kumar",
       "email": "rajesh@greenreclaim.in",
-      "password_hash": "$2b$12$jb78BdQb8aGzBdKCkLXJwebYC4JEUhsvUzN3i7cMoKasTaLfLaqbW",
+      "password_hash": "$2b$12$igEs/KB8EifytfzDxkb0/.sKgC3tHwBQ7ipJ0/bETYCZM/MPbSF/a",
       "role": "contractor",
       "company_name": "GreenReclaim C&D Processing Contractor",
       "location": "Whitefield, Bangalore",
@@ -48,7 +48,7 @@
       "id": "usr-anita-buyer",
       "name": "Anita Desai",
       "email": "anita@ecoblocks.org",
-      "password_hash": "$2b$12$jb78BdQb8aGzBdKCkLXJwebYC4JEUhsvUzN3i7cMoKasTaLfLaqbW",
+      "password_hash": "$2b$12$igEs/KB8EifytfzDxkb0/.sKgC3tHwBQ7ipJ0/bETYCZM/MPbSF/a",
       "role": "buyer",
       "company_name": "EcoBlocks Pavers Ltd",
       "location": "Koramangala, Bangalore",
@@ -59,7 +59,7 @@
       "id": "usr-priya-buyer",
       "name": "Priya Nambiar",
       "email": "priya@greenstructures.co",
-      "password_hash": "$2b$12$jb78BdQb8aGzBdKCkLXJwebYC4JEUhsvUzN3i7cMoKasTaLfLaqbW",
+      "password_hash": "$2b$12$igEs/KB8EifytfzDxkb0/.sKgC3tHwBQ7ipJ0/bETYCZM/MPbSF/a",
       "role": "buyer",
       "company_name": "GreenStructures Modular Precast",
       "location": "Sarjapur Road, Bangalore",
@@ -70,7 +70,7 @@
       "id": "usr-admin-root",
       "name": "System Governance",
       "email": "admin@rebuild.eco",
-      "password_hash": "$2b$12$jb78BdQb8aGzBdKCkLXJwebYC4JEUhsvUzN3i7cMoKasTaLfLaqbW",
+      "password_hash": "$2b$12$igEs/KB8EifytfzDxkb0/.sKgC3tHwBQ7ipJ0/bETYCZM/MPbSF/a",
       "role": "admin",
       "company_name": "ReBuild Governance Root",
       "location": "Bangalore, India",
@@ -92,11 +92,11 @@
       "status": "Active",
       "phase": "Demolition",
       "startDate": "2026-01-15",
-      "totalWasteKg": 6540,
-      "reusedKg": 3480,
+      "totalWasteKg": 5240,
+      "reusedKg": 2180,
       "recycledKg": 1420,
       "landfillKg": 1640,
-      "diversionRate": 74.9,
+      "diversionRate": 68.7,
       "activeWorkers": 14,
       "machinesAssigned": 4,
       "siteManager": "Ihsan Al-Mansoor",
@@ -150,73 +150,6 @@
     }
   ],
   "wasteRecords": [
-    {
-      "id": "wst-mtiztlc7",
-      "projectId": "proj-skyline-01",
-      "projectName": "Skyline Heights Commercial Complex",
-      "material": "Concrete",
-      "quantityKg": 800,
-      "condition": "Reusable",
-      "phase": "Demolition",
-      "imageUrl": "blob:http://localhost:4200/b77fce13-b24c-47c7-8ac0-5fd70cda67b1",
-      "aiPrediction": {
-        "detectedMaterial": "Concrete",
-        "confidence": 91.7,
-        "secondaryPrediction": {
-          "material": "Stone",
-          "confidence": 6.2
-        },
-        "detectedFeatures": [
-          "Cementitious grey matrix",
-          "Coarse aggregate exposure",
-          "High fracture toughness"
-        ],
-        "boundingBox": {
-          "x": 14,
-          "y": 12,
-          "width": 72,
-          "height": 75
-        },
-        "isConfirmed": false,
-        "isUserCorrected": false,
-        "inferenceTimeMs": 20,
-        "modelArchitecture": "Vision-CNN-CDW-ResNet34 (12-Class Industrial)"
-      },
-      "gpsLocation": {
-        "lat": 12.9716,
-        "lng": 77.6412,
-        "address": "Indiranagar 100ft Rd, Bangalore (Auto-Detected)"
-      },
-      "loggedBy": "Ihsan Al-Mansoor",
-      "createdAt": "2026-09-01T18:20:56.263Z",
-      "status": "Listed on Marketplace",
-      "notes": ""
-    },
-    {
-      "id": "wst-mtiwujnl",
-      "projectId": "proj-skyline-01",
-      "projectName": "Skyline Heights Commercial Complex",
-      "material": "Brick",
-      "quantityKg": 500,
-      "condition": "Reusable",
-      "phase": "Demolition",
-      "imageUrl": "/assets/materials/brick.jpg",
-      "aiPrediction": {
-        "detectedMaterial": "Brick",
-        "confidence": 94.2,
-        "inferenceTimeMs": 24,
-        "modelArchitecture": "Vision-CNN-CDW-ResNet34 (High-Speed Tensor)"
-      },
-      "gpsLocation": {
-        "lat": 12.9716,
-        "lng": 77.6412,
-        "address": "Bangalore, India"
-      },
-      "loggedBy": "Ihsan Al-Mansoor",
-      "createdAt": "2026-09-01T16:57:41.889Z",
-      "status": "Listed on Marketplace",
-      "notes": "Real-time verified save test"
-    },
     {
       "id": "wst-101",
       "projectId": "proj-skyline-01",
@@ -316,188 +249,6 @@
   ],
   "marketplaceListings": [
     {
-      "id": "mkt-ujsmtff",
-      "title": "Processed Concrete (From Skyline Heights Commercial Complex)",
-      "material": "Concrete",
-      "quantityKg": 800,
-      "condition": "Reusable",
-      "pricePerKg": 3.5,
-      "isFree": false,
-      "sellerId": "usr-rajesh-seller",
-      "sellerName": "Rajesh Kumar",
-      "sellerCompany": "GreenReclaim Material Yard",
-      "sellerPhone": "+91 98451 98765",
-      "sellerEmail": "rajesh@greenreclaim.in",
-      "locationName": "GreenReclaim Salvage Yard, Whitefield, Bangalore",
-      "coordinates": [
-        12.9698,
-        77.7499
-      ],
-      "distanceKm": 14.1,
-      "imageUrl": "/assets/materials/concrete.jpg",
-      "description": "Cleaned and graded Concrete recovered from Skyline Heights Commercial Complex. Certified reusable quality.",
-      "status": "AVAILABLE",
-      "viewsCount": 1,
-      "inquiriesCount": 0,
-      "createdAt": "2026-09-03T07:55:00.028Z"
-    },
-    {
-      "id": "mkt-wt8gqzg",
-      "title": "Processed Brick (From Skyline Heights Commercial Complex)",
-      "material": "Brick",
-      "quantityKg": 500,
-      "condition": "Reusable",
-      "pricePerKg": 8,
-      "isFree": false,
-      "sellerId": "usr-rajesh-seller",
-      "sellerName": "Rajesh Kumar",
-      "sellerCompany": "GreenReclaim Material Yard",
-      "sellerPhone": "+91 98451 98765",
-      "sellerEmail": "rajesh@greenreclaim.in",
-      "locationName": "GreenReclaim Salvage Yard, Whitefield, Bangalore",
-      "coordinates": [
-        12.9698,
-        77.7499
-      ],
-      "distanceKm": 14.1,
-      "imageUrl": "/assets/materials/brick.jpg",
-      "description": "Cleaned and graded Brick recovered from Skyline Heights Commercial Complex. Certified reusable quality.",
-      "status": "AVAILABLE",
-      "viewsCount": 1,
-      "inquiriesCount": 0,
-      "createdAt": "2026-09-01T19:03:08.614Z"
-    },
-    {
-      "id": "mkt-9hq0nfg",
-      "title": "Processed Concrete (From Skyline Heights Commercial Complex)",
-      "material": "Concrete",
-      "quantityKg": 800,
-      "condition": "Reusable",
-      "pricePerKg": 3.5,
-      "isFree": false,
-      "sellerId": "usr-rajesh-seller",
-      "sellerName": "Rajesh Kumar",
-      "sellerCompany": "GreenReclaim Material Yard",
-      "sellerPhone": "+91 98451 98765",
-      "sellerEmail": "rajesh@greenreclaim.in",
-      "locationName": "GreenReclaim Salvage Yard, Whitefield, Bangalore",
-      "coordinates": [
-        12.9698,
-        77.7499
-      ],
-      "distanceKm": 14.1,
-      "imageUrl": "/assets/materials/concrete.jpg",
-      "description": "Cleaned and graded Concrete recovered from Skyline Heights Commercial Complex. Certified reusable quality.",
-      "status": "AVAILABLE",
-      "viewsCount": 1,
-      "inquiriesCount": 0,
-      "createdAt": "2026-09-01T19:02:49.788Z"
-    },
-    {
-      "id": "mkt-6n3jwpy",
-      "title": "Processed Concrete (From Skyline Heights Commercial Complex)",
-      "material": "Concrete",
-      "quantityKg": 800,
-      "condition": "Reusable",
-      "pricePerKg": 3.5,
-      "isFree": false,
-      "sellerId": "usr-rajesh-seller",
-      "sellerName": "Rajesh Kumar",
-      "sellerCompany": "GreenReclaim Material Yard",
-      "sellerPhone": "+91 98451 98765",
-      "sellerEmail": "rajesh@greenreclaim.in",
-      "locationName": "GreenReclaim Salvage Yard, Whitefield, Bangalore",
-      "coordinates": [
-        12.9698,
-        77.7499
-      ],
-      "distanceKm": 14.1,
-      "imageUrl": "/assets/materials/concrete.jpg",
-      "description": "Cleaned and graded Concrete recovered from Skyline Heights Commercial Complex. Certified reusable quality.",
-      "status": "AVAILABLE",
-      "viewsCount": 1,
-      "inquiriesCount": 0,
-      "createdAt": "2026-09-01T19:02:43.286Z"
-    },
-    {
-      "id": "mkt-tz0wirw",
-      "title": "Processed Concrete (From Skyline Heights Commercial Complex)",
-      "material": "Concrete",
-      "quantityKg": 800,
-      "condition": "Reusable",
-      "pricePerKg": 3.5,
-      "isFree": false,
-      "sellerId": "usr-rajesh-seller",
-      "sellerName": "Rajesh Kumar",
-      "sellerCompany": "GreenReclaim Material Yard",
-      "sellerPhone": "+91 98451 98765",
-      "sellerEmail": "rajesh@greenreclaim.in",
-      "locationName": "GreenReclaim Salvage Yard, Whitefield, Bangalore",
-      "coordinates": [
-        12.9698,
-        77.7499
-      ],
-      "distanceKm": 14.1,
-      "imageUrl": "/assets/materials/concrete.jpg",
-      "description": "Cleaned and graded Concrete recovered from Skyline Heights Commercial Complex. Certified reusable quality.",
-      "status": "AVAILABLE",
-      "viewsCount": 1,
-      "inquiriesCount": 0,
-      "createdAt": "2026-09-01T19:02:32.689Z"
-    },
-    {
-      "id": "mkt-woywlnn",
-      "title": "Concrete (Logged from Skyline Heights Commercial Complex)",
-      "material": "Concrete",
-      "quantityKg": 800,
-      "condition": "Reusable",
-      "pricePerKg": 8,
-      "isFree": false,
-      "sellerId": "usr-ihsan-contractor",
-      "sellerName": "Ihsan Al-Mansoor",
-      "sellerCompany": "Skyline Heights Commercial Complex",
-      "sellerPhone": "+91 98450 12345",
-      "sellerEmail": "ihsan@skylinebuilders.com",
-      "locationName": "Indiranagar 100ft Rd, Bangalore (Auto-Detected)",
-      "coordinates": [
-        12.9716,
-        77.6412
-      ],
-      "distanceKm": 4.8,
-      "imageUrl": "blob:http://localhost:4200/b77fce13-b24c-47c7-8ac0-5fd70cda67b1",
-      "description": "Auto-cataloged circular lot from site manifest (High reusable potential).",
-      "status": "AVAILABLE",
-      "viewsCount": 1,
-      "inquiriesCount": 0,
-      "createdAt": "2026-09-01T18:20:56.263Z"
-    },
-    {
-      "id": "mkt-8bq11t7",
-      "title": "Brick (Logged from Skyline Heights Commercial Complex)",
-      "material": "Brick",
-      "quantityKg": 500,
-      "condition": "Reusable",
-      "pricePerKg": 8,
-      "isFree": false,
-      "sellerId": "usr-ihsan-contractor",
-      "sellerName": "Ihsan Al-Mansoor",
-      "sellerCompany": "Skyline Heights Commercial Complex",
-      "sellerPhone": "+91 98450 12345",
-      "sellerEmail": "ihsan@skylinebuilders.com",
-      "locationName": "Bangalore, India",
-      "coordinates": [
-        12.9716,
-        77.6412
-      ],
-      "distanceKm": 4.8,
-      "imageUrl": "/assets/materials/brick.jpg",
-      "description": "Auto-cataloged circular lot from site manifest (Real-time verified save test).",
-      "status": "AVAILABLE",
-      "viewsCount": 1,
-      "inquiriesCount": 0,
-      "createdAt": "2026-09-01T16:57:41.889Z"
-    },
-    {
       "id": "mkt-01",
       "title": "Reclaimed Red Clay Bricks (Clean Palletized)",
       "material": "Brick",
@@ -576,84 +327,7 @@
       "createdAt": "2026-09-01T14:20:00.000Z"
     }
   ],
-  "buyerRequests": [
-    {
-      "id": "req-8r8ake",
-      "listingId": "mkt-wt8gqzg",
-      "listingTitle": "Processed Brick (From Skyline Heights Commercial Complex)",
-      "material": "Brick",
-      "quantityRequestedKg": 500,
-      "buyerId": "usr-anita-buyer",
-      "buyerName": "Anita Desai",
-      "buyerCompany": "EcoBlocks Pavers Ltd",
-      "buyerCoordinates": [
-        12.9352,
-        77.6245
-      ],
-      "distanceKm": 14.1,
-      "status": "PENDING",
-      "offerPriceTotal": 4000,
-      "deliveryOption": "Shared Logistics",
-      "requestDate": "2026-09-10T08:07:02.619Z"
-    },
-    {
-      "id": "req-1niyhg",
-      "listingId": "mkt-9hq0nfg",
-      "listingTitle": "Processed Concrete (From Skyline Heights Commercial Complex)",
-      "material": "Concrete",
-      "quantityRequestedKg": 800,
-      "buyerId": "usr-anita-buyer",
-      "buyerName": "Anita Desai",
-      "buyerCompany": "EcoBlocks Pavers Ltd",
-      "buyerCoordinates": [
-        12.9352,
-        77.6245
-      ],
-      "distanceKm": 14.1,
-      "status": "COMPLETED",
-      "offerPriceTotal": 2800,
-      "deliveryOption": "Shared Logistics",
-      "requestDate": "2026-09-01T19:07:52.208Z"
-    },
-    {
-      "id": "req-eg4cmh",
-      "listingId": "mkt-8bq11t7",
-      "listingTitle": "Brick (Logged from Skyline Heights Commercial Complex)",
-      "material": "Brick",
-      "quantityRequestedKg": 500,
-      "buyerId": "usr-anita-buyer",
-      "buyerName": "Anita Desai",
-      "buyerCompany": "EcoBlocks Pavers Ltd",
-      "buyerCoordinates": [
-        12.9352,
-        77.6245
-      ],
-      "distanceKm": 4.4,
-      "status": "ACCEPTED",
-      "offerPriceTotal": 4000,
-      "deliveryOption": "Shared Logistics",
-      "requestDate": "2026-09-01T19:07:43.004Z"
-    },
-    {
-      "id": "req-6tlyqh",
-      "listingId": "mkt-9hq0nfg",
-      "listingTitle": "Processed Concrete (From Skyline Heights Commercial Complex)",
-      "material": "Concrete",
-      "quantityRequestedKg": 800,
-      "buyerId": "usr-anita-buyer",
-      "buyerName": "Anita Desai",
-      "buyerCompany": "EcoBlocks Pavers Ltd",
-      "buyerCoordinates": [
-        12.9352,
-        77.6245
-      ],
-      "distanceKm": 14.1,
-      "status": "ACCEPTED",
-      "offerPriceTotal": 2800,
-      "deliveryOption": "Self Pickup",
-      "requestDate": "2026-09-01T19:03:57.015Z"
-    }
-  ],
+  "buyerRequests": [],
   "machines": [
     {
       "id": "mac-01",
@@ -766,111 +440,5 @@
       "safetyCertified": true
     }
   ],
-  "auditLogs": [
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "anita@ecoblocks.org",
-      "details": "Authenticated as verified [BUYER]",
-      "time": "2026-09-10T08:06:44.521Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "ihsan@skylinebuilders.com",
-      "details": "Authenticated as verified [CONTRACTOR]",
-      "time": "2026-09-10T08:06:19.507Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "rajesh@greenreclaim.in",
-      "details": "Authenticated as verified [CONTRACTOR]",
-      "time": "2026-09-10T08:05:23.332Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "rajesh@greenreclaim.in",
-      "details": "Authenticated as verified [CONTRACTOR]",
-      "time": "2026-09-03T07:53:30.417Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "rajesh@greenreclaim.in",
-      "details": "Authenticated as verified [SELLER]",
-      "time": "2026-09-01T19:08:11.211Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "anita@ecoblocks.org",
-      "details": "Authenticated as verified [BUYER]",
-      "time": "2026-09-01T19:03:43.040Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "rajesh@greenreclaim.in",
-      "details": "Authenticated as verified [SELLER]",
-      "time": "2026-09-01T18:47:26.070Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "arjun@metrocorp.in",
-      "details": "Authenticated as verified [CONTRACTOR]",
-      "time": "2026-09-01T18:40:37.923Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "priya@greenstructures.co",
-      "details": "Authenticated as verified [BUYER]",
-      "time": "2026-09-01T18:40:37.658Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "suresh@metalsalvage.in",
-      "details": "Authenticated as verified [SELLER]",
-      "time": "2026-09-01T18:40:37.436Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "vikram@lntinfra.com",
-      "details": "Authenticated as verified [CONTRACTOR]",
-      "time": "2026-09-01T18:40:37.190Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "admin@rebuild.eco",
-      "details": "Authenticated as verified [ADMIN]",
-      "time": "2026-09-01T18:40:36.962Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "anita@ecoblocks.org",
-      "details": "Authenticated as verified [BUYER]",
-      "time": "2026-09-01T18:40:36.764Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "rajesh@greenreclaim.in",
-      "details": "Authenticated as verified [SELLER]",
-      "time": "2026-09-01T18:40:36.506Z",
-      "ip": "::1"
-    },
-    {
-      "event": "ROLE_BASED_LOGIN_SUCCESS",
-      "actor": "ihsan@skylinebuilders.com",
-      "details": "Authenticated as verified [CONTRACTOR]",
-      "time": "2026-09-01T18:40:36.234Z",
-      "ip": "::1"
-    }
-  ]
+  "auditLogs": []
 }
