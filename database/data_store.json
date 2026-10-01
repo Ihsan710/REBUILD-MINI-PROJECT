@@ -92,11 +92,11 @@
       "status": "Active",
       "phase": "Demolition",
       "startDate": "2026-01-15",
-      "totalWasteKg": 5240,
-      "reusedKg": 2180,
+      "totalWasteKg": 6240,
+      "reusedKg": 3180,
       "recycledKg": 1420,
       "landfillKg": 1640,
-      "diversionRate": 68.7,
+      "diversionRate": 73.7,
       "activeWorkers": 14,
       "machinesAssigned": 4,
       "siteManager": "Ihsan Al-Mansoor",
@@ -150,6 +150,123 @@
     }
   ],
   "wasteRecords": [
+    {
+      "id": "wst-muiol47t",
+      "projectId": "proj-skyline-01",
+      "projectName": "Skyline Heights Commercial Complex",
+      "material": "Drywall",
+      "quantityKg": 500,
+      "condition": "Reusable",
+      "phase": "Demolition",
+      "imageUrl": "/assets/uploads/upload_1790444767370_8cpkc.jpg",
+      "aiPrediction": {
+        "detectedMaterial": "Drywall",
+        "confidence": 90.2,
+        "isValidMaterial": true,
+        "secondaryPrediction": {
+          "material": "Metal",
+          "confidence": 4.8
+        },
+        "detectedFeatures": [
+          "Chalky gypsum core profile",
+          "Paper-faced sheetrock boundary",
+          "Low density gypsum fracture"
+        ],
+        "boundingBox": {
+          "x": 12,
+          "y": 14,
+          "width": 76,
+          "height": 72
+        },
+        "isConfirmed": false,
+        "isUserCorrected": false,
+        "inferenceTimeMs": 123,
+        "modelArchitecture": "Vision-CNN-CDW-ResNet34 (7-Class Custom CDW)",
+        "volumetricEstimate": {
+          "estimatedVolumeM3": 1.27,
+          "bulkDensityKgM3": 800,
+          "suggestedWeightKg": 864,
+          "pileGeometry": "Conical Stockpile (~1.7m footprint)",
+          "packingFactor": 0.85
+        },
+        "hazardAssessment": {
+          "isContaminated": false,
+          "hazardLevel": "Low",
+          "warnings": [
+            "Verify gypsum free of hazardous pre-1990 joint compound",
+            "Keep dry: moisture >15% restricts direct re-pulping"
+          ]
+        }
+      },
+      "gpsLocation": {
+        "lat": 12.9716,
+        "lng": 77.6412,
+        "address": "Skyline Heights Commercial Complex (Indiranagar 100ft Rd, Bangalore)"
+      },
+      "loggedBy": "Ihsan Al-Mansoor",
+      "createdAt": "2026-09-26T17:46:07.385Z",
+      "status": "Listed on Marketplace",
+      "notes": ""
+    },
+    {
+      "id": "wst-muinyi8o",
+      "projectId": "proj-skyline-01",
+      "projectName": "Skyline Heights Commercial Complex",
+      "material": "Drywall",
+      "quantityKg": 500,
+      "condition": "Reusable",
+      "phase": "Demolition",
+      "imageUrl": "/assets/uploads/upload_1790443712451_d4nqa.jpg",
+      "aiPrediction": {
+        "detectedMaterial": "Drywall",
+        "confidence": 90.2,
+        "isValidMaterial": true,
+        "secondaryPrediction": {
+          "material": "Metal",
+          "confidence": 4.8
+        },
+        "detectedFeatures": [
+          "Chalky gypsum core profile",
+          "Paper-faced sheetrock boundary",
+          "Low density gypsum fracture"
+        ],
+        "boundingBox": {
+          "x": 12,
+          "y": 14,
+          "width": 76,
+          "height": 72
+        },
+        "isConfirmed": true,
+        "isUserCorrected": false,
+        "inferenceTimeMs": 221,
+        "modelArchitecture": "Vision-CNN-CDW-ResNet34 (7-Class Custom CDW)",
+        "volumetricEstimate": {
+          "estimatedVolumeM3": 1.27,
+          "bulkDensityKgM3": 800,
+          "suggestedWeightKg": 864,
+          "pileGeometry": "Conical Stockpile (~1.7m footprint)",
+          "packingFactor": 0.85
+        },
+        "hazardAssessment": {
+          "isContaminated": false,
+          "hazardLevel": "Low",
+          "warnings": [
+            "Verify gypsum free of hazardous pre-1990 joint compound",
+            "Keep dry: moisture >15% restricts direct re-pulping"
+          ]
+        },
+        "confirmedMaterial": "Drywall"
+      },
+      "gpsLocation": {
+        "lat": 9.9953845,
+        "lng": 76.39164149999999,
+        "address": "Kunnatnad, Kerala, India (9.9954° N, 76.3916° E)"
+      },
+      "loggedBy": "Ihsan Al-Mansoor",
+      "createdAt": "2026-09-26T17:28:32.472Z",
+      "status": "Listed on Marketplace",
+      "notes": ""
+    },
     {
       "id": "wst-101",
       "projectId": "proj-skyline-01",
@@ -248,6 +365,58 @@
     }
   ],
   "marketplaceListings": [
+    {
+      "id": "mkt-pau9ook",
+      "title": "Drywall (Logged from Skyline Heights Commercial Complex)",
+      "material": "Drywall",
+      "quantityKg": 500,
+      "condition": "Reusable",
+      "pricePerKg": 8,
+      "isFree": false,
+      "sellerId": "usr-ihsan-contractor",
+      "sellerName": "Ihsan Al-Mansoor",
+      "sellerCompany": "Skyline Heights Commercial Complex",
+      "sellerPhone": "+91 98450 12345",
+      "sellerEmail": "ihsan@skylinebuilders.com",
+      "locationName": "Skyline Heights Commercial Complex (Indiranagar 100ft Rd, Bangalore)",
+      "coordinates": [
+        12.9716,
+        77.6412
+      ],
+      "distanceKm": 4.8,
+      "imageUrl": "/assets/uploads/upload_1790444767370_8cpkc.jpg",
+      "description": "Auto-cataloged circular lot from site manifest (High reusable potential).",
+      "status": "AVAILABLE",
+      "viewsCount": 1,
+      "inquiriesCount": 0,
+      "createdAt": "2026-09-26T17:46:07.385Z"
+    },
+    {
+      "id": "mkt-5u3lo26",
+      "title": "Drywall (Logged from Skyline Heights Commercial Complex)",
+      "material": "Drywall",
+      "quantityKg": 500,
+      "condition": "Reusable",
+      "pricePerKg": 8,
+      "isFree": false,
+      "sellerId": "usr-ihsan-contractor",
+      "sellerName": "Ihsan Al-Mansoor",
+      "sellerCompany": "Skyline Heights Commercial Complex",
+      "sellerPhone": "+91 98450 12345",
+      "sellerEmail": "ihsan@skylinebuilders.com",
+      "locationName": "Kunnatnad, Kerala, India (9.9954° N, 76.3916° E)",
+      "coordinates": [
+        9.9953845,
+        76.39164149999999
+      ],
+      "distanceKm": 4.8,
+      "imageUrl": "/assets/uploads/upload_1790443712451_d4nqa.jpg",
+      "description": "Auto-cataloged circular lot from site manifest (High reusable potential).",
+      "status": "AVAILABLE",
+      "viewsCount": 1,
+      "inquiriesCount": 0,
+      "createdAt": "2026-09-26T17:28:32.472Z"
+    },
     {
       "id": "mkt-01",
       "title": "Reclaimed Red Clay Bricks (Clean Palletized)",
@@ -440,5 +609,13 @@
       "safetyCertified": true
     }
   ],
-  "auditLogs": []
+  "auditLogs": [
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "ihsan@skylinebuilders.com",
+      "details": "Authenticated as verified [CONTRACTOR]",
+      "time": "2026-09-26T17:10:42.027Z",
+      "ip": "::1"
+    }
+  ]
 }
