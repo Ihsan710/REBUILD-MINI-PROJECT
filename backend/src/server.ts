@@ -882,14 +882,16 @@ app.post('/api/marketplace/requests', optionalJWT, async (req: AuthRequest, res:
     return res.status(400).json({ error: 'Valid requested quantity required.' });
   }
 
+  const buyerName = sanitizeString(r.buyerName || 'Anita Desai', 100);
+
   const newRequest = {
     id,
     listingId: sanitizeString(r.listingId),
     listingTitle: sanitizeString(r.listingTitle),
     material: sanitizeString(r.material),
     quantityRequestedKg: qty,
-    buyerId: r.buyerId || 'usr-buyer',
-    buyerName: sanitizeString(r.buyerName || 'Anita Desai', 100),
+    buyerId: r.buyerId || 'usr-anita-buyer',
+    buyerName,
     buyerCompany: sanitizeString(r.buyerCompany || 'EcoBlocks Pavers Ltd', 150),
     buyerCoordinates: coords,
     distanceKm: parseFloat(r.distanceKm) || 4.8,
@@ -898,6 +900,25 @@ app.post('/api/marketplace/requests', optionalJWT, async (req: AuthRequest, res:
     deliveryOption: sanitizeString(r.deliveryOption || 'Self Pickup', 50),
     requestDate: new Date().toISOString()
   };
+
+  // When order is placed, update the marketplace listing: deduct quantity and mark SOLD to buyer
+  const targetListing = memoryStore.marketplaceListings.find(l => l.id === newRequest.listingId);
+  if (targetListing) {
+    const remaining = Math.max(0, targetListing.quantityKg - qty);
+    targetListing.quantityKg = remaining;
+    if (remaining <= 0 || qty >= targetListing.quantityKg) {
+      targetListing.status = 'SOLD';
+      targetListing.soldTo = buyerName;
+      targetListing.soldDate = new Date().toISOString();
+    }
+    targetListing.inquiriesCount = (targetListing.inquiriesCount || 0) + 1;
+
+    if (isDbConnected()) {
+      await query('UPDATE marketplace_listings SET quantity_kg = ?, status = ? WHERE id = ?', [
+        targetListing.quantityKg, targetListing.status, targetListing.id
+      ]).catch(() => {});
+    }
+  }
 
   if (isDbConnected()) {
     await query(
@@ -908,7 +929,7 @@ app.post('/api/marketplace/requests', optionalJWT, async (req: AuthRequest, res:
         newRequest.buyerId, newRequest.buyerName, newRequest.buyerCompany, coords[0], coords[1],
         newRequest.distanceKm, 'PENDING', newRequest.offerPriceTotal, newRequest.deliveryOption
       ]
-    );
+    ).catch(() => {});
   }
 
   memoryStore.buyerRequests.unshift(newRequest);
@@ -926,14 +947,65 @@ app.put('/api/marketplace/requests/:id/status', optionalJWT, async (req: AuthReq
   }
 
   if (isDbConnected()) {
-    await query('UPDATE buyer_requests SET status = ? WHERE id = ?', [status, id]);
+    await query('UPDATE buyer_requests SET status = ? WHERE id = ?', [status, id]).catch(() => {});
   }
 
   const found = memoryStore.buyerRequests.find(r => r.id === id);
-  if (found) found.status = status;
+  if (found) {
+    found.status = status;
+
+    // When seller accepts, dispatches, or completes, ensure listing is marked SOLD to buyer
+    const targetListing = memoryStore.marketplaceListings.find(l => l.id === found.listingId);
+    if (targetListing) {
+      if (status === 'ACCEPTED' || status === 'DISPATCHED' || status === 'COMPLETED') {
+        targetListing.status = 'SOLD';
+        targetListing.soldTo = found.buyerName;
+        targetListing.soldDate = targetListing.soldDate || new Date().toISOString();
+      } else if (status === 'CANCELLED') {
+        // If order cancelled, re-open to other buyers
+        targetListing.status = 'AVAILABLE';
+        delete targetListing.soldTo;
+        delete targetListing.soldDate;
+      }
+
+      if (isDbConnected()) {
+        await query('UPDATE marketplace_listings SET status = ? WHERE id = ?', [
+          targetListing.status, targetListing.id
+        ]).catch(() => {});
+      }
+    }
+  }
   saveToDisk();
 
   res.json({ success: true, id, status });
+});
+
+// Direct seller action to mark listing as SOLD or re-open as AVAILABLE
+app.put('/api/marketplace/listings/:id/status', optionalJWT, async (req: AuthRequest, res: Response) => {
+  const { id } = req.params;
+  const status = sanitizeString(req.body.status || 'SOLD');
+  const soldTo = sanitizeString(req.body.soldTo || 'Anita Desai');
+
+  const targetListing = memoryStore.marketplaceListings.find(l => l.id === id);
+  if (!targetListing) {
+    return res.status(404).json({ error: 'Listing not found.' });
+  }
+
+  targetListing.status = status as any;
+  if (status === 'SOLD') {
+    targetListing.soldTo = soldTo;
+    targetListing.soldDate = new Date().toISOString();
+  } else if (status === 'AVAILABLE') {
+    delete targetListing.soldTo;
+    delete targetListing.soldDate;
+  }
+  saveToDisk();
+
+  if (isDbConnected()) {
+    await query('UPDATE marketplace_listings SET status = ? WHERE id = ?', [status, id]).catch(() => {});
+  }
+
+  res.json({ success: true, listing: targetListing });
 });
 
 // ---------------------------------------------------------

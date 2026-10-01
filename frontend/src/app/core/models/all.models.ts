@@ -128,7 +128,9 @@ export interface MarketplaceListing {
   distanceKm?: number; // calculated relative to active buyer/user
   imageUrl: string;
   description: string;
-  status: 'AVAILABLE' | 'MATCHED' | 'CLOSED';
+  status: 'AVAILABLE' | 'MATCHED' | 'CLOSED' | 'SOLD';
+  soldTo?: string;
+  soldDate?: string;
   createdAt: string;
   wasteRecordId?: string;
   viewsCount: number;

@@ -279,16 +279,36 @@ export class MarketplaceService {
       deliveryOption
     };
 
+    // Optimistically deduct quantity and mark SOLD to Anita Desai if entire or majority stock claimed
+    this.listingsSignal.update(list =>
+      list.map(l => {
+        if (l.id === listing.id) {
+          const remaining = Math.max(0, l.quantityKg - quantityKg);
+          const isSold = remaining <= 0 || quantityKg >= l.quantityKg;
+          return {
+            ...l,
+            quantityKg: remaining,
+            status: isSold ? 'SOLD' : l.status,
+            soldTo: isSold ? 'Anita Desai' : l.soldTo,
+            soldDate: isSold ? new Date().toISOString() : l.soldDate,
+            inquiriesCount: (l.inquiriesCount || 0) + 1
+          };
+        }
+        return l;
+      })
+    );
+    localStorage.setItem('rebuild_marketplace_listings', JSON.stringify(this.listingsSignal()));
+
     this.requestsSignal.update(list => [newRequest, ...list]);
     localStorage.setItem('rebuild_marketplace_requests', JSON.stringify(this.requestsSignal()));
 
     this.http.post<BuyerRequest>(`${API_BASE}/marketplace/requests`, newRequest).subscribe({
       next: (created) => {
         this.requestsSignal.update(list => list.map(r => r.id === newRequest.id ? created : r));
-        this.toast.success('Request Dispatched to MySQL', `Order submitted to ${listing.sellerName}.`);
+        this.toast.success('Order Confirmed & Secured', `${listing.title} is now marked as SOLD to Anita Desai.`);
       },
       error: () => {
-        this.toast.success('Material Request Dispatched', `Seller ${listing.sellerName} received inquiry.`);
+        this.toast.success('Material Order Recorded', `${listing.title} secured locally and marked as SOLD.`);
       }
     });
 
@@ -296,17 +316,92 @@ export class MarketplaceService {
   }
 
   updateRequestStatus(requestId: string, status: 'ACCEPTED' | 'DISPATCHED' | 'COMPLETED' | 'CANCELLED') {
+    const targetReq = this.requestsSignal().find(r => r.id === requestId);
+
     this.requestsSignal.update(list =>
       list.map(r => (r.id === requestId ? { ...r, status } : r))
     );
     localStorage.setItem('rebuild_marketplace_requests', JSON.stringify(this.requestsSignal()));
 
+    // Synchronize listing status
+    if (targetReq) {
+      this.listingsSignal.update(list =>
+        list.map(l => {
+          if (l.id === targetReq.listingId) {
+            if (status === 'ACCEPTED' || status === 'DISPATCHED' || status === 'COMPLETED') {
+              return {
+                ...l,
+                status: 'SOLD',
+                soldTo: targetReq.buyerName,
+                soldDate: l.soldDate || new Date().toISOString()
+              };
+            } else if (status === 'CANCELLED') {
+              const { soldTo, soldDate, ...rest } = l;
+              return {
+                ...rest,
+                status: 'AVAILABLE'
+              };
+            }
+          }
+          return l;
+        })
+      );
+      localStorage.setItem('rebuild_marketplace_listings', JSON.stringify(this.listingsSignal()));
+    }
+
     this.http.put(`${API_BASE}/marketplace/requests/${requestId}/status`, { status }).subscribe({
       next: () => {
-        this.toast.info('Status Updated', `Order state updated in MySQL.`);
+        this.toast.info('Status Updated', `Order state updated in system.`);
       },
       error: () => {
         this.toast.info('Status Updated', `State updated locally.`);
+      }
+    });
+  }
+
+  markListingSold(listingId: string, soldTo: string = 'Anita Desai') {
+    this.listingsSignal.update(list =>
+      list.map(l => l.id === listingId ? {
+        ...l,
+        status: 'SOLD',
+        soldTo,
+        soldDate: new Date().toISOString()
+      } : l)
+    );
+    localStorage.setItem('rebuild_marketplace_listings', JSON.stringify(this.listingsSignal()));
+
+    this.http.put(`${API_BASE}/marketplace/listings/${listingId}/status`, { status: 'SOLD', soldTo }).subscribe({
+      next: () => {
+        this.toast.success('Listing Marked as Sold', `Material lot marked SOLD to ${soldTo}.`);
+      },
+      error: () => {
+        this.toast.success('Listing Marked as Sold', `Saved locally: SOLD to ${soldTo}.`);
+      }
+    });
+  }
+
+  relistListing(listingId: string) {
+    this.listingsSignal.update(list =>
+      list.map(l => {
+        if (l.id === listingId) {
+          const { soldTo, soldDate, ...rest } = l;
+          return {
+            ...rest,
+            status: 'AVAILABLE',
+            quantityKg: l.quantityKg > 0 ? l.quantityKg : 500
+          };
+        }
+        return l;
+      })
+    );
+    localStorage.setItem('rebuild_marketplace_listings', JSON.stringify(this.listingsSignal()));
+
+    this.http.put(`${API_BASE}/marketplace/listings/${listingId}/status`, { status: 'AVAILABLE' }).subscribe({
+      next: () => {
+        this.toast.info('Listing Re-Opened', 'Material lot is now AVAILABLE on the circular marketplace.');
+      },
+      error: () => {
+        this.toast.info('Listing Re-Opened', 'Lot status updated locally.');
       }
     });
   }

@@ -156,8 +156,9 @@ import { StatCardComponent } from '../../shared/components/stat-card.component';
                 *ngIf="req.status === 'PENDING'"
                 (click)="updateStatus(req.id, 'ACCEPTED')"
                 class="rb-btn-primary text-xs py-2 px-3.5 shadow-sm cursor-pointer"
+                title="Accept order and mark material as SOLD to {{ req.buyerName }}"
               >
-                ✓ Accept Order
+                ✓ Accept & Mark Sold to {{ req.buyerName }}
               </button>
               <button
                 *ngIf="req.status === 'ACCEPTED'"
@@ -174,7 +175,7 @@ import { StatCardComponent } from '../../shared/components/stat-card.component';
                 💰 Complete & Collect Payment
               </button>
               <span *ngIf="req.status === 'COMPLETED'" class="text-xs font-mono text-[#16A34A] font-bold flex items-center gap-1">
-                ✓ Order Completed
+                ✓ Order Completed • Sold to {{ req.buyerName }}
               </span>
             </div>
           </div>
@@ -244,11 +245,11 @@ import { StatCardComponent } from '../../shared/components/stat-card.component';
             <thead>
               <tr class="border-b border-[#E5DFD7] text-[#78716C] font-mono uppercase text-[10px]">
                 <th class="pb-3 font-semibold">Material</th>
-                <th class="pb-3 font-semibold">Available Stock</th>
+                <th class="pb-3 font-semibold">Stock (kg)</th>
                 <th class="pb-3 font-semibold">Grading</th>
                 <th class="pb-3 font-semibold">Selling Price</th>
-                <th class="pb-3 font-semibold">Views</th>
-                <th class="pb-3 font-semibold">Status</th>
+                <th class="pb-3 font-semibold">Marketplace Status</th>
+                <th class="pb-3 font-semibold">Sales Action</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-[#E5DFD7]">
@@ -264,11 +265,34 @@ import { StatCardComponent } from '../../shared/components/stat-card.component';
                 <td class="py-3 font-mono text-[#16A34A] font-bold">
                   {{ item.isFree ? 'FREE' : '₹' + item.pricePerKg + '/kg' }}
                 </td>
-                <td class="py-3 font-mono text-[#78716C]">{{ item.viewsCount }}</td>
                 <td class="py-3">
-                  <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7]">
+                  <span *ngIf="item.status === 'SOLD'" class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-300 inline-flex items-center gap-1">
+                    <span>🚫 SOLD</span>
+                    <span *ngIf="item.soldTo" class="font-normal font-sans">({{ item.soldTo }})</span>
+                  </span>
+                  <span *ngIf="item.status !== 'SOLD'" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7]">
                     {{ item.status }}
                   </span>
+                </td>
+                <td class="py-3">
+                  <div class="flex items-center gap-1.5">
+                    <button
+                      *ngIf="item.status !== 'SOLD'"
+                      (click)="openMarkSoldModal(item)"
+                      class="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 text-[11px] font-semibold cursor-pointer transition-colors"
+                      title="Mark lot as sold to a buyer so no one else can take it"
+                    >
+                      🏷️ Mark Sold
+                    </button>
+                    <button
+                      *ngIf="item.status === 'SOLD'"
+                      (click)="marketplaceService.relistListing(item.id)"
+                      class="px-2.5 py-1 rounded-lg bg-[#F6F3EF] hover:bg-[#E2DDD5] text-[#1C1917] border border-[#E2DDD5] text-[11px] font-semibold cursor-pointer transition-colors"
+                      title="Re-open listing as AVAILABLE"
+                    >
+                      🔄 Re-list
+                    </button>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -281,7 +305,7 @@ import { StatCardComponent } from '../../shared/components/stat-card.component';
         <div class="w-full max-w-lg bg-white border border-[#E5DFD7] rounded-3xl p-6 shadow-2xl space-y-4 text-[#1C1917]">
           <div class="flex items-center justify-between pb-3 border-b border-[#E5DFD7]">
             <h3 class="text-base font-bold text-[#1C1917]">Publish Processed Material to Marketplace</h3>
-            <button (click)="isCreateModalOpen = false" class="text-[#78716C] hover:text-[#1C1917]">✕</button>
+            <button (click)="isCreateModalOpen = false" class="text-[#78716C] hover:text-[#1C1917] cursor-pointer">✕</button>
           </div>
 
           <form (submit)="createListingSubmit($event)" class="space-y-3 text-xs">
@@ -347,11 +371,45 @@ import { StatCardComponent } from '../../shared/components/stat-card.component';
           </form>
         </div>
       </div>
+
+      <!-- MARK AS SOLD MODAL -->
+      <div *ngIf="selectedListingForSold" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+        <div class="w-full max-w-md bg-white border border-[#E5DFD7] rounded-3xl p-6 shadow-2xl space-y-4 text-[#1C1917]">
+          <div class="flex items-center justify-between pb-3 border-b border-[#E5DFD7]">
+            <h3 class="text-base font-bold text-[#1C1917]">Mark Material Lot as SOLD</h3>
+            <button (click)="selectedListingForSold = null" class="text-[#78716C] hover:text-[#1C1917] cursor-pointer">✕</button>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div class="font-bold text-[#1C1917] text-sm">{{ selectedListingForSold.title }}</div>
+            <p class="text-[#78716C]">
+              Marking this lot as SOLD will lock it across the circular marketplace so no other buyer can place an inquiry for it.
+            </p>
+
+            <div>
+              <label class="font-bold text-[#1C1917] block mb-1">Purchasing Buyer / Entity Name</label>
+              <input
+                type="text"
+                [(ngModel)]="buyerSoldToName"
+                placeholder="e.g. Anita Desai (EcoBlocks Pavers Ltd)"
+                class="w-full px-3 py-2 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-[#1C1917] font-semibold"
+              />
+            </div>
+
+            <div class="pt-4 flex justify-end gap-2">
+              <button (click)="selectedListingForSold = null" class="rb-btn-ghost text-xs cursor-pointer">Cancel</button>
+              <button (click)="confirmMarkSold()" class="rb-btn-primary text-xs cursor-pointer">Confirm & Mark SOLD</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   `
 })
 export class SellerComponent implements OnInit {
   isCreateModalOpen: boolean = false;
+  selectedListingForSold: MarketplaceListing | null = null;
+  buyerSoldToName: string = 'Anita Desai';
 
   newTitle: string = '';
   newMaterial: MaterialCategory = 'Concrete';
@@ -374,21 +432,32 @@ export class SellerComponent implements OnInit {
   }
 
   getStatusBadgeClass(status: string): string {
-    if (status === 'PENDING') return 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20';
-    if (status === 'ACCEPTED') return 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/10 text-sky-400 border border-sky-500/20';
-    if (status === 'DISPATCHED') return 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20';
-    return 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20';
+    if (status === 'PENDING') return 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/10 text-amber-700 border border-amber-300';
+    if (status === 'ACCEPTED') return 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-sky-500/10 text-sky-700 border border-sky-300';
+    if (status === 'DISPATCHED') return 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/10 text-purple-700 border border-purple-300';
+    return 'px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-700 border border-emerald-300';
   }
 
   updateStatus(requestId: string, status: any) {
     this.marketplaceService.updateRequestStatus(requestId, status);
     if (status === 'ACCEPTED') {
-      this.toast.success('Order Accepted', 'Buyer notified. Material prepared for dispatch.');
+      this.toast.success('Order Accepted & Confirmed Sold', 'Material lot permanently marked as SOLD to buyer.');
     } else if (status === 'DISPATCHED') {
       this.toast.info('Dispatch Logged', 'Haulage vehicle marked in transit.');
     } else if (status === 'COMPLETED') {
       this.toast.success('Transaction Completed', 'Secondary material delivered & revenue collected.');
     }
+  }
+
+  openMarkSoldModal(listing: MarketplaceListing) {
+    this.selectedListingForSold = listing;
+    this.buyerSoldToName = 'Anita Desai';
+  }
+
+  confirmMarkSold() {
+    if (!this.selectedListingForSold) return;
+    this.marketplaceService.markListingSold(this.selectedListingForSold.id, this.buyerSoldToName);
+    this.selectedListingForSold = null;
   }
 
   openCreateModal() {

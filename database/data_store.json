@@ -92,11 +92,11 @@
       "status": "Active",
       "phase": "Demolition",
       "startDate": "2026-01-15",
-      "totalWasteKg": 7230,
-      "reusedKg": 4170,
+      "totalWasteKg": 7434,
+      "reusedKg": 4374,
       "recycledKg": 1420,
       "landfillKg": 1640,
-      "diversionRate": 77.3,
+      "diversionRate": 77.9,
       "activeWorkers": 14,
       "machinesAssigned": 4,
       "siteManager": "Ihsan Al-Mansoor",
@@ -150,6 +150,64 @@
     }
   ],
   "wasteRecords": [
+    {
+      "id": "wst-mupbsuih",
+      "projectId": "proj-skyline-01",
+      "projectName": "Skyline Heights Commercial Complex",
+      "material": "Drywall",
+      "quantityKg": 204,
+      "condition": "Reusable",
+      "phase": "Structural",
+      "imageUrl": "http://localhost:8000/assets/uploads/upload_1790846556257_yups9.jpg",
+      "aiPrediction": {
+        "detectedMaterial": "Drywall",
+        "confidence": 90.2,
+        "isValidMaterial": true,
+        "secondaryPrediction": {
+          "material": "Metal",
+          "confidence": 4.8
+        },
+        "detectedFeatures": [
+          "Chalky gypsum core profile",
+          "Paper-faced sheetrock boundary",
+          "Low density gypsum fracture"
+        ],
+        "boundingBox": {
+          "x": 12,
+          "y": 14,
+          "width": 76,
+          "height": 72
+        },
+        "isConfirmed": false,
+        "isUserCorrected": false,
+        "inferenceTimeMs": 227,
+        "modelArchitecture": "Vision-CNN-CDW-ResNet34 (7-Class Custom CDW)",
+        "volumetricEstimate": {
+          "estimatedVolumeM3": 1.27,
+          "bulkDensityKgM3": 800,
+          "suggestedWeightKg": 864,
+          "pileGeometry": "Conical Stockpile (~1.7m footprint)",
+          "packingFactor": 0.85
+        },
+        "hazardAssessment": {
+          "isContaminated": false,
+          "hazardLevel": "Low",
+          "warnings": [
+            "Verify gypsum free of hazardous pre-1990 joint compound",
+            "Keep dry: moisture >15% restricts direct re-pulping"
+          ]
+        }
+      },
+      "gpsLocation": {
+        "lat": 9.992497445058095,
+        "lng": 76.35883438609757,
+        "address": "Kanayannur, Kerala, India (9.9925° N, 76.3588° E)"
+      },
+      "loggedBy": "Ihsan Al-Mansoor",
+      "createdAt": "2026-10-01T09:22:36.281Z",
+      "status": "Listed on Marketplace",
+      "notes": ""
+    },
     {
       "id": "wst-mupb54lj",
       "projectId": "proj-skyline-01",
@@ -483,6 +541,34 @@
   ],
   "marketplaceListings": [
     {
+      "id": "mkt-2f0ne25",
+      "title": "Drywall (Logged from Skyline Heights Commercial Complex)",
+      "material": "Drywall",
+      "quantityKg": 204,
+      "condition": "Reusable",
+      "pricePerKg": 8,
+      "isFree": false,
+      "sellerId": "usr-ihsan-contractor",
+      "sellerName": "Ihsan Al-Mansoor",
+      "sellerCompany": "Skyline Heights Commercial Complex",
+      "sellerPhone": "+91 98450 12345",
+      "sellerEmail": "ihsan@skylinebuilders.com",
+      "locationName": "Kanayannur, Kerala, India (9.9925° N, 76.3588° E)",
+      "coordinates": [
+        9.992497445058095,
+        76.35883438609757
+      ],
+      "distanceKm": 355.1,
+      "imageUrl": "http://localhost:8000/assets/uploads/upload_1790846556257_yups9.jpg",
+      "description": "Auto-cataloged circular lot from site manifest (High reusable potential).",
+      "status": "SOLD",
+      "viewsCount": 1,
+      "inquiriesCount": 0,
+      "createdAt": "2026-10-01T09:22:36.281Z",
+      "soldTo": "Anita Desai",
+      "soldDate": "2026-10-01T09:28:31.261Z"
+    },
+    {
       "id": "mkt-yr2bg9i",
       "title": "Metal (Logged from Skyline Heights Commercial Complex)",
       "material": "Metal",
@@ -665,7 +751,84 @@
       "createdAt": "2026-09-01T14:20:00.000Z"
     }
   ],
-  "buyerRequests": [],
+  "buyerRequests": [
+    {
+      "id": "req-bv9773",
+      "listingId": "mkt-2f0ne25",
+      "listingTitle": "Drywall (Logged from Skyline Heights Commercial Complex)",
+      "material": "Drywall",
+      "quantityRequestedKg": 204,
+      "buyerId": "usr-anita-buyer",
+      "buyerName": "Anita Desai",
+      "buyerCompany": "EcoBlocks Pavers Ltd",
+      "buyerCoordinates": [
+        9.992492419069961,
+        76.35885962799884
+      ],
+      "distanceKm": 4.8,
+      "status": "ACCEPTED",
+      "offerPriceTotal": 1632,
+      "deliveryOption": "Shared Logistics",
+      "requestDate": "2026-10-01T09:24:07.232Z"
+    },
+    {
+      "id": "req-lseo32",
+      "listingId": "mkt-2f0ne25",
+      "listingTitle": "Drywall (Logged from Skyline Heights Commercial Complex)",
+      "material": "Drywall",
+      "quantityRequestedKg": 204,
+      "buyerId": "usr-anita-buyer",
+      "buyerName": "Anita Desai",
+      "buyerCompany": "EcoBlocks Pavers Ltd",
+      "buyerCoordinates": [
+        9.992492419069961,
+        76.35885962799884
+      ],
+      "distanceKm": 4.8,
+      "status": "ACCEPTED",
+      "offerPriceTotal": 1632,
+      "deliveryOption": "Self Pickup",
+      "requestDate": "2026-10-01T09:23:53.497Z"
+    },
+    {
+      "id": "req-lqgi4q",
+      "listingId": "mkt-2f0ne25",
+      "listingTitle": "Drywall (Logged from Skyline Heights Commercial Complex)",
+      "material": "Drywall",
+      "quantityRequestedKg": 204,
+      "buyerId": "usr-anita-buyer",
+      "buyerName": "Anita Desai",
+      "buyerCompany": "EcoBlocks Pavers Ltd",
+      "buyerCoordinates": [
+        9.992492419069961,
+        76.35885962799884
+      ],
+      "distanceKm": 4.8,
+      "status": "ACCEPTED",
+      "offerPriceTotal": 1632,
+      "deliveryOption": "Shared Logistics",
+      "requestDate": "2026-10-01T09:23:44.531Z"
+    },
+    {
+      "id": "req-h1exyy",
+      "listingId": "mkt-2f0ne25",
+      "listingTitle": "Drywall (Logged from Skyline Heights Commercial Complex)",
+      "material": "Drywall",
+      "quantityRequestedKg": 204,
+      "buyerId": "usr-anita-buyer",
+      "buyerName": "Anita Desai",
+      "buyerCompany": "EcoBlocks Pavers Ltd",
+      "buyerCoordinates": [
+        9.992492419069961,
+        76.35885962799884
+      ],
+      "distanceKm": 4.8,
+      "status": "ACCEPTED",
+      "offerPriceTotal": 1632,
+      "deliveryOption": "Self Pickup",
+      "requestDate": "2026-10-01T09:23:12.133Z"
+    }
+  ],
   "machines": [
     {
       "id": "mac-01",
@@ -779,6 +942,27 @@
     }
   ],
   "auditLogs": [
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "ihsan@skylinebuilders.com",
+      "details": "Authenticated as verified [CONTRACTOR]",
+      "time": "2026-10-01T09:23:25.595Z",
+      "ip": "::1"
+    },
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "anita@ecoblocks.org",
+      "details": "Authenticated as verified [BUYER]",
+      "time": "2026-10-01T09:22:55.458Z",
+      "ip": "::1"
+    },
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "ihsan@skylinebuilders.com",
+      "details": "Authenticated as verified [CONTRACTOR]",
+      "time": "2026-10-01T09:21:30.123Z",
+      "ip": "::1"
+    },
     {
       "event": "ROLE_BASED_LOGIN_SUCCESS",
       "actor": "rajesh@greenreclaim.in",

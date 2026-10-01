@@ -233,10 +233,31 @@ import { BadgeComponent } from '../../shared/components/badge.component';
             class="rb-card p-5 hover:border-[#C5B7A5] transition-all flex flex-col justify-between"
           >
             <div>
-              <img [src]="resolveImageUrl(item.imageUrl, item.material)" (error)="onImgError($event, item.material)" [alt]="item.title" class="w-full h-40 object-cover rounded-xl mb-4 border border-[#E5DFD7]" />
+              <div class="relative mb-4">
+                <img [src]="resolveImageUrl(item.imageUrl, item.material)" (error)="onImgError($event, item.material)" [alt]="item.title" class="w-full h-40 object-cover rounded-xl border border-[#E5DFD7]" />
+                <div *ngIf="item.status === 'SOLD'" class="absolute inset-0 bg-black/60 rounded-xl flex flex-col items-center justify-center p-3 text-center">
+                  <span class="px-3 py-1 rounded-full text-xs font-bold font-mono tracking-wider bg-rose-600 text-white shadow-lg mb-1">
+                    🚫 SOLD OUT
+                  </span>
+                  <span *ngIf="item.soldTo === 'Anita Desai'" class="text-[11px] text-emerald-300 font-semibold font-mono">
+                    ✓ Secured by You (Anita Desai)
+                  </span>
+                  <span *ngIf="item.soldTo && item.soldTo !== 'Anita Desai'" class="text-[11px] text-stone-200">
+                    Sold to {{ item.soldTo }}
+                  </span>
+                  <span *ngIf="!item.soldTo" class="text-[11px] text-stone-200">
+                    Claimed & Unavailable to Others
+                  </span>
+                </div>
+              </div>
               <div class="flex items-center justify-between mb-1">
                 <span class="text-xs font-bold text-[#1C1917] uppercase">{{ item.title }}</span>
-                <span [ngClass]="item.condition === 'Reusable' ? 'badge-green' : 'badge-blue'">{{ item.condition }}</span>
+                <span *ngIf="item.status === 'SOLD'" class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-300">
+                  SOLD
+                </span>
+                <span *ngIf="item.status !== 'SOLD'" [ngClass]="item.condition === 'Reusable' ? 'badge-green' : 'badge-blue'">
+                  {{ item.condition }}
+                </span>
               </div>
               <div class="text-xs font-mono text-[#16A34A] font-bold mb-2">
                 {{ item.isFree ? 'FREE' : '₹' + item.pricePerKg + '/kg' }} • {{ item.quantityKg }} kg
@@ -260,9 +281,16 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                 <span class="text-[10px] text-[#A8A29E] truncate max-w-[150px]">{{ item.locationName }}</span>
               </div>
 
-              <button (click)="openRequestModal(item)" class="rb-btn-primary text-xs py-1.5 px-3 cursor-pointer">
-                Request Material
-              </button>
+              <div *ngIf="item.status === 'SOLD'">
+                <button disabled class="px-3 py-1.5 rounded-xl bg-stone-200 text-stone-500 text-xs font-semibold cursor-not-allowed border border-stone-300">
+                  {{ item.soldTo === 'Anita Desai' ? '✓ Ordered by You' : 'Sold Out' }}
+                </button>
+              </div>
+              <div *ngIf="item.status !== 'SOLD'">
+                <button (click)="openRequestModal(item)" class="rb-btn-primary text-xs py-1.5 px-3 cursor-pointer">
+                  Request Material
+                </button>
+              </div>
             </div>
           </div>
 
@@ -309,9 +337,18 @@ import { BadgeComponent } from '../../shared/components/badge.component';
               </select>
             </div>
 
+            <div class="p-3 rounded-2xl bg-amber-50 border border-amber-200 text-[11px] text-amber-900 leading-relaxed space-y-1">
+              <div class="font-bold flex items-center gap-1.5 text-amber-950">
+                <span>🔒 Single-Buyer Order Lock:</span>
+              </div>
+              <p>
+                Confirming this purchase order as <b>Anita Desai (EcoBlocks Pavers Ltd)</b> will immediately mark this lot as <b>SOLD</b>. Ihsan Al-Mansoor will be notified to confirm fulfillment, and another buyer will not be able to take this lot.
+              </p>
+            </div>
+
             <div class="pt-4 flex justify-end gap-2">
               <button (click)="selectedListing = null" class="rb-btn-ghost text-xs cursor-pointer">Cancel</button>
-              <button (click)="submitRequest()" class="rb-btn-primary text-xs cursor-pointer">Confirm & Dispatch Inquiry</button>
+              <button (click)="submitRequest()" class="rb-btn-primary text-xs cursor-pointer">Confirm Order & Mark Sold</button>
             </div>
           </div>
         </div>
@@ -416,6 +453,10 @@ export class BuyerComponent implements OnInit {
   }
 
   openRequestModal(listing: MarketplaceListing) {
+    if (listing.status === 'SOLD') {
+      this.toast.warning('Material Lot Unavailable', 'This lot has already been purchased and marked as SOLD.');
+      return;
+    }
     this.selectedListing = listing;
     this.requestQuantity = listing.quantityKg;
   }
