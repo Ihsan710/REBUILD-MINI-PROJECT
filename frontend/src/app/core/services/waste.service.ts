@@ -58,14 +58,27 @@ export class WasteService {
     this.isLoading.set(true);
     this.http.get<WasteRecord[]>(`${API_BASE}/waste`).subscribe({
       next: (data) => {
-        this.recordsSignal.set(data || []);
+        const normalized = (data || []).map(r => ({
+          ...r,
+          imageUrl: r.imageUrl && r.imageUrl.startsWith('/assets/uploads/')
+            ? `http://localhost:8000${r.imageUrl}`
+            : (r.imageUrl || `/assets/materials/${r.material.toLowerCase()}.jpg`)
+        }));
+        this.recordsSignal.set(normalized);
         this.isLoading.set(false);
       },
       error: () => {
         const saved = localStorage.getItem('rebuild_waste_records');
         if (saved) {
           try {
-            this.recordsSignal.set(JSON.parse(saved));
+            const parsed = JSON.parse(saved);
+            const normalized = parsed.map((r: any) => ({
+              ...r,
+              imageUrl: r.imageUrl && r.imageUrl.startsWith('/assets/uploads/')
+                ? `http://localhost:8000${r.imageUrl}`
+                : (r.imageUrl || `/assets/materials/${r.material.toLowerCase()}.jpg`)
+            }));
+            this.recordsSignal.set(normalized);
           } catch (e) {}
         }
         this.isLoading.set(false);

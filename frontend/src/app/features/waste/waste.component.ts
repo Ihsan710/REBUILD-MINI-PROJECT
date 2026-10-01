@@ -5,6 +5,7 @@ import * as QRCode from 'qrcode';
 import { jsPDF } from 'jspdf';
 import { WasteService } from '../../core/services/waste.service';
 import { ProjectService } from '../../core/services/project.service';
+import { MarketplaceService } from '../../core/services/marketplace.service';
 import { AiVisionService, CDW_BULK_DENSITIES } from '../../core/services/ai-vision.service';
 import { ToastService } from '../../core/services/toast.service';
 import { WasteRecord, MaterialCategory, MaterialCondition, ProjectPhase, AIPredictionResult } from '../../core/models/all.models';
@@ -500,7 +501,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                 class="hover:bg-[#F9F7F4] cursor-pointer transition-colors"
               >
                 <td class="py-3 font-semibold text-[#1C1917] flex items-center gap-2.5">
-                  <img [src]="record.imageUrl" (error)="onImgError($event, record.material)" class="w-9 h-9 rounded-xl object-cover border border-[#E5DFD7]" />
+                  <img [src]="resolveImageUrl(record.imageUrl, record.material)" (error)="onImgError($event, record.material)" class="w-9 h-9 rounded-xl object-cover border border-[#E5DFD7]" />
                   <span>{{ record.material }}</span>
                 </td>
                 <td class="py-3 font-mono font-bold text-[#1C1917]">{{ record.quantityKg | number }} kg</td>
@@ -550,7 +551,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
           </div>
 
           <div class="rounded-2xl overflow-hidden border border-[#E5DFD7]">
-            <img [src]="selectedRecord.imageUrl" (error)="onImgError($event, selectedRecord.material)" class="w-full h-48 object-cover" />
+            <img [src]="resolveImageUrl(selectedRecord.imageUrl, selectedRecord.material)" (error)="onImgError($event, selectedRecord.material)" class="w-full h-48 object-cover" />
           </div>
 
           <div class="space-y-3 text-xs">
@@ -812,6 +813,7 @@ export class WasteComponent implements OnInit {
   constructor(
     public wasteService: WasteService,
     public projectService: ProjectService,
+    public marketplaceService: MarketplaceService,
     private aiVisionService: AiVisionService,
     private toast: ToastService,
     private cdr: ChangeDetectorRef
@@ -1126,9 +1128,22 @@ export class WasteComponent implements OnInit {
     this.toast.warning('Human Override Logged', `Material corrected to ${material}.`);
   }
 
-  onImgError(event: any, material: string) {
+  resolveImageUrl(url?: string, material?: string): string {
     const mat = (material || 'brick').toLowerCase();
-    event.target.src = `/assets/materials/${mat}.jpg`;
+    if (!url) return `/assets/materials/${mat}.jpg`;
+    if (url.startsWith('/assets/uploads/')) {
+      return `http://localhost:8000${url}`;
+    }
+    return url;
+  }
+
+  onImgError(event: any, material?: string) {
+    const mat = (material || 'brick').toLowerCase();
+    const target = event.target as HTMLImageElement;
+    const fallback = `/assets/materials/${mat}.jpg`;
+    if (target.src !== fallback && !target.src.endsWith(fallback)) {
+      target.src = fallback;
+    }
   }
 
   async saveWasteRecord() {
@@ -1174,6 +1189,12 @@ export class WasteComponent implements OnInit {
       loggedBy: 'Ihsan Al-Mansoor',
       notes: this.notes
     });
+
+    if (this.condition === 'Reusable' || this.condition === 'Recyclable') {
+      setTimeout(() => {
+        this.marketplaceService.loadMarketplaceData();
+      }, 500);
+    }
 
     this.toast.success('Manifest Logged', `${this.confirmedMaterial} (${this.quantityKg.toLocaleString()} kg) saved to persistent database.`);
     this.openWtnModal(saved);

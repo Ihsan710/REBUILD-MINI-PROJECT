@@ -109,7 +109,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
             class="rb-card p-5 hover:border-[#C5B7A5] transition-all flex flex-col justify-between"
           >
             <div>
-              <img [src]="item.imageUrl" (error)="onImgError($event, item.material)" [alt]="item.title" class="w-full h-40 object-cover rounded-xl mb-4 border border-[#E5DFD7]" />
+              <img [src]="resolveImageUrl(item.imageUrl, item.material)" (error)="onImgError($event, item.material)" [alt]="item.title" class="w-full h-40 object-cover rounded-xl mb-4 border border-[#E5DFD7]" />
               <div class="flex items-center justify-between mb-1">
                 <span class="text-xs font-bold text-[#1C1917] uppercase">{{ item.title }}</span>
                 <span [ngClass]="item.condition === 'Reusable' ? 'badge-green' : 'badge-blue'">{{ item.condition }}</span>
@@ -177,7 +177,18 @@ export class BuyerComponent implements OnInit {
     private toast: ToastService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.marketplaceService.loadMarketplaceData();
+  }
+
+  resolveImageUrl(url?: string, material?: string): string {
+    const mat = (material || 'brick').toLowerCase();
+    if (!url) return `/assets/materials/${mat}.jpg`;
+    if (url.startsWith('/assets/uploads/')) {
+      return `http://localhost:8000${url}`;
+    }
+    return url;
+  }
 
   openRequestModal(listing: MarketplaceListing) {
     this.selectedListing = listing;
@@ -185,8 +196,12 @@ export class BuyerComponent implements OnInit {
   }
 
   onImgError(event: any, material: string) {
-    const mat = (material || 'concrete').toLowerCase();
-    event.target.src = `/assets/materials/${mat}.jpg`;
+    const mat = (material || 'brick').toLowerCase();
+    const target = event.target as HTMLImageElement;
+    const fallback = `/assets/materials/${mat}.jpg`;
+    if (target.src !== fallback && !target.src.endsWith(fallback)) {
+      target.src = fallback;
+    }
   }
 
   submitRequest() {

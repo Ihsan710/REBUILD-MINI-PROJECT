@@ -242,7 +242,7 @@ Chart.register(...registerables);
             <tbody class="divide-y divide-[#E5DFD7]">
               <tr *ngFor="let record of wasteService.records().slice(0, 5)" class="hover:bg-[#F9F7F4] transition-colors">
                 <td class="py-3 font-semibold text-[#1C1917] flex items-center gap-2.5">
-                  <img [src]="record.imageUrl" [alt]="record.material" class="w-8 h-8 rounded-lg object-cover border border-[#E5DFD7]" />
+                  <img [src]="resolveImageUrl(record.imageUrl, record.material)" (error)="onImgError($event, record.material)" [alt]="record.material" class="w-8 h-8 rounded-lg object-cover border border-[#E5DFD7]" />
                   <span>{{ record.material }}</span>
                 </td>
                 <td class="py-3 text-[#1C1917]">{{ record.projectName }}</td>
@@ -591,5 +591,23 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     });
     this.charts.push(chart);
+  }
+
+  resolveImageUrl(url?: string, material?: string): string {
+    const mat = (material || 'brick').toLowerCase();
+    if (!url) return `/assets/materials/${mat}.jpg`;
+    if (url.startsWith('/assets/uploads/')) {
+      return `http://localhost:8000${url}`;
+    }
+    return url;
+  }
+
+  onImgError(event: any, material?: string) {
+    const mat = (material || 'brick').toLowerCase();
+    const target = event.target as HTMLImageElement;
+    const fallback = `/assets/materials/${mat}.jpg`;
+    if (target.src !== fallback && !target.src.endsWith(fallback)) {
+      target.src = fallback;
+    }
   }
 }

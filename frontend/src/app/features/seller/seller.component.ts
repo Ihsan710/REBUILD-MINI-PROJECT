@@ -206,7 +206,7 @@ import { StatCardComponent } from '../../shared/components/stat-card.component';
             <tbody class="divide-y divide-[#E5DFD7]">
               <tr *ngFor="let waste of wasteService.records()" class="hover:bg-[#F9F7F4]">
                 <td class="py-3 font-bold text-[#1C1917] flex items-center gap-2.5">
-                  <img [src]="waste.imageUrl" (error)="onImgError($event, waste.material)" class="w-8 h-8 rounded-xl object-cover border border-[#E5DFD7]" />
+                  <img [src]="resolveImageUrl(waste.imageUrl, waste.material)" (error)="onImgError($event, waste.material)" class="w-8 h-8 rounded-xl object-cover border border-[#E5DFD7]" />
                   <span>{{ waste.material }}</span>
                 </td>
                 <td class="py-3 text-[#1C1917]">{{ waste.projectName }}</td>
@@ -254,7 +254,7 @@ import { StatCardComponent } from '../../shared/components/stat-card.component';
             <tbody class="divide-y divide-[#E5DFD7]">
               <tr *ngFor="let item of marketplaceService.listings()" class="hover:bg-[#F9F7F4]">
                 <td class="py-3 font-semibold text-[#1C1917] flex items-center gap-2.5">
-                  <img [src]="item.imageUrl" (error)="onImgError($event, item.material)" class="w-8 h-8 rounded-xl object-cover border border-[#E5DFD7]" />
+                  <img [src]="resolveImageUrl(item.imageUrl, item.material)" (error)="onImgError($event, item.material)" class="w-8 h-8 rounded-xl object-cover border border-[#E5DFD7]" />
                   <span>{{ item.title }}</span>
                 </td>
                 <td class="py-3 font-mono font-bold text-[#1C1917]">{{ item.quantityKg | number }} kg</td>
@@ -410,9 +410,22 @@ export class SellerComponent implements OnInit {
     this.toast.info('Intake Loaded', `Pre-filled ${waste.quantityKg} kg of ${waste.material} for processing.`);
   }
 
-  onImgError(event: any, material: string) {
+  resolveImageUrl(url?: string, material?: string): string {
     const mat = (material || 'brick').toLowerCase();
-    event.target.src = `/assets/materials/${mat}.jpg`;
+    if (!url) return `/assets/materials/${mat}.jpg`;
+    if (url.startsWith('/assets/uploads/')) {
+      return `http://localhost:8000${url}`;
+    }
+    return url;
+  }
+
+  onImgError(event: any, material?: string) {
+    const mat = (material || 'brick').toLowerCase();
+    const target = event.target as HTMLImageElement;
+    const fallback = `/assets/materials/${mat}.jpg`;
+    if (target.src !== fallback && !target.src.endsWith(fallback)) {
+      target.src = fallback;
+    }
   }
 
   createListingSubmit(event: Event) {

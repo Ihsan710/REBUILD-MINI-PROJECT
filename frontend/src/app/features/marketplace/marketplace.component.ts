@@ -99,10 +99,13 @@ import { BadgeComponent } from '../../shared/components/badge.component';
           [(ngModel)]="maxDistanceKm"
           class="px-3 py-2 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-xs text-[#1C1917] font-mono"
         >
+          <option [value]="5000">Radius: Pan-India (All Distances)</option>
+          <option [value]="1000">Radius: Within 1000 km</option>
+          <option [value]="500">Radius: Within 500 km</option>
+          <option [value]="100">Radius: Within 100 km</option>
           <option [value]="50">Radius: Within 50 km</option>
           <option [value]="20">Radius: Within 20 km</option>
           <option [value]="10">Radius: Within 10 km</option>
-          <option [value]="5">Radius: Within 5 km</option>
         </select>
       </div>
 
@@ -132,7 +135,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
           <div>
             <!-- Image & Badges -->
             <div class="relative h-44 rounded-xl overflow-hidden mb-4 border border-[#E5DFD7] bg-black">
-              <img [src]="listing.imageUrl" (error)="onImgError($event, listing.material)" [alt]="listing.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img [src]="resolveImageUrl(listing.imageUrl, listing.material)" (error)="onImgError($event, listing.material)" [alt]="listing.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
               <div class="absolute top-2.5 left-2.5">
                 <span [ngClass]="listing.condition === 'Reusable' ? 'badge-green' : 'badge-blue'">
                   {{ listing.condition }}
@@ -189,7 +192,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
 
           <div class="p-6 space-y-5 max-h-[75vh] overflow-y-auto">
             <div class="h-56 rounded-2xl overflow-hidden border border-[#E5DFD7]">
-              <img [src]="selectedMaterial.imageUrl" (error)="onImgError($event, selectedMaterial.material)" class="w-full h-full object-cover" />
+              <img [src]="resolveImageUrl(selectedMaterial.imageUrl, selectedMaterial.material)" (error)="onImgError($event, selectedMaterial.material)" class="w-full h-full object-cover" />
             </div>
 
             <div class="grid grid-cols-3 gap-3 text-center text-xs font-mono">
@@ -243,7 +246,7 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
   searchQuery: string = '';
   selectedCategory: string = 'ALL';
   selectedCondition: string = 'ALL';
-  maxDistanceKm: number = 50;
+  maxDistanceKm: number = 5000;
   selectedMaterial: MarketplaceListing | null = null;
 
   map: L.Map | null = null;
@@ -255,7 +258,18 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
     private toast: ToastService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.marketplaceService.loadMarketplaceData();
+  }
+
+  resolveImageUrl(url?: string, material?: string): string {
+    const mat = (material || 'brick').toLowerCase();
+    if (!url) return `/assets/materials/${mat}.jpg`;
+    if (url.startsWith('/assets/uploads/')) {
+      return `http://localhost:8000${url}`;
+    }
+    return url;
+  }
 
   ngAfterViewInit() {
     if (this.viewMode === 'map') {
@@ -273,7 +287,7 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.marketplaceService.listings().filter(l => {
       if (this.selectedCategory !== 'ALL' && l.material !== this.selectedCategory) return false;
       if (this.selectedCondition !== 'ALL' && l.condition !== this.selectedCondition) return false;
-      if (l.distanceKm && l.distanceKm > this.maxDistanceKm) return false;
+      if (this.maxDistanceKm < 5000 && l.distanceKm && l.distanceKm > this.maxDistanceKm) return false;
       if (this.searchQuery.trim()) {
         const q = this.searchQuery.toLowerCase();
         return l.title.toLowerCase().includes(q) || l.description.toLowerCase().includes(q) || l.material.toLowerCase().includes(q);
@@ -375,9 +389,13 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
     this.selectedMaterial = listing;
   }
 
-  onImgError(event: any, material: string) {
-    const mat = (material || 'concrete').toLowerCase();
-    event.target.src = `/assets/materials/${mat}.jpg`;
+  onImgError(event: any, material?: string) {
+    const mat = (material || 'brick').toLowerCase();
+    const target = event.target as HTMLImageElement;
+    const fallback = `/assets/materials/${mat}.jpg`;
+    if (target.src !== fallback && !target.src.endsWith(fallback)) {
+      target.src = fallback;
+    }
   }
 
   requestMaterialSubmit(delivery: 'Self Pickup' | 'Shared Logistics') {

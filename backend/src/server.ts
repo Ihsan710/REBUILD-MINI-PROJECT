@@ -47,6 +47,13 @@ if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
 
+// Statically serve uploaded and preset materials
+app.use('/assets/uploads', express.static(uploadDir));
+const materialsDir = path.resolve(__dirname, '../../frontend/public/assets/materials');
+if (fs.existsSync(materialsDir)) {
+  app.use('/assets/materials', express.static(materialsDir));
+}
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, uploadDir);
@@ -525,7 +532,7 @@ app.post('/api/upload', upload.single('image'), (req: Request, res: Response) =>
   if (!req.file) {
     return res.status(400).json({ error: 'No image file uploaded.' });
   }
-  const fileUrl = `/assets/uploads/${req.file.filename}`;
+  const fileUrl = `http://localhost:8000/assets/uploads/${req.file.filename}`;
   res.json({ success: true, imageUrl: fileUrl, filename: req.file.filename });
 });
 
@@ -541,40 +548,55 @@ app.get('/api/waste', optionalJWT, async (req: AuthRequest, res: Response) => {
       ORDER BY w.created_at DESC
     `);
     if (rows.length > 0) {
-      const mapped = rows.map(r => ({
-        id: r.id,
-        projectId: r.project_id,
-        projectName: r.project_name || 'Active Site',
-        material: r.material,
-        quantityKg: parseFloat(r.quantity_kg),
-        condition: r.material_condition,
-        phase: r.project_phase,
-        imageUrl: r.image_url,
-        aiPrediction: {
-          detectedMaterial: r.ai_detected_material,
-          confidence: parseFloat(r.ai_confidence),
-          inferenceTimeMs: r.ai_inference_time_ms,
-          modelArchitecture: r.ai_model_architecture,
-          isConfirmed: Boolean(r.is_confirmed),
-          confirmedMaterial: r.confirmed_material,
-          isUserCorrected: Boolean(r.is_user_corrected),
-          detectedFeatures: ['Spectral profile extracted', 'Trained CNN Match']
-        },
-        gpsLocation: {
-          lat: parseFloat(r.latitude),
-          lng: parseFloat(r.longitude),
-          address: r.address_text || 'Bangalore, India'
-        },
-        loggedBy: r.logged_by,
-        status: r.status,
-        marketplaceListingId: r.marketplace_listing_id,
-        notes: r.notes,
-        createdAt: r.created_at
-      }));
+      const mapped = rows.map(r => {
+        let img = r.image_url;
+        if (img && img.startsWith('/assets/uploads/')) {
+          img = `http://localhost:8000${img}`;
+        }
+        return {
+          id: r.id,
+          projectId: r.project_id,
+          projectName: r.project_name || 'Active Site',
+          material: r.material,
+          quantityKg: parseFloat(r.quantity_kg),
+          condition: r.material_condition,
+          phase: r.project_phase,
+          imageUrl: img,
+          aiPrediction: {
+            detectedMaterial: r.ai_detected_material,
+            confidence: parseFloat(r.ai_confidence),
+            inferenceTimeMs: r.ai_inference_time_ms,
+            modelArchitecture: r.ai_model_architecture,
+            isConfirmed: Boolean(r.is_confirmed),
+            confirmedMaterial: r.confirmed_material,
+            isUserCorrected: Boolean(r.is_user_corrected),
+            detectedFeatures: ['Spectral profile extracted', 'Trained CNN Match']
+          },
+          gpsLocation: {
+            lat: parseFloat(r.latitude),
+            lng: parseFloat(r.longitude),
+            address: r.address_text || 'Bangalore, India'
+          },
+          loggedBy: r.logged_by,
+          status: r.status,
+          marketplaceListingId: r.marketplace_listing_id,
+          notes: r.notes,
+          createdAt: r.created_at
+        };
+      });
       return res.json(mapped);
     }
   }
-  res.json(memoryStore.wasteRecords);
+
+  const mappedMemory = memoryStore.wasteRecords.map(r => {
+    let img = r.imageUrl;
+    if (img && img.startsWith('/assets/uploads/')) {
+      img = `http://localhost:8000${img}`;
+    }
+    return { ...r, imageUrl: img };
+  });
+
+  res.json(mappedMemory);
 });
 
 app.post('/api/waste', optionalJWT, async (req: AuthRequest, res: Response) => {
@@ -595,6 +617,11 @@ app.post('/api/waste', optionalJWT, async (req: AuthRequest, res: Response) => {
   const now = new Date().toISOString();
   const status = condition === 'Reusable' ? 'Listed on Marketplace' : 'Verified';
 
+  let recordImageUrl = w.imageUrl || `/assets/materials/${material.toLowerCase()}.jpg`;
+  if (recordImageUrl.startsWith('/assets/uploads/')) {
+    recordImageUrl = `http://localhost:8000${recordImageUrl}`;
+  }
+
   const newRecord = {
     id,
     projectId,
@@ -603,7 +630,7 @@ app.post('/api/waste', optionalJWT, async (req: AuthRequest, res: Response) => {
     quantityKg,
     condition,
     phase,
-    imageUrl: w.imageUrl || `/assets/materials/${material.toLowerCase()}.jpg`,
+    imageUrl: recordImageUrl,
     aiPrediction: w.aiPrediction || { detectedMaterial: material, confidence: 94.2, inferenceTimeMs: 24, modelArchitecture: 'Vision-CNN-CDW-ResNet34 (High-Speed Tensor)' },
     gpsLocation: w.gpsLocation || { lat: 12.9716, lng: 77.6412, address: 'Bangalore, India' },
     loggedBy,
@@ -625,6 +652,10 @@ app.post('/api/waste', optionalJWT, async (req: AuthRequest, res: Response) => {
   // If Reusable, automatically list on Circular Marketplace
   if (condition === 'Reusable' || condition === 'Recyclable') {
     const listingId = 'mkt-' + Math.random().toString(36).substring(2, 9);
+    const itemLat = newRecord.gpsLocation.lat || 12.9716;
+    const itemLng = newRecord.gpsLocation.lng || 77.6412;
+    const calculatedDist = calculateHaversineDistanceKm(12.9352, 77.6245, itemLat, itemLng);
+
     const newListing = {
       id: listingId,
       title: `${material} (Logged from ${newRecord.projectName})`,
@@ -639,8 +670,8 @@ app.post('/api/waste', optionalJWT, async (req: AuthRequest, res: Response) => {
       sellerPhone: '+91 98450 12345',
       sellerEmail: 'ihsan@skylinebuilders.com',
       locationName: newRecord.gpsLocation.address,
-      coordinates: [newRecord.gpsLocation.lat, newRecord.gpsLocation.lng],
-      distanceKm: 4.8,
+      coordinates: [itemLat, itemLng],
+      distanceKm: calculatedDist,
       imageUrl: newRecord.imageUrl,
       description: `Auto-cataloged circular lot from site manifest (${notes || 'High reusable potential'}).`,
       status: 'AVAILABLE',
@@ -649,6 +680,21 @@ app.post('/api/waste', optionalJWT, async (req: AuthRequest, res: Response) => {
       createdAt: now
     };
     memoryStore.marketplaceListings.unshift(newListing);
+
+    if (isDbConnected()) {
+      await query(
+        `INSERT INTO marketplace_listings (id, title, material, quantity_kg, material_condition, price_per_kg, is_free, seller_id, seller_name, seller_company, seller_phone, seller_email, location_name, latitude, longitude, image_url, description, status, views_count, inquiries_count)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          listingId, newListing.title, material, quantityKg, condition,
+          newListing.pricePerKg, newListing.isFree, newListing.sellerId,
+          newListing.sellerName, newListing.sellerCompany, newListing.sellerPhone,
+          newListing.sellerEmail, newListing.locationName, itemLat,
+          itemLng, newListing.imageUrl, newListing.description,
+          'AVAILABLE', 1, 0
+        ]
+      );
+    }
   }
 
   if (isDbConnected()) {
@@ -689,6 +735,10 @@ app.get('/api/marketplace/listings', optionalJWT, async (req: AuthRequest, res: 
         const lat = parseFloat(r.latitude);
         const lon = parseFloat(r.longitude);
         const dist = calculateHaversineDistanceKm(userLat, userLon, lat, lon);
+        let img = r.image_url;
+        if (img && img.startsWith('/assets/uploads/')) {
+          img = `http://localhost:8000${img}`;
+        }
         return {
           id: r.id,
           title: r.title,
@@ -705,7 +755,7 @@ app.get('/api/marketplace/listings', optionalJWT, async (req: AuthRequest, res: 
           locationName: r.location_name,
           coordinates: [lat, lon],
           distanceKm: dist,
-          imageUrl: r.image_url,
+          imageUrl: img,
           description: r.description,
           status: r.status,
           viewsCount: r.views_count,
@@ -716,7 +766,23 @@ app.get('/api/marketplace/listings', optionalJWT, async (req: AuthRequest, res: 
       return res.json(mapped);
     }
   }
-  res.json(memoryStore.marketplaceListings);
+
+  const mappedMemory = memoryStore.marketplaceListings.map(item => {
+    const lat = item.coordinates ? item.coordinates[0] : 12.9716;
+    const lon = item.coordinates ? item.coordinates[1] : 77.6412;
+    const dist = calculateHaversineDistanceKm(userLat, userLon, lat, lon);
+    let imgUrl = item.imageUrl;
+    if (imgUrl && imgUrl.startsWith('/assets/uploads/')) {
+      imgUrl = `http://localhost:8000${imgUrl}`;
+    }
+    return {
+      ...item,
+      distanceKm: dist,
+      imageUrl: imgUrl
+    };
+  });
+
+  res.json(mappedMemory);
 });
 
 app.post('/api/marketplace/listings', optionalJWT, async (req: AuthRequest, res: Response) => {

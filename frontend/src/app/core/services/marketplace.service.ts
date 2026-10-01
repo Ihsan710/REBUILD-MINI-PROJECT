@@ -48,26 +48,46 @@ export class MarketplaceService {
     this.loadMarketplaceData();
   }
 
+  public resolveImageUrl(url?: string, material?: string): string {
+    const mat = (material || 'brick').toLowerCase();
+    if (!url) return `/assets/materials/${mat}.jpg`;
+    if (url.startsWith('/assets/uploads/')) {
+      return `http://localhost:8000${url}`;
+    }
+    return url;
+  }
+
   loadMarketplaceData() {
     this.isLoading.set(true);
     this.http.get<MarketplaceListing[]>(`${API_BASE}/marketplace/listings`).subscribe({
       next: (data) => {
-        this.listingsSignal.set(data || []);
+        const normalized = (data || []).map(l => ({
+          ...l,
+          imageUrl: this.resolveImageUrl(l.imageUrl, l.material)
+        }));
+        this.listingsSignal.set(normalized);
+        localStorage.setItem('rebuild_marketplace_listings', JSON.stringify(normalized));
+        this.isLoading.set(false);
       },
       error: () => {
         const saved = localStorage.getItem('rebuild_marketplace_listings');
         if (saved) {
           try {
-            this.listingsSignal.set(JSON.parse(saved));
+            const parsed = JSON.parse(saved);
+            const normalized = parsed.map((l: any) => ({
+              ...l,
+              imageUrl: this.resolveImageUrl(l.imageUrl, l.material)
+            }));
+            this.listingsSignal.set(normalized);
           } catch (e) {}
         }
+        this.isLoading.set(false);
       }
     });
 
     this.http.get<BuyerRequest[]>(`${API_BASE}/marketplace/requests`).subscribe({
       next: (data) => {
         this.requestsSignal.set(data || []);
-        this.isLoading.set(false);
       },
       error: () => {
         const saved = localStorage.getItem('rebuild_marketplace_requests');
@@ -76,7 +96,6 @@ export class MarketplaceService {
             this.requestsSignal.set(JSON.parse(saved));
           } catch (e) {}
         }
-        this.isLoading.set(false);
       }
     });
   }
