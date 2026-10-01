@@ -160,23 +160,23 @@ import { BadgeComponent } from '../../shared/components/badge.component';
       </div>
 
       <!-- ENROLL NEW WORKER MODAL -->
-      <div *ngIf="isAddModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
-        <div class="w-full max-w-lg bg-[#0E1624] border border-white/[0.12] rounded-2xl shadow-2xl p-6 space-y-4">
-          <div class="flex items-center justify-between pb-3 border-b border-white/[0.08]">
-            <h3 class="text-lg font-bold text-white">Enroll Site Worker</h3>
-            <button (click)="isAddModalOpen = false" class="text-slate-400 hover:text-white">✕</button>
+      <div *ngIf="isAddModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
+        <div class="w-full max-w-lg bg-white border border-[#E5DFD7] rounded-3xl shadow-2xl p-6 space-y-4 text-[#1C1917]">
+          <div class="flex items-center justify-between pb-3 border-b border-[#E5DFD7]">
+            <h3 class="text-lg font-bold text-[#1C1917]">Enroll Site Worker</h3>
+            <button (click)="isAddModalOpen = false" class="text-[#78716C] hover:text-[#1C1917]">✕</button>
           </div>
 
           <form (submit)="addWorkerSubmit($event)" class="space-y-3 text-xs">
             <div>
-              <label class="font-semibold text-slate-300 block mb-1">Full Name</label>
-              <input type="text" [(ngModel)]="newName" name="name" required placeholder="e.g. Ramesh Chandra" class="w-full px-3 py-2 rounded-lg bg-white/[0.04] border border-white/[0.1] text-white" />
+              <label class="font-bold text-[#1C1917] block mb-1">Full Name</label>
+              <input type="text" [(ngModel)]="newName" name="name" required placeholder="e.g. Ramesh Chandra" class="w-full px-3 py-2 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-xs text-[#1C1917] placeholder-[#A8A29E] focus:outline-none focus:border-[#C5B7A5]" />
             </div>
 
             <div class="grid grid-cols-2 gap-3">
               <div>
-                <label class="font-semibold text-slate-300 block mb-1">Trade Role</label>
-                <select [(ngModel)]="newRole" name="role" class="w-full px-3 py-2 rounded-lg bg-[#111827] border border-white/[0.1] text-white">
+                <label class="font-bold text-[#1C1917] block mb-1">Trade Role</label>
+                <select [(ngModel)]="newRole" name="role" class="w-full px-3 py-2 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-xs text-[#1C1917] focus:outline-none focus:border-[#C5B7A5]">
                   <option value="Mason">Mason</option>
                   <option value="Carpenter">Carpenter</option>
                   <option value="Electrician">Electrician</option>
@@ -187,8 +187,8 @@ import { BadgeComponent } from '../../shared/components/badge.component';
               </div>
 
               <div>
-                <label class="font-semibold text-slate-300 block mb-1">Skill Tier</label>
-                <select [(ngModel)]="newSkill" name="skill" class="w-full px-3 py-2 rounded-lg bg-[#111827] border border-white/[0.1] text-white">
+                <label class="font-bold text-[#1C1917] block mb-1">Skill Tier</label>
+                <select [(ngModel)]="newSkill" name="skill" class="w-full px-3 py-2 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-xs text-[#1C1917] focus:outline-none focus:border-[#C5B7A5]">
                   <option value="Senior">Senior Lead</option>
                   <option value="Intermediate">Intermediate</option>
                   <option value="Apprentice">Apprentice</option>
@@ -198,21 +198,21 @@ import { BadgeComponent } from '../../shared/components/badge.component';
 
             <div class="grid grid-cols-2 gap-3">
               <div>
-                <label class="font-semibold text-slate-300 block mb-1">Assigned Site</label>
-                <select [(ngModel)]="newProject" name="proj" class="w-full px-3 py-2 rounded-lg bg-[#111827] border border-white/[0.1] text-white">
+                <label class="font-bold text-[#1C1917] block mb-1">Assigned Site</label>
+                <select [(ngModel)]="newProject" name="proj" class="w-full px-3 py-2 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-xs text-[#1C1917] focus:outline-none focus:border-[#C5B7A5]">
                   <option *ngFor="let p of projectService.projects()" [value]="p.id">{{ p.name }}</option>
                 </select>
               </div>
 
               <div>
-                <label class="font-semibold text-slate-300 block mb-1">Daily Wage (₹)</label>
-                <input type="number" [(ngModel)]="newWage" name="wage" required class="w-full px-3 py-2 rounded-lg bg-white/[0.04] border border-white/[0.1] text-white font-mono" />
+                <label class="font-bold text-[#1C1917] block mb-1">Daily Wage (₹)</label>
+                <input type="number" [(ngModel)]="newWage" name="wage" required class="w-full px-3 py-2 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-xs text-[#1C1917] font-mono focus:outline-none focus:border-[#C5B7A5]" />
               </div>
             </div>
 
             <div class="pt-4 flex justify-end gap-2">
               <button type="button" (click)="isAddModalOpen = false" class="rb-btn-ghost text-xs">Cancel</button>
-              <button type="submit" class="rb-btn-primary text-xs">Enroll Worker</button>
+              <button type="submit" class="rb-btn-primary text-xs cursor-pointer">Enroll Worker</button>
             </div>
           </form>
         </div>

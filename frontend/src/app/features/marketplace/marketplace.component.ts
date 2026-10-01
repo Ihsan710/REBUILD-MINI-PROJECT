@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, OnDestroy, ElementRef, ViewChild } fr
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import * as L from 'leaflet';
-import { MarketplaceService, calculateHaversineDistanceKm } from '../../core/services/marketplace.service';
+import { MarketplaceService, calculateHaversineDistanceKm, PRESET_BUYER_HUBS } from '../../core/services/marketplace.service';
 import { ToastService } from '../../core/services/toast.service';
 import { MarketplaceListing, MaterialCategory, MaterialCondition } from '../../core/models/all.models';
 import { BadgeComponent } from '../../shared/components/badge.component';
@@ -49,6 +49,48 @@ import { BadgeComponent } from '../../shared/components/badge.component';
         </div>
       </div>
 
+      <!-- BUYER LOCATION & PROXIMITY HUB CONTROL BAR -->
+      <div class="rb-card p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 border border-[#E5DFD7]">
+        <div class="flex items-center gap-3">
+          <span class="w-3 h-3 rounded-full flex-shrink-0"
+                [ngClass]="marketplaceService.buyerLocationInfo().isGPS ? 'bg-emerald-500 ring-4 ring-emerald-100 animate-pulse' : 'bg-amber-500 ring-4 ring-amber-100'">
+          </span>
+          <div>
+            <div class="text-[11px] font-mono font-bold uppercase tracking-wider text-[#78716C]">
+              Procurement Site: <span class="text-[#1C1917] font-semibold">{{ marketplaceService.buyerLocationInfo().name }}</span>
+            </div>
+            <div class="text-[11px] text-[#A8A29E]">All Haversine radial distances and map coordinates route relative to this site.</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            (click)="detectLiveGPS()"
+            [disabled]="marketplaceService.isLocatingGPS()"
+            class="rb-btn-primary text-xs py-1.5 px-3 flex items-center gap-1.5 cursor-pointer shadow-sm disabled:opacity-50"
+          >
+            <svg *ngIf="!marketplaceService.isLocatingGPS()" class="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <svg *ngIf="marketplaceService.isLocatingGPS()" class="animate-spin w-3.5 h-3.5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+            </svg>
+            <span>{{ marketplaceService.isLocatingGPS() ? 'Locating...' : 'Detect Live GPS' }}</span>
+          </button>
+
+          <select
+            [(ngModel)]="selectedHubName"
+            (ngModelChange)="onHubChange($event)"
+            class="px-3 py-1.5 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-xs font-semibold text-[#1C1917] focus:outline-none focus:border-[#C5B7A5] cursor-pointer"
+          >
+            <option value="" disabled>Select Procurement Hub...</option>
+            <option *ngFor="let hub of presetHubs" [value]="hub.name">{{ hub.name }}</option>
+          </select>
+        </div>
+      </div>
+
       <!-- SEARCH & MULTI-FILTER STRIP -->
       <div class="rb-card p-4 flex flex-col md:flex-row items-stretch md:items-center gap-3">
         <!-- Search Input -->
@@ -59,7 +101,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
           <input
             type="text"
             [(ngModel)]="searchQuery"
-            placeholder="What material are you looking for? (e.g. Bricks, Rebar, Concrete...)"
+            placeholder="Search material lots, city, or seller..."
             class="w-full pl-10 pr-4 py-2 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-xs text-[#1C1917] placeholder-[#A8A29E] focus:outline-none focus:border-[#C5B7A5]"
           />
         </div>
@@ -111,13 +153,13 @@ import { BadgeComponent } from '../../shared/components/badge.component';
 
       <!-- MAP VIEW CONTAINER -->
       <div [ngClass]="{ 'hidden': viewMode !== 'map' }" class="rb-card p-4 space-y-3">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div class="flex items-center gap-3">
             <span class="text-xs font-mono font-bold text-[#16A34A]">HAVERSINE GEOSPATIAL RADIAL ROUTING</span>
-            <span class="text-xs text-[#78716C]">• Distance calculated mathematically via backend Haversine algorithm</span>
+            <span class="text-xs text-[#78716C]">• Dynamic center locked to: <b>{{ marketplaceService.buyerLocationInfo().name }}</b></span>
           </div>
           <div class="flex items-center gap-3 text-xs font-mono">
-            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Buyer (You)</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Buyer Site</span>
             <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#16A34A]"></span> Verified Seller Yard</span>
           </div>
         </div>
@@ -164,14 +206,36 @@ import { BadgeComponent } from '../../shared/components/badge.component';
           <div class="pt-3 border-t border-[#E5DFD7] flex items-center justify-between text-xs">
             <div class="flex flex-col">
               <span class="text-[#1C1917] font-semibold">{{ listing.sellerCompany }}</span>
-              <span class="text-[10px] text-[#78716C]">{{ listing.locationName }}</span>
+              <span class="text-[10px] text-[#78716C] truncate max-w-[140px]">{{ listing.locationName }}</span>
             </div>
 
             <div class="text-right">
-              <span class="text-[#16A34A] font-mono font-bold">{{ listing.distanceKm }} km away</span>
-              <div class="text-[10px] text-[#78716C] font-mono">Haversine route</div>
+              <span *ngIf="listing.distanceKm != null && listing.distanceKm <= 15" class="text-[#16A34A] font-mono font-bold block">
+                ⚡ {{ listing.distanceKm }} km (LOCAL)
+              </span>
+              <span *ngIf="listing.distanceKm != null && listing.distanceKm > 15 && listing.distanceKm <= 50" class="text-sky-700 font-mono font-bold block">
+                {{ listing.distanceKm }} km (NEARBY)
+              </span>
+              <span *ngIf="listing.distanceKm != null && listing.distanceKm > 50" class="text-[#16A34A] font-mono font-bold block">
+                {{ listing.distanceKm }} km away
+              </span>
+              <div class="text-[10px] text-[#78716C] font-mono">Haversine distance</div>
             </div>
           </div>
+        </div>
+
+        <!-- EMPTY STATE -->
+        <div *ngIf="filteredListings.length === 0" class="rb-card p-12 text-center space-y-3 col-span-full">
+          <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center mx-auto text-xl font-bold">
+            📍
+          </div>
+          <h4 class="text-base font-bold text-[#1C1917]">No Materials Found Within {{ maxDistanceKm }} km</h4>
+          <p class="text-xs text-[#78716C] max-w-md mx-auto">
+            Try expanding your procurement radius or select a different material category.
+          </p>
+          <button (click)="maxDistanceKm = 5000" class="rb-btn-secondary text-xs px-4 py-2 cursor-pointer mx-auto">
+            Reset to Pan-India
+          </button>
         </div>
       </div>
 
@@ -185,9 +249,9 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                 <span class="text-xs font-mono text-[#78716C]">{{ selectedMaterial.material }} Category</span>
               </div>
               <h2 class="text-xl font-bold text-[#1C1917] mt-1 uppercase">{{ selectedMaterial.title }}</h2>
-              <p class="text-xs text-[#78716C]">Seller: {{ selectedMaterial.sellerName }} ({{ selectedMaterial.sellerCompany }})</p>
+              <p class="text-xs text-[#78716C]">Seller: {{ selectedMaterial.sellerName }} ({{ selectedMaterial.sellerCompany }}) • {{ selectedMaterial.locationName }}</p>
             </div>
-            <button (click)="selectedMaterial = null" class="p-2 text-[#78716C] hover:text-[#1C1917] rounded-lg">✕</button>
+            <button (click)="selectedMaterial = null" class="p-2 text-[#78716C] hover:text-[#1C1917] rounded-lg cursor-pointer">✕</button>
           </div>
 
           <div class="p-6 space-y-5 max-h-[75vh] overflow-y-auto">
@@ -226,7 +290,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
             </div>
 
             <div class="flex items-center gap-3 pt-2">
-              <button (click)="requestMaterialSubmit('Self Pickup')" class="flex-1 rb-btn-secondary text-xs py-2.5">
+              <button (click)="requestMaterialSubmit('Self Pickup')" class="flex-1 rb-btn-secondary text-xs py-2.5 cursor-pointer">
                 Dispatch Self-Pickup
               </button>
               <button (click)="requestMaterialSubmit('Shared Logistics')" class="flex-1 rb-btn-primary text-xs py-2.5 shadow cursor-pointer">
@@ -249,7 +313,11 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
   maxDistanceKm: number = 5000;
   selectedMaterial: MarketplaceListing | null = null;
 
+  presetHubs = PRESET_BUYER_HUBS;
+  selectedHubName: string = '';
+
   map: L.Map | null = null;
+  buyerMarker: L.Marker | null = null;
   markers: L.Marker[] = [];
   polyline: L.Polyline | null = null;
 
@@ -260,6 +328,7 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.marketplaceService.loadMarketplaceData();
+    this.selectedHubName = this.marketplaceService.buyerLocationInfo().name;
   }
 
   resolveImageUrl(url?: string, material?: string): string {
@@ -284,16 +353,52 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   get filteredListings(): MarketplaceListing[] {
-    return this.marketplaceService.listings().filter(l => {
+    let list = this.marketplaceService.listings().filter(l => {
       if (this.selectedCategory !== 'ALL' && l.material !== this.selectedCategory) return false;
       if (this.selectedCondition !== 'ALL' && l.condition !== this.selectedCondition) return false;
       if (this.maxDistanceKm < 5000 && l.distanceKm && l.distanceKm > this.maxDistanceKm) return false;
       if (this.searchQuery.trim()) {
         const q = this.searchQuery.toLowerCase();
-        return l.title.toLowerCase().includes(q) || l.description.toLowerCase().includes(q) || l.material.toLowerCase().includes(q);
+        return l.title.toLowerCase().includes(q) ||
+               l.description.toLowerCase().includes(q) ||
+               l.material.toLowerCase().includes(q) ||
+               (l.locationName && l.locationName.toLowerCase().includes(q)) ||
+               (l.sellerCompany && l.sellerCompany.toLowerCase().includes(q));
       }
       return true;
     });
+
+    // Sort by proximity: nearest distance first
+    return list.sort((a, b) => (a.distanceKm ?? 9999) - (b.distanceKm ?? 9999));
+  }
+
+  onHubChange(hubName: string) {
+    const hub = this.presetHubs.find(h => h.name === hubName);
+    if (hub) {
+      this.selectedHubName = hub.name;
+      this.marketplaceService.setBuyerLocation(hub.coordinates, hub.name, false);
+      this.updateMapBuyerLocation(hub.coordinates, hub.name);
+    }
+  }
+
+  detectLiveGPS() {
+    this.marketplaceService.detectLiveGPS().then(() => {
+      const info = this.marketplaceService.buyerLocationInfo();
+      this.selectedHubName = info.name;
+      this.updateMapBuyerLocation(info.coordinates, info.name);
+    });
+  }
+
+  private updateMapBuyerLocation(coords: [number, number], name: string) {
+    if (!this.map) return;
+    this.map.setView(coords, 11, { animate: true });
+
+    if (this.buyerMarker) {
+      this.buyerMarker.setLatLng(coords);
+      this.buyerMarker.setPopupContent(`<b>Your Procurement Site (Buyer)</b><br>${name}`).openPopup();
+    }
+
+    this.rebuildSellerMarkers(coords);
   }
 
   setViewMode(mode: 'list' | 'map') {
@@ -314,7 +419,7 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const buyerCoords = this.marketplaceService.buyerLocation;
 
-    this.map = L.map(this.mapContainer.nativeElement).setView(buyerCoords, 12);
+    this.map = L.map(this.mapContainer.nativeElement).setView(buyerCoords, 11);
 
     // Dark Mapbox/CartoDB Carto dark tiles
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
@@ -326,16 +431,33 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
     // Buyer Pin (Amber)
     const buyerIcon = L.divIcon({
       className: 'custom-buyer-icon',
-      html: `<div style="background-color:#F59E0B; width:16px; height:16px; border-radius:50%; border:3px solid #FFFFFF; box-shadow:0 0 10px #F59E0B;"></div>`,
-      iconSize: [16, 16],
-      iconAnchor: [8, 8]
+      html: `<div style="background-color:#F59E0B; width:18px; height:18px; border-radius:50%; border:3px solid #FFFFFF; box-shadow:0 0 12px #F59E0B;"></div>`,
+      iconSize: [18, 18],
+      iconAnchor: [9, 9]
     });
 
-    const buyerMarker = L.marker(buyerCoords, { icon: buyerIcon }).addTo(this.map);
-    buyerMarker.bindPopup(`<b>Your Pickup Location (Buyer)</b><br>Koramangala Hub`).openPopup();
+    this.buyerMarker = L.marker(buyerCoords, { icon: buyerIcon }).addTo(this.map);
+    this.buyerMarker.bindPopup(`<b>Your Procurement Site (Buyer)</b><br>${this.marketplaceService.buyerLocationInfo().name}`).openPopup();
 
-    // Seller Pins (Emerald) & Haversine Connection Lines
-    this.marketplaceService.listings().forEach(listing => {
+    this.rebuildSellerMarkers(buyerCoords);
+  }
+
+  private rebuildSellerMarkers(buyerCoords: [number, number]) {
+    if (!this.map) return;
+
+    // Clear existing seller markers
+    this.markers.forEach(m => m.remove());
+    this.markers = [];
+    if (this.polyline) {
+      this.polyline.remove();
+      this.polyline = null;
+    }
+
+    const listings = this.marketplaceService.listings();
+    listings.forEach(listing => {
+      const coords = listing.coordinates || [12.9716, 77.6412];
+      const dist = calculateHaversineDistanceKm(buyerCoords[0], buyerCoords[1], coords[0], coords[1]);
+
       const sellerIcon = L.divIcon({
         className: 'custom-seller-icon',
         html: `<div style="background-color:#10B981; width:14px; height:14px; border-radius:50%; border:2px solid #FFFFFF; box-shadow:0 0 8px #10B981;"></div>`,
@@ -343,31 +465,38 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
         iconAnchor: [7, 7]
       });
 
-      const marker = L.marker(listing.coordinates, { icon: sellerIcon }).addTo(this.map!);
+      const marker = L.marker(coords, { icon: sellerIcon }).addTo(this.map!);
       marker.bindPopup(`
-        <div style="font-size:12px; font-family:sans-serif;">
+        <div style="font-size:12px; font-family:sans-serif; color:#1C1917;">
           <b style="color:#10B981;">${listing.title}</b><br/>
           <span>${listing.quantityKg} kg • ${listing.isFree ? 'FREE' : '₹' + listing.pricePerKg + '/kg'}</span><br/>
-          <span style="color:#F59E0B; font-weight:bold;">${listing.distanceKm} km away</span> (Haversine)<br/>
-          <small>${listing.sellerCompany}</small>
+          <span style="color:#D97706; font-weight:bold;">${dist} km from your site</span><br/>
+          <small style="color:#78716C;">${listing.sellerCompany}</small>
         </div>
       `);
 
       marker.on('click', () => {
-        this.drawHaversineLine(buyerCoords, listing.coordinates);
+        this.drawHaversineLine(buyerCoords, coords);
       });
 
       this.markers.push(marker);
     });
 
-    // Default connection line to nearest seller
-    const firstListing = this.marketplaceService.listings()[0];
-    if (firstListing) {
-      this.drawHaversineLine(buyerCoords, firstListing.coordinates);
+    // Draw connection line to nearest seller
+    if (listings.length > 0) {
+      const sorted = [...listings].sort((a, b) => {
+        const da = calculateHaversineDistanceKm(buyerCoords[0], buyerCoords[1], a.coordinates[0], a.coordinates[1]);
+        const db = calculateHaversineDistanceKm(buyerCoords[0], buyerCoords[1], b.coordinates[0], b.coordinates[1]);
+        return da - db;
+      });
+      const nearest = sorted[0];
+      if (nearest) {
+        this.drawHaversineLine(buyerCoords, nearest.coordinates, false);
+      }
     }
   }
 
-  private drawHaversineLine(from: [number, number], to: [number, number]) {
+  private drawHaversineLine(from: [number, number], to: [number, number], notify: boolean = true) {
     if (!this.map) return;
     if (this.polyline) {
       this.polyline.remove();
@@ -377,12 +506,14 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.polyline = L.polyline([from, to], {
       color: '#10B981',
-      weight: 2,
+      weight: 2.5,
       dashArray: '6, 6',
-      opacity: 0.8
+      opacity: 0.85
     }).addTo(this.map);
 
-    this.toast.info('Haversine Route Selected', `Distance: ${dist} km to site.`);
+    if (notify) {
+      this.toast.info('Haversine Route Selected', `Distance: ${dist} km to site.`);
+    }
   }
 
   openMaterialDetail(listing: MarketplaceListing) {

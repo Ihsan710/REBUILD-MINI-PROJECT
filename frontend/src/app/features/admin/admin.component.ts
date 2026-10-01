@@ -15,19 +15,19 @@ import { BadgeComponent } from '../../shared/components/badge.component';
   standalone: true,
   imports: [CommonModule, FormsModule, StatCardComponent],
   template: `
-    <div class="p-6 lg:p-8 max-w-7xl mx-auto space-y-8 animate-fade-in">
+    <div class="p-6 lg:p-8 max-w-7xl mx-auto space-y-8 animate-fade-in text-[#1C1917]">
       <!-- HEADER -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.08]">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E2DBD1]">
         <div>
-          <div class="flex items-center gap-2 text-xs font-mono text-purple-400 font-semibold mb-1">
-            <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+          <div class="flex items-center gap-2 text-xs font-mono text-purple-700 font-bold mb-1">
+            <span class="w-2 h-2 rounded-full bg-purple-700"></span>
             SYSTEM GOVERNANCE & PLATFORM INTEGRITY
           </div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Admin Governance Console</h1>
-          <p class="text-xs sm:text-sm text-slate-400 mt-0.5">Platform telemetry, KYC user verifications, listing moderation, and audit logs.</p>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-[#1C1917] tracking-tight">Admin Governance Console</h1>
+          <p class="text-xs sm:text-sm text-[#78716C] mt-0.5">Platform telemetry, KYC user verifications, listing moderation, and audit logs.</p>
         </div>
 
-        <span class="px-3 py-1 rounded-lg bg-purple-500/10 text-purple-300 border border-purple-500/20 text-xs font-mono font-bold">
+        <span class="px-3 py-1.5 rounded-xl bg-purple-100 text-purple-900 border border-purple-200 text-xs font-mono font-bold">
           ROOT GOVERNANCE
         </span>
       </div>
@@ -87,34 +87,34 @@ import { BadgeComponent } from '../../shared/components/badge.component';
 
       <!-- PENDING USER VERIFICATIONS & KYC MODERATION -->
       <div class="rb-card p-6 space-y-4">
-        <div class="flex items-center justify-between pb-2 border-b border-white/[0.08]">
+        <div class="flex items-center justify-between pb-2 border-b border-[#E5DFD7]">
           <div>
-            <h3 class="text-base font-bold text-white">Pending Contractor & Yard KYC Verifications</h3>
-            <p class="text-xs text-slate-400">Validate enterprise GST, contractor credentials, and site waste licenses.</p>
+            <h3 class="text-base font-bold text-[#1C1917]">Pending Contractor & Yard KYC Verifications</h3>
+            <p class="text-xs text-[#78716C]">Validate enterprise GST, contractor credentials, and site waste licenses.</p>
           </div>
-          <span class="badge-amber">3 Pending</span>
+          <span class="badge-amber">{{ pendingUsers.length }} Pending</span>
         </div>
 
-        <div class="divide-y divide-white/[0.06]">
+        <div class="divide-y divide-[#E5DFD7]">
           <div *ngFor="let u of pendingUsers" class="py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-xs">
             <div>
               <div class="flex items-center gap-2">
-                <span class="font-bold text-white text-sm">{{ u.companyName }}</span>
-                <span class="px-2 py-0.5 rounded bg-white/[0.04] text-slate-300 font-mono text-[10px]">{{ u.role }}</span>
+                <span class="font-bold text-[#1C1917] text-sm">{{ u.companyName }}</span>
+                <span class="px-2 py-0.5 rounded bg-[#F6F3EF] border border-[#E2DDD5] text-[#1C1917] font-mono text-[10px] font-semibold">{{ u.role }}</span>
               </div>
-              <div class="text-slate-400 mt-0.5">
+              <div class="text-[#78716C] mt-0.5">
                 Contact: {{ u.contactPerson }} ({{ u.email }}) • Location: {{ u.location }}
               </div>
-              <div class="text-[11px] text-slate-500 font-mono mt-1">
+              <div class="text-[11px] text-[#A8A29E] font-mono mt-1">
                 License: {{ u.licenseNo }} • Submitted: {{ u.submittedDate }}
               </div>
             </div>
 
             <div class="flex items-center gap-2">
-              <button (click)="verifyUser(u.id)" class="rb-btn-primary text-xs py-1.5 px-3">
+              <button (click)="verifyUser(u.id)" class="rb-btn-primary text-xs py-1.5 px-3 cursor-pointer">
                 Approve & Issue Certificate
               </button>
-              <button (click)="rejectUser(u.id)" class="rb-btn-ghost text-xs text-rose-400 py-1.5 px-3 hover:bg-rose-500/10">
+              <button (click)="rejectUser(u.id)" class="rb-btn-ghost text-xs text-rose-600 py-1.5 px-3 hover:bg-rose-50 cursor-pointer">
                 Reject
               </button>
             </div>
@@ -124,15 +124,18 @@ import { BadgeComponent } from '../../shared/components/badge.component';
 
       <!-- RECENT PLATFORM AUDIT LOGS -->
       <div class="rb-card p-6 space-y-4">
-        <div class="flex items-center justify-between">
-          <h3 class="text-base font-bold text-white">System Security & Audit Trail</h3>
-          <span class="text-xs font-mono text-slate-400">SOC2 Certified Ledger</span>
+        <div class="flex items-center justify-between pb-2 border-b border-[#E5DFD7]">
+          <div>
+            <h3 class="text-base font-bold text-[#1C1917]">System Security & Audit Trail</h3>
+            <p class="text-xs text-[#78716C]">Immutable ledger of platform actions, AI verifications, and marketplace orders.</p>
+          </div>
+          <span class="text-xs font-mono text-[#78716C] bg-[#F6F3EF] px-2.5 py-1 rounded-lg border border-[#E2DDD5]">SOC2 Certified Ledger</span>
         </div>
 
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs">
             <thead>
-              <tr class="border-b border-white/[0.08] text-slate-400 font-mono uppercase text-[10px]">
+              <tr class="border-b border-[#E5DFD7] text-[#78716C] font-mono uppercase text-[10px]">
                 <th class="pb-3 font-semibold">Event Type</th>
                 <th class="pb-3 font-semibold">Actor</th>
                 <th class="pb-3 font-semibold">Details</th>
@@ -140,13 +143,13 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                 <th class="pb-3 font-semibold">IP Address</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-white/[0.04] font-mono text-[11px]">
-              <tr *ngFor="let log of auditLogs" class="hover:bg-white/[0.02]">
-                <td class="py-2.5 font-bold text-emerald-400">{{ log.event }}</td>
-                <td class="py-2.5 text-slate-300">{{ log.actor }}</td>
-                <td class="py-2.5 text-slate-400">{{ log.details }}</td>
-                <td class="py-2.5 text-slate-500">{{ log.time }}</td>
-                <td class="py-2.5 text-slate-500">{{ log.ip }}</td>
+            <tbody class="divide-y divide-[#E5DFD7] font-mono text-[11px]">
+              <tr *ngFor="let log of auditLogs" class="hover:bg-[#F6F3EF] transition-colors">
+                <td class="py-2.5 font-bold text-emerald-700">{{ log.event }}</td>
+                <td class="py-2.5 text-[#1C1917] font-semibold">{{ log.actor }}</td>
+                <td class="py-2.5 text-[#78716C] font-sans">{{ log.details }}</td>
+                <td class="py-2.5 text-[#78716C]">{{ log.time }}</td>
+                <td class="py-2.5 text-[#A8A29E]">{{ log.ip }}</td>
               </tr>
             </tbody>
           </table>

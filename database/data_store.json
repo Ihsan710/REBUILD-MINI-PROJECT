@@ -92,11 +92,11 @@
       "status": "Active",
       "phase": "Demolition",
       "startDate": "2026-01-15",
-      "totalWasteKg": 6730,
-      "reusedKg": 3670,
+      "totalWasteKg": 7230,
+      "reusedKg": 4170,
       "recycledKg": 1420,
       "landfillKg": 1640,
-      "diversionRate": 75.6,
+      "diversionRate": 77.3,
       "activeWorkers": 14,
       "machinesAssigned": 4,
       "siteManager": "Ihsan Al-Mansoor",
@@ -150,6 +150,64 @@
     }
   ],
   "wasteRecords": [
+    {
+      "id": "wst-mupb54lj",
+      "projectId": "proj-skyline-01",
+      "projectName": "Skyline Heights Commercial Complex",
+      "material": "Metal",
+      "quantityKg": 500,
+      "condition": "Reusable",
+      "phase": "Demolition",
+      "imageUrl": "http://localhost:8000/assets/uploads/upload_1790845449582_6rrmj.jpg",
+      "aiPrediction": {
+        "detectedMaterial": "Metal",
+        "confidence": 98,
+        "isValidMaterial": true,
+        "secondaryPrediction": {
+          "material": "Drywall",
+          "confidence": 0.9
+        },
+        "detectedFeatures": [
+          "High specular highlight contrast",
+          "Structural steel rebar & pipe geometry",
+          "Metallic sheen index"
+        ],
+        "boundingBox": {
+          "x": 12,
+          "y": 14,
+          "width": 76,
+          "height": 72
+        },
+        "isConfirmed": false,
+        "isUserCorrected": false,
+        "inferenceTimeMs": 429,
+        "modelArchitecture": "Vision-CNN-CDW-ResNet34 (7-Class Custom CDW)",
+        "volumetricEstimate": {
+          "estimatedVolumeM3": 1.27,
+          "bulkDensityKgM3": 7850,
+          "suggestedWeightKg": 8474,
+          "pileGeometry": "Conical Stockpile (~1.7m footprint)",
+          "packingFactor": 0.85
+        },
+        "hazardAssessment": {
+          "isContaminated": false,
+          "hazardLevel": "None",
+          "warnings": [
+            "100% recyclable structural grade",
+            "Zero pressurized or sealed cylinder hazards"
+          ]
+        }
+      },
+      "gpsLocation": {
+        "lat": 9.992520675458234,
+        "lng": 76.35882162262327,
+        "address": "Kanayannur, Kerala, India (9.9925° N, 76.3588° E)"
+      },
+      "loggedBy": "Ihsan Al-Mansoor",
+      "createdAt": "2026-10-01T09:04:09.607Z",
+      "status": "Listed on Marketplace",
+      "notes": ""
+    },
     {
       "id": "wst-mup9449l",
       "projectId": "proj-skyline-01",
@@ -425,6 +483,32 @@
   ],
   "marketplaceListings": [
     {
+      "id": "mkt-yr2bg9i",
+      "title": "Metal (Logged from Skyline Heights Commercial Complex)",
+      "material": "Metal",
+      "quantityKg": 500,
+      "condition": "Reusable",
+      "pricePerKg": 8,
+      "isFree": false,
+      "sellerId": "usr-ihsan-contractor",
+      "sellerName": "Ihsan Al-Mansoor",
+      "sellerCompany": "Skyline Heights Commercial Complex",
+      "sellerPhone": "+91 98450 12345",
+      "sellerEmail": "ihsan@skylinebuilders.com",
+      "locationName": "Kanayannur, Kerala, India (9.9925° N, 76.3588° E)",
+      "coordinates": [
+        9.992520675458234,
+        76.35882162262327
+      ],
+      "distanceKm": 355.1,
+      "imageUrl": "http://localhost:8000/assets/uploads/upload_1790845449582_6rrmj.jpg",
+      "description": "Auto-cataloged circular lot from site manifest (High reusable potential).",
+      "status": "AVAILABLE",
+      "viewsCount": 1,
+      "inquiriesCount": 0,
+      "createdAt": "2026-10-01T09:04:09.607Z"
+    },
+    {
       "id": "mkt-1axajus",
       "title": "Brick (Logged from Skyline Heights Commercial Complex)",
       "material": "Brick",
@@ -695,6 +779,41 @@
     }
   ],
   "auditLogs": [
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "rajesh@greenreclaim.in",
+      "details": "Authenticated as verified [CONTRACTOR]",
+      "time": "2026-10-01T09:03:08.030Z",
+      "ip": "::1"
+    },
+    {
+      "event": "LOGIN_FAILED_UNKNOWN_ACCOUNT",
+      "actor": "admin@college.edu",
+      "details": "Attempted login with non-existent email",
+      "time": "2026-10-01T09:02:56.440Z",
+      "ip": "::1"
+    },
+    {
+      "event": "LOGIN_FAILED_UNKNOWN_ACCOUNT",
+      "actor": "admin@college.edu",
+      "details": "Attempted login with non-existent email",
+      "time": "2026-10-01T09:02:55.055Z",
+      "ip": "::1"
+    },
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "rajesh@greenreclaim.in",
+      "details": "Authenticated as verified [CONTRACTOR]",
+      "time": "2026-10-01T09:02:07.546Z",
+      "ip": "::1"
+    },
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "anita@ecoblocks.org",
+      "details": "Authenticated as verified [BUYER]",
+      "time": "2026-10-01T09:01:26.821Z",
+      "ip": "::1"
+    },
     {
       "event": "ROLE_BASED_LOGIN_SUCCESS",
       "actor": "ihsan@skylinebuilders.com",
