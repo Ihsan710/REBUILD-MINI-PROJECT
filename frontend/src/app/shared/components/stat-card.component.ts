@@ -6,28 +6,28 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div class="rb-card p-5 sm:p-6 relative overflow-hidden group hover:border-[#C5B7A5] transition-all duration-200">
+    <div class="rb-card p-3.5 sm:p-4 relative overflow-hidden group hover:border-[#C5B7A5] transition-all duration-200 shadow-sm hover:shadow-md flex flex-col justify-between">
       <!-- Subtle top accent line -->
       <div [ngClass]="accentColorClass" class="absolute top-0 left-0 right-0 h-[3px] opacity-80 group-hover:opacity-100 transition-opacity"></div>
       
-      <div class="flex items-start justify-between gap-2 mb-3">
-        <div class="flex items-center gap-2">
-          <span class="text-xs font-semibold uppercase tracking-wider text-[#78716C]">{{ label }}</span>
-          <span *ngIf="isDemoData" class="badge-demo">DEMO DATA</span>
+      <div class="flex items-start justify-between gap-1.5 mb-2">
+        <div class="flex items-center gap-1.5 min-w-0">
+          <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#78716C] truncate">{{ label }}</span>
+          <span *ngIf="isDemoData" class="badge-demo text-[8px] px-1">DEMO</span>
         </div>
-        <div *ngIf="badgeText" [ngClass]="badgeClass" class="text-[11px] font-semibold px-2 py-0.5 rounded-full border">
+        <div *ngIf="badgeText" [ngClass]="badgeClass" class="text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-full border flex-shrink-0">
           {{ badgeText }}
         </div>
       </div>
 
-      <div class="flex items-baseline gap-2 mb-1.5">
-        <span class="text-3xl lg:text-4xl font-black tracking-tight text-[#1C1917] font-mono">{{ value }}</span>
-        <span *ngIf="unit" class="text-xs font-semibold text-[#78716C]">{{ unit }}</span>
+      <div class="flex items-baseline gap-1.5 mb-1">
+        <span class="text-2xl sm:text-3xl font-black tracking-tight text-[#1C1917] font-mono leading-none">{{ value }}</span>
+        <span *ngIf="unit" class="text-[11px] font-bold text-[#78716C] font-mono">{{ unit }}</span>
       </div>
 
-      <div class="flex items-center justify-between text-xs text-[#78716C] mt-2">
-        <span *ngIf="subtitle" class="leading-normal">{{ subtitle }}</span>
-        <div *ngIf="trend" [ngClass]="trendPositive ? 'bg-[#EBF7EE] text-[#1E7E34]' : 'bg-[#FEF3C7] text-[#B45309]'" class="flex items-center gap-1 font-bold text-[10px] px-2 py-0.5 rounded-full ml-auto">
+      <div class="flex items-center justify-between text-[11px] text-[#78716C] mt-2 pt-2 border-t border-[#E5DFD7]/60">
+        <span *ngIf="subtitle" class="truncate text-[10px] text-[#78716C] leading-none">{{ subtitle }}</span>
+        <div *ngIf="trend" [ngClass]="trendPositive ? 'bg-[#EBF7EE] text-[#1E7E34] border-[#DCFCE7]' : 'bg-[#FEF3C7] text-[#B45309] border-[#FDE68A]'" class="flex items-center gap-0.5 font-bold text-[9px] font-mono px-1.5 py-0.5 rounded border ml-auto flex-shrink-0">
           <span>{{ trendPositive ? '↑' : '↓' }}</span>
           <span>{{ trend }}</span>
         </div>

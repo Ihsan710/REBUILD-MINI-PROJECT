@@ -15,47 +15,52 @@ Chart.register(...registerables);
   standalone: true,
   imports: [CommonModule, RouterModule, StatCardComponent],
   template: `
-    <div class="p-6 lg:p-8 max-w-7xl mx-auto space-y-8 animate-fade-in">
-      <!-- HEADER -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E2DBD1]">
+    <div class="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 space-y-3.5 sm:space-y-4 animate-fade-in">
+      <!-- LUXURY EXECUTIVE COMMAND HEADER -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#E2DBD1]/80">
         <div>
-          <div class="flex items-center gap-2 text-xs font-mono text-[#16A34A] font-semibold mb-1">
-            <span class="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse"></span>
-            DATABASE LIVE TELEMETRY
+          <div class="flex items-center gap-2 text-[10px] font-mono text-[#16A34A] font-bold tracking-wider mb-0.5">
+            <span class="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse shadow-sm shadow-emerald-500/50"></span>
+            ENTERPRISE LIVE TELEMETRY • CLOUD SQL ENGINE
           </div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold text-[#1C1917] tracking-tight">
-            Good morning, {{ userName }}
-          </h1>
-          <p class="text-xs sm:text-sm text-[#78716C] mt-0.5">
-            Project Overview & Waste Material Intelligence Hub
+          <div class="flex items-baseline gap-2.5">
+            <h1 class="text-2xl sm:text-3xl font-black text-[#1C1917] tracking-tight">
+              Good morning, {{ userName }}
+            </h1>
+            <span class="hidden md:inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7]">
+              ✓ ALL SITES SYNCHRONIZED
+            </span>
+          </div>
+          <p class="text-xs text-[#78716C] mt-0.5">
+            Circular Construction Intelligence & Pan-India Material Recovery Console
           </p>
         </div>
 
-        <!-- QUICK ACTIONS STRIP -->
-        <div class="flex flex-wrap items-center gap-2.5">
-          <a routerLink="/waste" class="rb-btn-primary text-xs shadow">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <!-- QUICK ACTIONS STRIP (LUXURY FINISH) -->
+        <div class="flex flex-wrap items-center gap-2">
+          <a routerLink="/waste" class="rb-btn-primary text-xs py-1.5 px-3 shadow-sm hover:shadow transition-all group">
+            <svg class="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
             </svg>
-            AI Material Recognition
+            AI Scanner
           </a>
 
-          <a routerLink="/waste" class="rb-btn-secondary text-xs">
-            <svg class="w-4 h-4 text-[#16A34A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <a routerLink="/waste" class="rb-btn-secondary text-xs py-1.5 px-2.5 shadow-xs">
+            <svg class="w-3.5 h-3.5 text-[#16A34A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
             </svg>
             Log Waste
           </a>
 
-          <a routerLink="/marketplace" class="rb-btn-secondary text-xs">
-            <svg class="w-4 h-4 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <a routerLink="/marketplace" class="rb-btn-secondary text-xs py-1.5 px-2.5 shadow-xs">
+            <svg class="w-3.5 h-3.5 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
             Marketplace
           </a>
 
-          <a routerLink="/impact" class="rb-btn-secondary text-xs">
-            <svg class="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <a routerLink="/impact" class="rb-btn-secondary text-xs py-1.5 px-2.5 shadow-xs">
+            <svg class="w-3.5 h-3.5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
             View Impact
@@ -64,7 +69,7 @@ Chart.register(...registerables);
       </div>
 
       <!-- PRIMARY KPI STRIP (DYNAMIC CALCULATED FROM REAL RECORDS) -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3">
         <app-stat-card
           label="TOTAL WASTE"
           [value]="wasteService.totalWasteLoggedKg() | number"
@@ -119,51 +124,57 @@ Chart.register(...registerables);
       </div>
 
       <!-- ROW 1 OF CHARTS: Waste Trend & Material Breakdown -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-3.5">
         <!-- Waste Trend Chart (2 Cols) -->
-        <div class="lg:col-span-2 rb-card p-6 flex flex-col justify-between">
-          <div class="flex items-center justify-between mb-4">
+        <div class="lg:col-span-2 rb-card p-3.5 sm:p-4 flex flex-col justify-between shadow-sm">
+          <div class="flex items-center justify-between mb-2">
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="text-sm font-bold text-[#1C1917]">Waste & Material Diversion Trend</h3>
-                <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7]">Live Logs</span>
+                <h3 class="text-xs sm:text-sm font-bold text-[#1C1917]">Waste & Material Diversion Trend</h3>
+                <span class="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7]">Live Logs</span>
               </div>
-              <p class="text-xs text-[#78716C] mt-0.5">Weekly volume of diverted materials vs landfill baseline</p>
+              <p class="text-[11px] text-[#78716C]">Weekly volume of diverted materials vs landfill baseline</p>
             </div>
-            <div class="flex items-center gap-4 text-xs font-mono text-[#78716C]">
-              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#16A34A]"></span> Diverted</span>
-              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> Landfill</span>
+            <div class="flex items-center gap-3 text-[11px] font-mono text-[#78716C]">
+              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-[#16A34A]"></span> Diverted</span>
+              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-rose-500"></span> Landfill</span>
             </div>
           </div>
 
-          <div class="relative h-64 w-full">
+          <div class="relative h-44 sm:h-48 w-full">
             <canvas #trendChartCanvas></canvas>
           </div>
         </div>
 
         <!-- Material Breakdown Doughnut (1 Col) -->
-        <div class="rb-card p-6 flex flex-col justify-between">
-          <div class="flex items-center justify-between mb-2">
+        <div class="rb-card p-3.5 sm:p-4 flex flex-col justify-between shadow-sm">
+          <div class="flex items-center justify-between mb-1">
             <div>
-              <h3 class="text-sm font-bold text-[#1C1917]">Material Composition</h3>
-              <p class="text-xs text-[#78716C] mt-0.5">Live weight classification share</p>
+              <h3 class="text-xs sm:text-sm font-bold text-[#1C1917]">Material Composition</h3>
+              <p class="text-[11px] text-[#78716C]">Live weight classification share</p>
             </div>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7]">Live SQL</span>
+            <span class="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7]">Live SQL</span>
           </div>
 
-          <div class="relative h-52 w-full my-auto flex items-center justify-center">
+          <div class="relative h-32 sm:h-36 w-full my-auto flex items-center justify-center">
             <canvas #breakdownChartCanvas></canvas>
+            <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
+              <span class="text-[9px] font-mono text-[#78716C] uppercase tracking-wider font-semibold">Tonnage</span>
+              <span class="text-base font-black text-[#1C1917] font-mono leading-tight">
+                {{ (wasteService.totalWasteLoggedKg() / 1000).toFixed(1) }}t
+              </span>
+            </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-2 pt-3 border-t border-[#E5DFD7] text-[11px] font-mono">
+          <div class="grid grid-cols-2 gap-1.5 pt-2 border-t border-[#E5DFD7] text-[10px] font-mono">
             <div *ngFor="let item of impactService.materialBreakdown().slice(0, 4)" class="flex items-center justify-between text-[#1C1917]">
-              <span class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full" [style.backgroundColor]="item.color"></span>
-                {{ item.material }}
+              <span class="flex items-center gap-1.5 truncate">
+                <span class="w-2 h-2 rounded-full flex-shrink-0" [style.backgroundColor]="item.color"></span>
+                <span class="truncate">{{ item.material }}</span>
               </span>
-              <span class="text-[#78716C] font-bold">{{ item.percentage }}%</span>
+              <span class="text-[#78716C] font-bold ml-1">{{ item.percentage }}%</span>
             </div>
-            <div *ngIf="impactService.materialBreakdown().length === 0" class="col-span-2 text-center text-[#78716C] text-[11px] py-1">
+            <div *ngIf="impactService.materialBreakdown().length === 0" class="col-span-2 text-center text-[#78716C] text-[10px] py-0.5">
               No waste logged yet.
             </div>
           </div>
@@ -171,38 +182,38 @@ Chart.register(...registerables);
       </div>
 
       <!-- ROW 2 OF CHARTS: Reuse vs Landfill & Project Performance -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-3.5">
         <!-- Reuse vs Landfill Comparison Bar Chart -->
-        <div class="rb-card p-6">
-          <div class="flex items-center justify-between mb-4">
+        <div class="rb-card p-3.5 sm:p-4 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
             <div>
-              <h3 class="text-sm font-bold text-[#1C1917]">Reuse vs Landfill Ratio</h3>
-              <p class="text-xs text-[#78716C] mt-0.5">Circular economy conversion across material types</p>
+              <h3 class="text-xs sm:text-sm font-bold text-[#1C1917]">Reuse vs Landfill Ratio</h3>
+              <p class="text-[11px] text-[#78716C]">Circular economy conversion across material types</p>
             </div>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#EBF3FA] text-[#2563EB] border border-[#DBEAFE]">Real-Time</span>
+            <span class="px-2 py-0.5 rounded-full text-[9px] font-mono font-bold bg-[#EBF3FA] text-[#2563EB] border border-[#DBEAFE]">Real-Time</span>
           </div>
-          <div class="relative h-60 w-full">
+          <div class="relative h-40 sm:h-44 w-full">
             <canvas #reuseLandfillChartCanvas></canvas>
           </div>
         </div>
 
         <!-- Project Performance Diversion Rates -->
-        <div class="rb-card p-6">
-          <div class="flex items-center justify-between mb-4">
+        <div class="rb-card p-3.5 sm:p-4 shadow-sm">
+          <div class="flex items-center justify-between mb-2">
             <div>
-              <h3 class="text-sm font-bold text-[#1C1917]">Site Diversion Benchmarks</h3>
-              <p class="text-xs text-[#78716C] mt-0.5">Comparative diversion compliance by active project</p>
+              <h3 class="text-xs sm:text-sm font-bold text-[#1C1917]">Site Diversion Benchmarks</h3>
+              <p class="text-[11px] text-[#78716C]">Comparative diversion compliance by active project</p>
             </div>
             <a routerLink="/projects" class="text-xs text-[#16A34A] font-semibold hover:underline">View All →</a>
           </div>
-          <div class="relative h-60 w-full">
+          <div class="relative h-40 sm:h-44 w-full">
             <canvas #projectPerformanceChartCanvas></canvas>
           </div>
         </div>
       </div>
 
       <!-- RECENT WASTE LOGS & ACTIONS QUICK TABLE -->
-      <div class="rb-card p-6">
+      <div class="rb-card p-3.5 sm:p-4 shadow-sm">
         <div class="flex items-center justify-between mb-4">
           <div>
             <h3 class="text-sm font-bold text-[#1C1917]">Recent AI Classified Waste Records</h3>
@@ -417,49 +428,91 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
     const trend = this.getTrendData();
 
+    // Executive luminous emerald gradient
+    const emeraldGrad = ctx.createLinearGradient(0, 0, 0, 180);
+    emeraldGrad.addColorStop(0, 'rgba(16, 185, 129, 0.28)');
+    emeraldGrad.addColorStop(0.7, 'rgba(16, 185, 129, 0.04)');
+    emeraldGrad.addColorStop(1, 'rgba(16, 185, 129, 0.00)');
+
     const chart = new Chart(ctx, {
       type: 'line',
       data: {
         labels: trend.labels,
         datasets: [
           {
-            label: 'Diverted (kg)',
+            label: 'Diverted',
             data: trend.diverted,
-            borderColor: '#16A34A',
-            backgroundColor: 'rgba(22, 163, 74, 0.08)',
-            borderWidth: 2,
-            tension: 0.35,
+            borderColor: '#059669',
+            backgroundColor: emeraldGrad,
+            borderWidth: 2.2,
+            tension: 0.38,
             fill: true,
-            pointBackgroundColor: '#16A34A',
-            pointRadius: 4
+            pointBackgroundColor: '#059669',
+            pointBorderColor: '#FFFFFF',
+            pointBorderWidth: 1.5,
+            pointRadius: trend.labels.length > 10 ? 0 : 3,
+            pointHoverRadius: 5
           },
           {
-            label: 'Landfilled (kg)',
+            label: 'Landfilled',
             data: trend.landfilled,
-            borderColor: '#DC2626',
+            borderColor: '#EF4444',
             backgroundColor: 'transparent',
-            borderWidth: 2,
+            borderWidth: 1.8,
             borderDash: [4, 4],
-            tension: 0.35,
-            pointBackgroundColor: '#DC2626',
-            pointRadius: 3
+            tension: 0.38,
+            pointBackgroundColor: '#EF4444',
+            pointBorderColor: '#FFFFFF',
+            pointBorderWidth: 1.5,
+            pointRadius: trend.labels.length > 10 ? 0 : 2.5,
+            pointHoverRadius: 4
           }
         ]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        interaction: {
+          mode: 'index',
+          intersect: false
+        },
         plugins: {
-          legend: { display: false }
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#0F172A',
+            titleColor: '#F8FAFC',
+            bodyColor: '#94A3B8',
+            borderColor: 'rgba(255, 255, 255, 0.08)',
+            borderWidth: 1,
+            padding: 8,
+            cornerRadius: 7,
+            usePointStyle: true,
+            boxPadding: 4,
+            callbacks: {
+              label: (c: any) => ` ${c.dataset.label}: ${Number(c.parsed.y).toLocaleString()} kg`
+            }
+          }
         },
         scales: {
           x: {
-            grid: { color: 'rgba(0,0,0,0.05)' },
-            ticks: { color: '#78716C', font: { family: 'Inter', size: 10 } }
+            grid: { display: false },
+            ticks: {
+              color: '#94A3B8',
+              font: { family: 'Inter', size: 9 },
+              maxRotation: 0
+            }
           },
           y: {
-            grid: { color: 'rgba(0,0,0,0.05)' },
-            ticks: { color: '#78716C', font: { family: 'JetBrains Mono', size: 10 } }
+            grid: { color: 'rgba(226, 232, 240, 0.6)' },
+            border: { dash: [3, 3] },
+            ticks: {
+              color: '#94A3B8',
+              font: { family: 'JetBrains Mono', size: 9 },
+              callback: (val: any) => {
+                const n = Number(val);
+                return n >= 1000 ? `${(n / 1000).toFixed(0)}k` : `${n}`;
+              }
+            }
           }
         }
       }
@@ -485,15 +538,30 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
           data,
           backgroundColor: colors,
           borderColor: '#FFFFFF',
-          borderWidth: 3,
-          hoverOffset: 4
+          borderWidth: 2.5,
+          hoverOffset: 3
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        cutout: '72%',
-        plugins: { legend: { display: false } }
+        cutout: '74%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#0F172A',
+            titleColor: '#F8FAFC',
+            bodyColor: '#94A3B8',
+            borderColor: 'rgba(255, 255, 255, 0.08)',
+            borderWidth: 1,
+            padding: 8,
+            cornerRadius: 7,
+            boxPadding: 4,
+            callbacks: {
+              label: (c: any) => ` ${c.label}: ${c.parsed}%`
+            }
+          }
+        }
       }
     });
     this.charts.push(chart);
@@ -512,16 +580,18 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
         labels: reuse.labels,
         datasets: [
           {
-            label: 'Reused / Recycled (kg)',
+            label: 'Diverted',
             data: reuse.diverted,
-            backgroundColor: '#16A34A',
-            borderRadius: 6
+            backgroundColor: '#059669',
+            borderRadius: 4,
+            maxBarThickness: 26
           },
           {
-            label: 'Landfilled (kg)',
+            label: 'Landfilled',
             data: reuse.landfilled,
-            backgroundColor: '#DC2626',
-            borderRadius: 6
+            backgroundColor: '#F87171',
+            borderRadius: 4,
+            maxBarThickness: 26
           }
         ]
       },
@@ -531,19 +601,48 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
         plugins: {
           legend: {
             display: true,
-            labels: { color: '#78716C', font: { family: 'Inter', size: 11 }, boxWidth: 12 }
+            position: 'top',
+            align: 'end',
+            labels: {
+              color: '#64748B',
+              font: { family: 'Inter', size: 10, weight: 500 },
+              boxWidth: 8,
+              boxHeight: 8,
+              usePointStyle: true,
+              pointStyle: 'circle'
+            }
+          },
+          tooltip: {
+            backgroundColor: '#0F172A',
+            titleColor: '#F8FAFC',
+            bodyColor: '#94A3B8',
+            borderColor: 'rgba(255, 255, 255, 0.08)',
+            borderWidth: 1,
+            padding: 8,
+            cornerRadius: 7,
+            callbacks: {
+              label: (c: any) => ` ${c.dataset.label}: ${Number(c.parsed.y).toLocaleString()} kg`
+            }
           }
         },
         scales: {
           x: {
             stacked: true,
-            grid: { color: 'rgba(0,0,0,0.05)' },
-            ticks: { color: '#78716C', font: { family: 'Inter', size: 10 } }
+            grid: { display: false },
+            ticks: { color: '#94A3B8', font: { family: 'Inter', size: 9 } }
           },
           y: {
             stacked: true,
-            grid: { color: 'rgba(0,0,0,0.05)' },
-            ticks: { color: '#78716C', font: { family: 'JetBrains Mono', size: 10 } }
+            grid: { color: 'rgba(226, 232, 240, 0.6)' },
+            border: { dash: [3, 3] },
+            ticks: {
+              color: '#94A3B8',
+              font: { family: 'JetBrains Mono', size: 9 },
+              callback: (val: any) => {
+                const n = Number(val);
+                return n >= 1000 ? `${(n / 1000).toFixed(0)}k` : `${n}`;
+              }
+            }
           }
         }
       }
@@ -557,7 +656,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!ctx) return;
 
     const projects = this.projectService.projects();
-    const labels = projects.length > 0 ? projects.map(p => p.name.slice(0, 16) + '...') : ['No Projects'];
+    const labels = projects.length > 0 ? projects.map(p => p.name.length > 18 ? p.name.slice(0, 18) + '...' : p.name) : ['No Projects'];
     const data = projects.length > 0 ? projects.map(p => p.diversionRate) : [100];
 
     const chart = new Chart(ctx, {
@@ -568,24 +667,47 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
           label: 'Diversion Rate (%)',
           data,
           backgroundColor: '#10B981',
-          borderRadius: 6
+          borderRadius: 4,
+          maxBarThickness: 16
         }]
       },
       options: {
         indexAxis: 'y',
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#0F172A',
+            titleColor: '#F8FAFC',
+            bodyColor: '#94A3B8',
+            borderColor: 'rgba(255, 255, 255, 0.08)',
+            borderWidth: 1,
+            padding: 8,
+            cornerRadius: 7,
+            callbacks: {
+              label: (c: any) => ` Diversion Rate: ${c.parsed.x}%`
+            }
+          }
+        },
         scales: {
           x: {
             min: 0,
             max: 100,
-            grid: { color: 'rgba(0,0,0,0.05)' },
-            ticks: { color: '#78716C', font: { family: 'JetBrains Mono', size: 10 } }
+            grid: { color: 'rgba(226, 232, 240, 0.6)' },
+            border: { dash: [3, 3] },
+            ticks: {
+              color: '#94A3B8',
+              font: { family: 'JetBrains Mono', size: 9 },
+              callback: (val: any) => `${val}%`
+            }
           },
           y: {
             grid: { display: false },
-            ticks: { color: '#1C1917', font: { family: 'Inter', size: 11 } }
+            ticks: {
+              color: '#1E293B',
+              font: { family: 'Inter', size: 10, weight: 500 }
+            }
           }
         }
       }
