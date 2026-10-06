@@ -725,7 +725,7 @@ export interface MaterialDemo {
                   <div class="space-y-0.5">
                     <div class="flex flex-wrap items-center gap-2">
                       <span class="text-[10px] font-mono font-bold tracking-[0.2em] text-emerald-400 uppercase">
-                        ACADEMIC CAPSTONE INITIATIVE
+                        ACADEMIC MINI PROJECT INITIATIVE
                       </span>
                       <span class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 font-mono font-bold border border-emerald-500/30">
                         AUTONOMOUS
@@ -745,19 +745,73 @@ export interface MaterialDemo {
 
                 <div class="flex items-center gap-2 text-[11px] font-mono text-stone-300 bg-black/60 px-4 py-2.5 rounded-xl border border-white/10 self-stretch lg:self-auto justify-center">
                   <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span>Batch 2022–2026 • Final Year Capstone Project</span>
+                  <span>Batch 2024–2028 • B.Tech Mini Project</span>
                 </div>
               </div>
 
-              <!-- Grand Editorial Thesis Quotation -->
-              <div class="max-w-4xl space-y-4">
-                <blockquote class="text-2xl sm:text-3xl lg:text-4xl font-light font-serif italic text-white/95 leading-snug">
-                  "Every demolition site is an above-ground quarry. We engineered ReBuild to prove that circularity in heavy infrastructure isn't just an abstract theory — it is superior economics, faster local supply chains, and zero landfill waste."
-                </blockquote>
+              <!-- Faculty Guidance & Project Thesis Row -->
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+                
+                <!-- Grand Editorial Thesis Quotation (7 Cols) -->
+                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-white/[0.02] border border-white/[0.08] backdrop-blur-xl flex flex-col justify-between space-y-6">
+                  <blockquote class="text-xl sm:text-2xl lg:text-3xl font-light font-serif italic text-white/95 leading-snug">
+                    "Every demolition site is an above-ground quarry. We engineered ReBuild to prove that circularity in heavy infrastructure isn't just an abstract theory — it is superior economics, faster local supply chains, and zero landfill waste."
+                  </blockquote>
 
-                <p class="text-xs sm:text-sm text-stone-400 max-w-2xl font-mono leading-relaxed">
-                  Conceived and developed by a specialized student engineering team at Rajagiri School of Engineering & Technology, bridging enterprise software engineering, computer vision deep learning, and geospatial haulage logistics.
-                </p>
+                  <p class="text-xs sm:text-sm text-stone-400 font-mono leading-relaxed pt-4 border-t border-white/[0.06]">
+                    Conceived and developed by a specialized student engineering team at Rajagiri School of Engineering & Technology, bridging enterprise software engineering, computer vision deep learning, and geospatial haulage logistics.
+                  </p>
+                </div>
+
+                <!-- Faculty Project Guide Card (5 Cols) -->
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-emerald-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(16,185,129,0.18)] backdrop-blur-xl flex flex-col justify-between relative overflow-hidden group transition-all duration-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
+                  <!-- Ambient soft glow -->
+                  <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-emerald-500/[0.08] rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-500/[0.16] transition-colors"></div>
+
+                  <div class="space-y-4 relative z-10">
+                    <!-- Top Telemetry Header -->
+                    <div class="flex items-center justify-between pb-3.5 border-b border-white/[0.08]">
+                      <div class="flex items-center gap-2">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                        </span>
+                        <span class="text-[10px] font-mono font-bold tracking-[0.22em] text-emerald-400 uppercase">
+                          PROJECT GUIDE
+                        </span>
+                      </div>
+                      <span class="text-[9px] font-mono tracking-widest uppercase px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 font-bold border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.12)] backdrop-blur-md">
+                        FACULTY SUPERVISOR
+                      </span>
+                    </div>
+
+                    <!-- Guide Name & Department -->
+                    <div>
+                      <h4 class="text-2xl sm:text-3xl font-black tracking-tight text-white group-hover:text-emerald-300 transition-colors uppercase">
+                        Mr. Ajith Jacob
+                      </h4>
+                      <div class="text-[11.5px] font-mono font-semibold tracking-[0.1em] text-emerald-400/90 mt-1 uppercase">
+                        Assistant Professor
+                      </div>
+                      <div class="text-xs font-mono text-stone-400 mt-0.5">
+                        Department of Computer Science and Business Systems (CSBS)
+                      </div>
+                    </div>
+
+                    <div class="w-10 h-0.5 bg-emerald-500/40 rounded-full"></div>
+
+                    <p class="text-[12.5px] text-stone-300 font-normal leading-relaxed">
+                      Academic supervision, technical architectural direction, and research mentorship for the B.Tech Mini Project initiative at Rajagiri School of Engineering & Technology (RSET).
+                    </p>
+                  </div>
+
+                  <!-- Guide Bottom Spec -->
+                  <div class="pt-4 mt-5 border-t border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-stone-400 relative z-10">
+                    <span class="text-stone-300">RSET CSBS Academic Mentorship</span>
+                    <span class="text-emerald-400/90 font-bold">KTU Autonomous</span>
+                  </div>
+                </div>
+
               </div>
 
             </div>
@@ -1093,8 +1147,8 @@ export interface MaterialDemo {
             <a routerLink="/impact" class="hover:text-[#1C1917] transition-colors">ESG Reports</a>
           </div>
 
-          <div class="text-[11px] font-mono">
-            © 2026 ReBuild Technologies. Engineered by Ihsan Muhammed, Abhinav Anil, Muhammed Farzin & Abdul Hadi. Department of Computer Science and Business Systems, Rajagiri School of Engineering & Technology (RSET).
+          <div class="text-[11px] font-mono text-center sm:text-right">
+            © 2026 ReBuild Technologies. B.Tech Mini Project (Batch 2024–2028). Engineered by Ihsan Muhammed, Abhinav Anil, Muhammed Farzin & Abdul Hadi. Guided by Mr. Ajith Jacob (Assistant Professor, Dept. of CSBS), Rajagiri School of Engineering & Technology (RSET).
           </div>
         </div>
       </footer>
