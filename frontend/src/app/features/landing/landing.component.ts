@@ -768,23 +768,33 @@ export interface MaterialDemo {
               <!-- Member 1: Ihsan Muhammed -->
               <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-emerald-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(16,185,129,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
                 <div>
-                  <!-- Avatar + Badge -->
-                  <div class="flex items-center justify-between mb-5">
-                    <div class="w-13 h-13 rounded-2xl bg-gradient-to-br from-emerald-500/25 to-emerald-950/40 text-emerald-300 border border-emerald-500/40 flex items-center justify-center font-black text-sm font-mono tracking-wider shadow-[0_0_20px_rgba(16,185,129,0.25)] group-hover:scale-105 transition-transform">
-                      IM
+                  <!-- Top Row: Engineering Telemetry Index & Glowing Role Capsule -->
+                  <div class="flex items-center justify-between mb-5 pb-3.5 border-b border-white/[0.06]">
+                    <div class="flex items-center gap-2">
+                      <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                      </span>
+                      <span class="text-[10px] font-mono font-bold tracking-[0.22em] text-stone-400 group-hover:text-emerald-400 transition-colors uppercase">
+                        ENG // 01
+                      </span>
                     </div>
-                    <span class="text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 font-bold border border-emerald-500/30">
+
+                    <span class="inline-flex items-center gap-1.5 text-[9px] font-mono tracking-[0.16em] uppercase px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 font-bold border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.15)] backdrop-blur-md">
+                      <svg class="w-2.5 h-2.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                      </svg>
                       LEAD ARCHITECT
                     </span>
                   </div>
 
-                  <!-- Name with Luxury Gradient -->
-                  <h3 class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-[#FAF7F2] to-[#D5CEC5] bg-clip-text text-transparent group-hover:text-white transition-colors uppercase">
+                  <!-- Name -->
+                  <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-emerald-300 transition-colors uppercase">
                     Ihsan Muhammed
                   </h3>
 
                   <!-- Role Subtitle -->
-                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.1em] text-emerald-400 mt-1 uppercase">
+                  <div class="text-[11px] font-mono font-semibold tracking-[0.12em] text-emerald-400 mt-1 uppercase">
                     System Architecture & Platform OS
                   </div>
 
@@ -800,13 +810,13 @@ export interface MaterialDemo {
                 <!-- Technical Contribution Tags -->
                 <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
                   <div class="flex flex-wrap gap-1.5">
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Angular 19</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Node API</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">PostgreSQL</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-emerald-500/30 transition-colors">Angular 19</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-emerald-500/30 transition-colors">Node API</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-emerald-500/30 transition-colors">PostgreSQL</span>
                   </div>
                   <div class="flex items-center justify-between text-[10px] font-mono text-emerald-400/90 pt-1">
                     <span>Platform Architecture</span>
-                    <span>01</span>
+                    <span>#01</span>
                   </div>
                 </div>
               </div>
@@ -814,23 +824,34 @@ export interface MaterialDemo {
               <!-- Member 2: Abhinav Anil -->
               <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-amber-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(245,158,11,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
                 <div>
-                  <!-- Avatar + Badge -->
-                  <div class="flex items-center justify-between mb-5">
-                    <div class="w-13 h-13 rounded-2xl bg-gradient-to-br from-amber-500/25 to-amber-950/40 text-amber-300 border border-amber-500/40 flex items-center justify-center font-black text-sm font-mono tracking-wider shadow-[0_0_20px_rgba(245,158,11,0.25)] group-hover:scale-105 transition-transform">
-                      AA
+                  <!-- Top Row: Engineering Telemetry Index & Glowing Role Capsule -->
+                  <div class="flex items-center justify-between mb-5 pb-3.5 border-b border-white/[0.06]">
+                    <div class="flex items-center gap-2">
+                      <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
+                      </span>
+                      <span class="text-[10px] font-mono font-bold tracking-[0.22em] text-stone-400 group-hover:text-amber-400 transition-colors uppercase">
+                        ENG // 02
+                      </span>
                     </div>
-                    <span class="text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 font-bold border border-amber-500/30">
+
+                    <span class="inline-flex items-center gap-1.5 text-[9px] font-mono tracking-[0.16em] uppercase px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 font-bold border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.15)] backdrop-blur-md">
+                      <svg class="w-2.5 h-2.5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M3 12h3m12 0h3M12 3v3m0 12v3"/>
+                      </svg>
                       AI & VISION
                     </span>
                   </div>
 
-                  <!-- Name with Luxury Gradient -->
-                  <h3 class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-[#FAF7F2] to-[#D5CEC5] bg-clip-text text-transparent group-hover:text-white transition-colors uppercase">
+                  <!-- Name -->
+                  <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-amber-300 transition-colors uppercase">
                     Abhinav Anil
                   </h3>
 
                   <!-- Role Subtitle -->
-                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.1em] text-amber-400 mt-1 uppercase">
+                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.12em] text-amber-400 mt-1 uppercase">
                     Deep Learning & Computer Vision Lead
                   </div>
 
@@ -846,13 +867,13 @@ export interface MaterialDemo {
                 <!-- Technical Contribution Tags -->
                 <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
                   <div class="flex flex-wrap gap-1.5">
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">PyTorch</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">ResNet-34</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Inference API</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-amber-500/30 transition-colors">PyTorch</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-amber-500/30 transition-colors">ResNet-34</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-amber-500/30 transition-colors">Inference API</span>
                   </div>
                   <div class="flex items-center justify-between text-[10px] font-mono text-amber-300/90 pt-1">
                     <span>Vision Inference Model</span>
-                    <span>02</span>
+                    <span>#02</span>
                   </div>
                 </div>
               </div>
@@ -860,23 +881,34 @@ export interface MaterialDemo {
               <!-- Member 3: Muhammed Farzin -->
               <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-blue-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(59,130,246,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
                 <div>
-                  <!-- Avatar + Badge -->
-                  <div class="flex items-center justify-between mb-5">
-                    <div class="w-13 h-13 rounded-2xl bg-gradient-to-br from-blue-500/25 to-blue-950/40 text-blue-300 border border-blue-500/40 flex items-center justify-center font-black text-sm font-mono tracking-wider shadow-[0_0_20px_rgba(59,130,246,0.25)] group-hover:scale-105 transition-transform">
-                      MF
+                  <!-- Top Row: Engineering Telemetry Index & Glowing Role Capsule -->
+                  <div class="flex items-center justify-between mb-5 pb-3.5 border-b border-white/[0.06]">
+                    <div class="flex items-center gap-2">
+                      <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
+                      </span>
+                      <span class="text-[10px] font-mono font-bold tracking-[0.22em] text-stone-400 group-hover:text-blue-400 transition-colors uppercase">
+                        ENG // 03
+                      </span>
                     </div>
-                    <span class="text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-blue-500/15 text-blue-300 font-bold border border-blue-500/30">
+
+                    <span class="inline-flex items-center gap-1.5 text-[9px] font-mono tracking-[0.16em] uppercase px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 font-bold border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.15)] backdrop-blur-md">
+                      <svg class="w-2.5 h-2.5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <circle cx="12" cy="12" r="9"/>
+                        <polygon points="12 6 15 14 12 12 9 14" fill="currentColor"/>
+                      </svg>
                       GEOSPATIAL SYSTEMS
                     </span>
                   </div>
 
-                  <!-- Name with Luxury Gradient -->
-                  <h3 class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-[#FAF7F2] to-[#D5CEC5] bg-clip-text text-transparent group-hover:text-white transition-colors uppercase">
+                  <!-- Name -->
+                  <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-blue-300 transition-colors uppercase">
                     Muhammed Farzin
                   </h3>
 
                   <!-- Role Subtitle -->
-                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.1em] text-blue-400 mt-1 uppercase">
+                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.12em] text-blue-400 mt-1 uppercase">
                     Geospatial Intelligence & Routing Engine
                   </div>
 
@@ -892,13 +924,13 @@ export interface MaterialDemo {
                 <!-- Technical Contribution Tags -->
                 <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
                   <div class="flex flex-wrap gap-1.5">
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Haversine</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Leaflet</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Routing Matrix</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-blue-500/30 transition-colors">Haversine</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-blue-500/30 transition-colors">Leaflet</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-blue-500/30 transition-colors">Routing Matrix</span>
                   </div>
                   <div class="flex items-center justify-between text-[10px] font-mono text-blue-300/90 pt-1">
                     <span>Geospatial Engine</span>
-                    <span>03</span>
+                    <span>#03</span>
                   </div>
                 </div>
               </div>
@@ -906,23 +938,33 @@ export interface MaterialDemo {
               <!-- Member 4: Abdul Hadi -->
               <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-purple-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(168,85,247,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
                 <div>
-                  <!-- Avatar + Badge -->
-                  <div class="flex items-center justify-between mb-5">
-                    <div class="w-13 h-13 rounded-2xl bg-gradient-to-br from-purple-500/25 to-purple-950/40 text-purple-300 border border-purple-500/40 flex items-center justify-center font-black text-sm font-mono tracking-wider shadow-[0_0_20px_rgba(168,85,247,0.25)] group-hover:scale-105 transition-transform">
-                      AH
+                  <!-- Top Row: Engineering Telemetry Index & Glowing Role Capsule -->
+                  <div class="flex items-center justify-between mb-5 pb-3.5 border-b border-white/[0.06]">
+                    <div class="flex items-center gap-2">
+                      <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-purple-400"></span>
+                      </span>
+                      <span class="text-[10px] font-mono font-bold tracking-[0.22em] text-stone-400 group-hover:text-purple-400 transition-colors uppercase">
+                        ENG // 04
+                      </span>
                     </div>
-                    <span class="text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-purple-500/15 text-purple-300 font-bold border border-purple-500/30">
+
+                    <span class="inline-flex items-center gap-1.5 text-[9px] font-mono tracking-[0.16em] uppercase px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 font-bold border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)] backdrop-blur-md">
+                      <svg class="w-2.5 h-2.5 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                      </svg>
                       ESG & INFRASTRUCTURE
                     </span>
                   </div>
 
-                  <!-- Name with Luxury Gradient -->
-                  <h3 class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-[#FAF7F2] to-[#D5CEC5] bg-clip-text text-transparent group-hover:text-white transition-colors uppercase">
+                  <!-- Name -->
+                  <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-purple-300 transition-colors uppercase">
                     Abdul Hadi
                   </h3>
 
                   <!-- Role Subtitle -->
-                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.1em] text-purple-400 mt-1 uppercase">
+                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.12em] text-purple-400 mt-1 uppercase">
                     Sustainability Analytics & Telematics
                   </div>
 
@@ -938,13 +980,13 @@ export interface MaterialDemo {
                 <!-- Technical Contribution Tags -->
                 <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
                   <div class="flex flex-wrap gap-1.5">
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Scope 3 GHG</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">ISO 14021</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Telematics</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-purple-500/30 transition-colors">Scope 3 GHG</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-purple-500/30 transition-colors">ISO 14021</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-purple-500/30 transition-colors">Telematics</span>
                   </div>
                   <div class="flex items-center justify-between text-[10px] font-mono text-purple-300/90 pt-1">
                     <span>Carbon Analytics</span>
-                    <span>04</span>
+                    <span>#04</span>
                   </div>
                 </div>
               </div>
