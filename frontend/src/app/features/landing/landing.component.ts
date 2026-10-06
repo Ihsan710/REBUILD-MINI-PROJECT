@@ -52,57 +52,6 @@ export interface MaterialDemo {
             </div>
           </a>
 
-          <!-- Swiss Editorial Nav Anchors -->
-          <div class="hidden xl:flex items-center gap-1 p-1.5 rounded-2xl bg-[#E5DFD7]/60 border border-[#E2DBD1] text-xs font-semibold">
-            <button
-              (click)="scrollToSection('hero', $event)"
-              [ngClass]="activeSection === 'hero' ? 'text-[#1C1917] bg-white shadow-sm font-bold' : 'text-[#78716C] hover:text-[#1C1917]'"
-              class="px-3 py-1.5 rounded-xl transition-all cursor-pointer font-mono text-[11px]"
-            >
-              01 / Architecture
-            </button>
-
-            <button
-              (click)="scrollToSection('ai-scanner', $event)"
-              [ngClass]="activeSection === 'ai-scanner' ? 'text-[#1C1917] bg-white shadow-sm font-bold' : 'text-[#78716C] hover:text-[#1C1917]'"
-              class="px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer font-mono text-[11px]"
-            >
-              <span class="w-2 h-2 rounded-full bg-[#16A34A] animate-pulse"></span>
-              <span>02 / AI Vision</span>
-            </button>
-
-            <button
-              (click)="scrollToSection('ecosystem', $event)"
-              [ngClass]="activeSection === 'ecosystem' ? 'text-[#1C1917] bg-white shadow-sm font-bold' : 'text-[#78716C] hover:text-[#1C1917]'"
-              class="px-3 py-1.5 rounded-xl transition-all cursor-pointer font-mono text-[11px]"
-            >
-              03 / 2-Sided Network
-            </button>
-
-            <button
-              (click)="scrollToSection('marketplace', $event)"
-              [ngClass]="activeSection === 'marketplace' ? 'text-[#1C1917] bg-white shadow-sm font-bold' : 'text-[#78716C] hover:text-[#1C1917]'"
-              class="px-3 py-1.5 rounded-xl transition-all cursor-pointer font-mono text-[11px]"
-            >
-              04 / Marketplace
-            </button>
-
-            <button
-              (click)="scrollToSection('calculator', $event)"
-              [ngClass]="activeSection === 'calculator' ? 'text-[#1C1917] bg-white shadow-sm font-bold' : 'text-[#78716C] hover:text-[#1C1917]'"
-              class="px-3 py-1.5 rounded-xl transition-all cursor-pointer font-mono text-[11px]"
-            >
-              05 / Haversine Engine
-            </button>
-
-            <button
-              (click)="scrollToSection('founder', $event)"
-              [ngClass]="activeSection === 'founder' ? 'text-[#1C1917] bg-white shadow-sm font-bold' : 'text-[#78716C] hover:text-[#1C1917]'"
-              class="px-3 py-1.5 rounded-xl transition-all cursor-pointer font-mono text-[11px]"
-            >
-              06 / Core Team
-            </button>
-          </div>
 
           <!-- Header Actions -->
           <div class="flex items-center gap-3">
