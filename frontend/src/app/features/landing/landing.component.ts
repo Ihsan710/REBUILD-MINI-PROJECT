@@ -715,8 +715,12 @@ export interface MaterialDemo {
               <!-- CSBS • RSET Institutional Crest Header -->
               <div class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.1] backdrop-blur-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
                 <div class="flex items-center gap-4">
-                  <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-white/15 via-white/5 to-transparent border border-white/20 flex items-center justify-center text-white text-2xl font-black shadow-inner font-mono shrink-0">
-                    ✱
+                  <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white p-2 shadow-xl shadow-black/40 ring-1 ring-white/30 flex items-center justify-center shrink-0 overflow-hidden group/crest transition-all duration-300 hover:scale-105">
+                    <img 
+                      src="/assets/logos/rset_logo.png" 
+                      alt="Rajagiri School of Engineering & Technology" 
+                      class="w-full h-full object-contain select-none"
+                    />
                   </div>
                   <div class="space-y-0.5">
                     <div class="flex flex-wrap items-center gap-2">
