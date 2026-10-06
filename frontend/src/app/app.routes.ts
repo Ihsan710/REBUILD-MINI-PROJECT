@@ -80,6 +80,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/settings/settings.component').then(m => m.SettingsComponent)
   },
   {
+    path: 'poster',
+    loadComponent: () => import('./features/poster/poster.component').then(m => m.PosterComponent)
+  },
+  {
     path: '**',
     redirectTo: 'landing'
   }

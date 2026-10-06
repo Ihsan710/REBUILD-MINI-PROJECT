@@ -733,9 +733,16 @@ export interface MaterialDemo {
                   </div>
                 </div>
 
-                <div class="flex items-center gap-2 text-[11px] font-mono text-stone-300 bg-black/60 px-4 py-2.5 rounded-xl border border-white/10 self-stretch lg:self-auto justify-center">
-                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span>Batch 2024–2028 • B.Tech Mini Project</span>
+                <div class="flex flex-wrap items-center gap-2.5 self-stretch lg:self-auto justify-center">
+                  <div class="flex items-center gap-2 text-[11px] font-mono text-stone-300 bg-black/60 px-4 py-2.5 rounded-xl border border-white/10">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Batch 2024–2028 • B.Tech Mini Project</span>
+                  </div>
+                  <a routerLink="/poster" class="px-4 py-2.5 rounded-xl bg-white text-[#0A3254] hover:bg-slate-100 font-mono text-[11px] font-bold border border-white/20 shadow-md transition-all flex items-center gap-1.5 cursor-pointer active:scale-95">
+                    <span>📄</span>
+                    <span>View Academic Poster</span>
+                    <span>→</span>
+                  </a>
                 </div>
               </div>
 
@@ -1068,6 +1075,7 @@ export interface MaterialDemo {
             <a routerLink="/dashboard" class="hover:text-[#1C1917] transition-colors">Workspace</a>
             <a routerLink="/marketplace" class="hover:text-[#1C1917] transition-colors">Marketplace</a>
             <a routerLink="/impact" class="hover:text-[#1C1917] transition-colors">ESG Reports</a>
+            <a routerLink="/poster" class="text-[#0A3254] font-bold hover:underline transition-colors">Academic Poster</a>
           </div>
 
           <div class="text-[11px] font-mono text-center sm:text-right">
