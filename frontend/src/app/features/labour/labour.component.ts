@@ -15,17 +15,17 @@ import { BadgeComponent } from '../../shared/components/badge.component';
   template: `
     <div class="p-6 lg:p-8 max-w-7xl mx-auto space-y-8 animate-fade-in">
       <!-- HEADER -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.08]">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E2DBD1]">
         <div>
-          <div class="flex items-center gap-2 text-xs font-mono text-emerald-400 font-semibold mb-1">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <div class="flex items-center gap-2 text-xs font-mono text-emerald-700 font-semibold mb-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
             SITE WORKFORCE & ATTENDANCE ROSTER
           </div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Labour & Crew Management</h1>
-          <p class="text-xs sm:text-sm text-slate-400 mt-0.5">Track daily attendance, certified skill trades, wage ledger, and site allocations.</p>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-[#1C1917] tracking-tight">Labour & Crew Management</h1>
+          <p class="text-xs sm:text-sm text-[#78716C] mt-0.5">Track daily attendance, certified skill trades, wage ledger, and site allocations.</p>
         </div>
 
-        <button (click)="isAddModalOpen = true" class="rb-btn-primary text-xs shadow-lg shadow-emerald-500/10">
+        <button (click)="isAddModalOpen = true" class="rb-btn-primary text-xs shadow-md">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
           </svg>
@@ -72,13 +72,13 @@ import { BadgeComponent } from '../../shared/components/badge.component';
       <div class="rb-card p-6 space-y-4">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h3 class="text-base font-bold text-white">Daily Site Attendance Ledger</h3>
-            <p class="text-xs text-slate-400">Manage check-in, shift durations, and overtime pay allocation.</p>
+            <h3 class="text-base font-bold text-[#1C1917]">Daily Site Attendance Ledger</h3>
+            <p class="text-xs text-[#78716C]">Manage check-in, shift durations, and overtime pay allocation.</p>
           </div>
 
           <!-- Filter by Role -->
           <div class="flex items-center gap-2">
-            <select [(ngModel)]="roleFilter" class="px-3 py-1.5 rounded-lg bg-[#111827] border border-white/[0.1] text-xs text-slate-200">
+            <select [(ngModel)]="roleFilter" class="px-3 py-1.5 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-xs text-[#1C1917] focus:outline-none">
               <option value="ALL">All Trade Roles</option>
               <option value="Mason">Masons</option>
               <option value="Carpenter">Carpenters</option>
@@ -93,7 +93,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs">
             <thead>
-              <tr class="border-b border-white/[0.08] text-slate-400 font-mono uppercase text-[10px]">
+              <tr class="border-b border-[#E5DFD7] text-[#78716C] font-mono uppercase text-[10px]">
                 <th class="pb-3 font-semibold">Worker</th>
                 <th class="pb-3 font-semibold">Role & Skill</th>
                 <th class="pb-3 font-semibold">Project Site</th>
@@ -104,28 +104,28 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                 <th class="pb-3 font-semibold">Action</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-white/[0.04]">
-              <tr *ngFor="let worker of filteredWorkers" class="hover:bg-white/[0.02]">
-                <td class="py-3 font-medium text-white flex items-center gap-2.5">
-                  <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-xs text-emerald-400">
+            <tbody class="divide-y divide-[#E5DFD7]">
+              <tr *ngFor="let worker of filteredWorkers" class="hover:bg-[#F9F7F4] transition-colors">
+                <td class="py-3 font-medium text-[#1C1917] flex items-center gap-2.5">
+                  <div class="w-8 h-8 rounded-full bg-[#EDE7DF] border border-[#E2DBD1] flex items-center justify-center font-bold text-xs text-[#1C1917]">
                     {{ worker.name.slice(0, 1) }}
                   </div>
                   <div>
-                    <div class="font-bold text-white">{{ worker.name }}</div>
-                    <div class="text-[10px] text-slate-500 font-mono">{{ worker.workerId }}</div>
+                    <div class="font-bold text-[#1C1917]">{{ worker.name }}</div>
+                    <div class="text-[10px] text-[#78716C] font-mono">{{ worker.workerId }}</div>
                   </div>
                 </td>
                 <td class="py-3">
-                  <div class="font-semibold text-slate-200">{{ worker.role }}</div>
-                  <div class="text-[10px] text-slate-400">{{ worker.skillLevel }}</div>
+                  <div class="font-semibold text-[#1C1917]">{{ worker.role }}</div>
+                  <div class="text-[10px] text-[#78716C]">{{ worker.skillLevel }}</div>
                 </td>
-                <td class="py-3 text-slate-300">{{ worker.assignedProjectName }}</td>
-                <td class="py-3 font-mono text-slate-400">{{ worker.checkInTime || '—' }}</td>
-                <td class="py-3 font-mono text-white">
+                <td class="py-3 text-[#44403C]">{{ worker.assignedProjectName }}</td>
+                <td class="py-3 font-mono text-[#78716C]">{{ worker.checkInTime || '—' }}</td>
+                <td class="py-3 font-mono text-[#1C1917] font-semibold">
                   {{ worker.hoursWorkedToday }}h
-                  <span *ngIf="worker.overtimeHoursToday > 0" class="text-amber-400 text-[10px] font-bold"> (+{{ worker.overtimeHoursToday }}h OT)</span>
+                  <span *ngIf="worker.overtimeHoursToday > 0" class="text-amber-700 text-[10px] font-bold"> (+{{ worker.overtimeHoursToday }}h OT)</span>
                 </td>
-                <td class="py-3 font-mono font-bold text-emerald-400">₹{{ worker.dailyWage | number }}</td>
+                <td class="py-3 font-mono font-bold text-emerald-700">₹{{ worker.dailyWage | number }}</td>
                 <td class="py-3">
                   <span [ngClass]="getAttendanceBadge(worker.attendanceStatus)">
                     {{ worker.attendanceStatus }}
@@ -135,19 +135,19 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                   <div class="flex items-center gap-1.5">
                     <button
                       (click)="setAttendance(worker.id, 'Present')"
-                      class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px]"
+                      class="px-2.5 py-1 rounded-lg bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7] text-[10px] font-semibold hover:bg-emerald-100 transition-colors"
                     >
                       Present
                     </button>
                     <button
                       (click)="setAttendance(worker.id, 'Overtime')"
-                      class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-400 border border-amber-500/20 text-[10px]"
+                      class="px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 border border-amber-200 text-[10px] font-semibold hover:bg-amber-100 transition-colors"
                     >
                       OT
                     </button>
                     <button
                       (click)="setAttendance(worker.id, 'Absent')"
-                      class="px-2 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20 text-[10px]"
+                      class="px-2.5 py-1 rounded-lg bg-rose-50 text-rose-700 border border-rose-200 text-[10px] font-semibold hover:bg-rose-100 transition-colors"
                     >
                       Absent
                     </button>

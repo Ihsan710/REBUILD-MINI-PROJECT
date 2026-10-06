@@ -15,17 +15,17 @@ import { BadgeComponent } from '../../shared/components/badge.component';
   template: `
     <div class="p-6 lg:p-8 max-w-7xl mx-auto space-y-8 animate-fade-in">
       <!-- HEADER -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.08]">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E2DBD1]">
         <div>
-          <div class="flex items-center gap-2 text-xs font-mono text-amber-400 font-semibold mb-1">
-            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+          <div class="flex items-center gap-2 text-xs font-mono text-amber-700 font-semibold mb-1">
+            <span class="w-2 h-2 rounded-full bg-amber-600"></span>
             HEAVY FLEET TELEMATICS & MAINTENANCE
           </div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Equipment & Machinery Management</h1>
-          <p class="text-xs sm:text-sm text-slate-400 mt-0.5">Track hydraulic excavators, batch mixers, tower cranes, and tippers across active sites.</p>
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-[#1C1917] tracking-tight">Equipment & Machinery Management</h1>
+          <p class="text-xs sm:text-sm text-[#78716C] mt-0.5">Track hydraulic excavators, batch mixers, tower cranes, and tippers across active sites.</p>
         </div>
 
-        <button (click)="isAddModalOpen = true" class="rb-btn-primary text-xs shadow-lg shadow-emerald-500/10">
+        <button (click)="isAddModalOpen = true" class="rb-btn-primary text-xs shadow-md">
           <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
           </svg>
@@ -73,110 +73,110 @@ import { BadgeComponent } from '../../shared/components/badge.component';
         <div
           *ngFor="let m of machineService.machines()"
           (click)="selectMachine(m)"
-          class="rb-card p-5 cursor-pointer hover:border-amber-500/40 transition-all duration-200 group flex flex-col justify-between"
+          class="rb-card p-5 cursor-pointer hover:border-amber-600/40 transition-all duration-200 group flex flex-col justify-between"
         >
           <div>
             <div class="flex items-start justify-between gap-2 mb-2">
               <div>
-                <span class="text-[10px] font-mono text-slate-400 uppercase font-bold">{{ m.machineId }} • {{ m.type }}</span>
-                <h3 class="text-base font-bold text-white group-hover:text-amber-300 transition-colors mt-0.5">{{ m.name }}</h3>
+                <span class="text-[10px] font-mono text-[#78716C] uppercase font-bold">{{ m.machineId }} • {{ m.type }}</span>
+                <h3 class="text-base font-bold text-[#1C1917] group-hover:text-amber-800 transition-colors mt-0.5">{{ m.name }}</h3>
               </div>
               <span [ngClass]="getStatusBadgeClass(m.status)">
                 {{ m.status }}
               </span>
             </div>
 
-            <div class="text-xs text-slate-300 mt-2 space-y-1">
+            <div class="text-xs text-[#44403C] mt-2 space-y-1">
               <div class="flex items-center gap-2">
-                <span class="text-slate-500">Operator:</span>
-                <span class="font-medium text-slate-200">{{ m.operatorName }}</span>
+                <span class="text-[#78716C]">Operator:</span>
+                <span class="font-semibold text-[#1C1917]">{{ m.operatorName }}</span>
               </div>
               <div class="flex items-center gap-2">
-                <span class="text-slate-500">Assigned:</span>
-                <span class="text-slate-300 truncate">{{ m.assignedProjectName || 'Depot Reserve' }}</span>
+                <span class="text-[#78716C]">Assigned:</span>
+                <span class="text-[#1C1917] font-medium truncate">{{ m.assignedProjectName || 'Depot Reserve' }}</span>
               </div>
             </div>
           </div>
 
           <!-- Telemetry Footer -->
-          <div class="grid grid-cols-3 gap-2 pt-4 mt-4 border-t border-white/[0.08] text-center text-xs font-mono">
-            <div class="p-2 rounded bg-white/[0.02] border border-white/[0.04]">
-              <div class="text-[9px] text-slate-500 uppercase">Hours</div>
-              <div class="font-bold text-white mt-0.5">{{ m.workingHours }}h</div>
+          <div class="grid grid-cols-3 gap-2 pt-4 mt-4 border-t border-[#E5DFD7] text-center text-xs font-mono">
+            <div class="p-2 rounded-xl bg-[#F9F7F4] border border-[#E5DFD7]">
+              <div class="text-[9px] text-[#78716C] font-semibold uppercase">Hours</div>
+              <div class="font-bold text-[#1C1917] mt-0.5">{{ m.workingHours }}h</div>
             </div>
-            <div class="p-2 rounded bg-white/[0.02] border border-white/[0.04]">
-              <div class="text-[9px] text-slate-500 uppercase">Fuel Burn</div>
-              <div class="font-bold text-amber-400 mt-0.5">{{ m.fuelUsageLitersPerHour }} L/h</div>
+            <div class="p-2 rounded-xl bg-[#F9F7F4] border border-[#E5DFD7]">
+              <div class="text-[9px] text-[#78716C] font-semibold uppercase">Fuel Burn</div>
+              <div class="font-bold text-amber-700 mt-0.5">{{ m.fuelUsageLitersPerHour }} L/h</div>
             </div>
-            <div class="p-2 rounded bg-white/[0.02] border border-white/[0.04]">
-              <div class="text-[9px] text-slate-500 uppercase">Efficiency</div>
-              <div class="font-bold text-emerald-400 mt-0.5">{{ m.efficiencyScore }}%</div>
+            <div class="p-2 rounded-xl bg-[#F9F7F4] border border-[#E5DFD7]">
+              <div class="text-[9px] text-[#78716C] font-semibold uppercase">Efficiency</div>
+              <div class="font-bold text-emerald-700 mt-0.5">{{ m.efficiencyScore }}%</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- MACHINE DETAIL MODAL -->
-      <div *ngIf="selectedMachine" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in" (click)="selectedMachine = null">
-        <div class="w-full max-w-2xl bg-[#0E1624] border border-white/[0.12] rounded-2xl shadow-2xl p-6 space-y-6" (click)="$event.stopPropagation()">
-          <div class="flex items-start justify-between pb-3 border-b border-white/[0.08]">
+      <div *ngIf="selectedMachine" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in" (click)="selectedMachine = null">
+        <div class="w-full max-w-2xl bg-white border border-[#E5DFD7] rounded-3xl shadow-2xl p-6 space-y-6 text-[#1C1917]" (click)="$event.stopPropagation()">
+          <div class="flex items-start justify-between pb-3 border-b border-[#E5DFD7]">
             <div>
               <div class="flex items-center gap-2">
-                <span class="text-xs font-mono text-amber-400 font-bold uppercase">{{ selectedMachine.machineId }}</span>
+                <span class="text-xs font-mono text-amber-700 font-bold uppercase">{{ selectedMachine.machineId }}</span>
                 <span [ngClass]="getStatusBadgeClass(selectedMachine.status)">{{ selectedMachine.status }}</span>
               </div>
-              <h2 class="text-xl font-bold text-white mt-1">{{ selectedMachine.name }}</h2>
-              <p class="text-xs text-slate-400">Model: {{ selectedMachine.model }} • Type: {{ selectedMachine.type }}</p>
+              <h2 class="text-xl font-bold text-[#1C1917] mt-1">{{ selectedMachine.name }}</h2>
+              <p class="text-xs text-[#78716C]">Model: {{ selectedMachine.model }} • Type: {{ selectedMachine.type }}</p>
             </div>
-            <button (click)="selectedMachine = null" class="text-slate-400 hover:text-white">✕</button>
+            <button (click)="selectedMachine = null" class="text-[#78716C] hover:text-[#1C1917] p-1">✕</button>
           </div>
 
           <div class="space-y-4 text-xs">
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center font-mono">
-              <div class="p-3 rounded-lg bg-white/[0.02] border border-white/[0.05]">
-                <div class="text-[10px] text-slate-500">OPERATOR</div>
-                <div class="text-sm font-bold text-white mt-1">{{ selectedMachine.operatorName }}</div>
+              <div class="p-3 rounded-xl bg-[#F9F7F4] border border-[#E5DFD7]">
+                <div class="text-[10px] text-[#78716C] font-semibold">OPERATOR</div>
+                <div class="text-sm font-bold text-[#1C1917] mt-1">{{ selectedMachine.operatorName }}</div>
               </div>
-              <div class="p-3 rounded-lg bg-white/[0.02] border border-white/[0.05]">
-                <div class="text-[10px] text-slate-500">WORKING HOURS</div>
-                <div class="text-sm font-bold text-white mt-1">{{ selectedMachine.workingHours }} hrs</div>
+              <div class="p-3 rounded-xl bg-[#F9F7F4] border border-[#E5DFD7]">
+                <div class="text-[10px] text-[#78716C] font-semibold">WORKING HOURS</div>
+                <div class="text-sm font-bold text-[#1C1917] mt-1">{{ selectedMachine.workingHours }} hrs</div>
               </div>
-              <div class="p-3 rounded-lg bg-white/[0.02] border border-white/[0.05]">
-                <div class="text-[10px] text-slate-500">LAST SERVICE</div>
-                <div class="text-sm font-bold text-slate-300 mt-1">{{ selectedMachine.lastMaintenanceDate }}</div>
+              <div class="p-3 rounded-xl bg-[#F9F7F4] border border-[#E5DFD7]">
+                <div class="text-[10px] text-[#78716C] font-semibold">LAST SERVICE</div>
+                <div class="text-sm font-bold text-[#44403C] mt-1">{{ selectedMachine.lastMaintenanceDate }}</div>
               </div>
-              <div class="p-3 rounded-lg bg-white/[0.02] border border-white/[0.05]">
-                <div class="text-[10px] text-slate-500">NEXT DUE</div>
-                <div class="text-sm font-bold text-amber-400 mt-1">{{ selectedMachine.nextServiceDue }}</div>
+              <div class="p-3 rounded-xl bg-[#F9F7F4] border border-[#E5DFD7]">
+                <div class="text-[10px] text-[#78716C] font-semibold">NEXT DUE</div>
+                <div class="text-sm font-bold text-amber-700 mt-1">{{ selectedMachine.nextServiceDue }}</div>
               </div>
             </div>
 
             <!-- Maintenance Timeline -->
-            <div class="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] space-y-3">
-              <h4 class="font-bold text-white text-xs">Preventive Maintenance Timeline</h4>
+            <div class="p-4 rounded-2xl bg-[#F9F7F4] border border-[#E5DFD7] space-y-3">
+              <h4 class="font-bold text-[#1C1917] text-xs">Preventive Maintenance Timeline</h4>
               <div class="space-y-2 text-xs">
-                <div class="flex items-center justify-between text-slate-300">
+                <div class="flex items-center justify-between text-[#44403C]">
                   <span>• 500h Hydraulic filter replacement & oil flush</span>
-                  <span class="text-emerald-400 font-mono">COMPLETED</span>
+                  <span class="text-emerald-700 font-mono font-bold">COMPLETED</span>
                 </div>
-                <div class="flex items-center justify-between text-slate-300">
+                <div class="flex items-center justify-between text-[#44403C]">
                   <span>• Track tension calibration & sprocket audit</span>
-                  <span class="text-emerald-400 font-mono">COMPLETED</span>
+                  <span class="text-emerald-700 font-mono font-bold">COMPLETED</span>
                 </div>
-                <div class="flex items-center justify-between text-slate-300">
+                <div class="flex items-center justify-between text-[#44403C]">
                   <span>• Boom cylinder pressure seal check (Next)</span>
-                  <span class="text-amber-400 font-mono">PENDING ({{ selectedMachine.nextServiceDue }})</span>
+                  <span class="text-amber-700 font-mono font-bold">PENDING ({{ selectedMachine.nextServiceDue }})</span>
                 </div>
               </div>
             </div>
 
             <!-- Quick Status Change -->
             <div class="flex items-center justify-between pt-2">
-              <span class="text-slate-400">Change Fleet Availability:</span>
+              <span class="text-[#78716C]">Change Fleet Availability:</span>
               <div class="flex gap-2">
-                <button (click)="updateMachineStatus('Active')" class="px-3 py-1.5 rounded-lg text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Set Active</button>
-                <button (click)="updateMachineStatus('Available')" class="px-3 py-1.5 rounded-lg text-xs bg-sky-500/10 text-sky-400 border border-sky-500/20">Set Available</button>
-                <button (click)="updateMachineStatus('Under Maintenance')" class="px-3 py-1.5 rounded-lg text-xs bg-amber-500/10 text-amber-400 border border-amber-500/20">Set Maintenance</button>
+                <button (click)="updateMachineStatus('Active')" class="px-3 py-1.5 rounded-xl text-xs bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7] font-semibold hover:bg-emerald-100 transition-colors">Set Active</button>
+                <button (click)="updateMachineStatus('Available')" class="px-3 py-1.5 rounded-xl text-xs bg-sky-50 text-sky-700 border border-sky-200 font-semibold hover:bg-sky-100 transition-colors">Set Available</button>
+                <button (click)="updateMachineStatus('Under Maintenance')" class="px-3 py-1.5 rounded-xl text-xs bg-amber-50 text-amber-800 border border-amber-200 font-semibold hover:bg-amber-100 transition-colors">Set Maintenance</button>
               </div>
             </div>
           </div>
