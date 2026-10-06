@@ -702,182 +702,270 @@ export interface MaterialDemo {
           </div>
         </section>
 
-        <!-- SECTION 6: CORE ENGINEERING & RESEARCH TEAM -->
+        <!-- SECTION 6: CORE ENGINEERING & RESEARCH TEAM (CSBS • RAJAGIRI SCHOOL OF ENGINEERING & TECHNOLOGY) -->
         <section id="founder" class="space-y-8">
-          <div class="bg-[#141210] text-white rounded-[32px] p-8 sm:p-12 lg:p-14 shadow-2xl border border-white/[0.08] space-y-12 relative overflow-hidden card-editorial-hover">
-            <!-- Ambient Architectural Backlight Effect -->
-            <div class="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-emerald-500/[0.04] blur-3xl pointer-events-none"></div>
-            <div class="absolute -left-20 -top-20 w-96 h-96 rounded-full bg-amber-500/[0.03] blur-3xl pointer-events-none"></div>
+          <div class="bg-gradient-to-b from-[#141210] via-[#110F0E] to-[#0A0908] text-white rounded-[36px] p-8 sm:p-12 lg:p-16 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] border border-white/[0.12] space-y-12 relative overflow-hidden card-editorial-hover">
+            <!-- Ambient Luminous Glow Orbs -->
+            <div class="absolute -right-24 -bottom-24 w-[420px] h-[420px] rounded-full bg-emerald-500/[0.05] blur-[100px] pointer-events-none"></div>
+            <div class="absolute -left-24 -top-24 w-[420px] h-[420px] rounded-full bg-amber-500/[0.04] blur-[100px] pointer-events-none"></div>
 
-            <!-- Top Row: Academic & Research Initiative Badge & Thesis Quotation -->
-            <div class="max-w-4xl space-y-6 relative z-10">
-              <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.06] text-white/90 font-mono text-[10px] font-bold tracking-widest uppercase border border-white/10 backdrop-blur-md">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>06 / CORE ENGINEERING & RESEARCH TEAM • ACADEMIC CAPSTONE INITIATIVE</span>
+            <!-- Top Row: Academic Prestige Banner & Directive Thesis -->
+            <div class="space-y-8 relative z-10">
+              
+              <!-- CSBS • RSET Institutional Crest Header -->
+              <div class="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.1] backdrop-blur-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+                <div class="flex items-center gap-4">
+                  <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-white/15 via-white/5 to-transparent border border-white/20 flex items-center justify-center text-white text-2xl font-black shadow-inner font-mono shrink-0">
+                    ✱
+                  </div>
+                  <div class="space-y-0.5">
+                    <div class="flex flex-wrap items-center gap-2">
+                      <span class="text-[10px] font-mono font-bold tracking-[0.2em] text-emerald-400 uppercase">
+                        ACADEMIC CAPSTONE INITIATIVE
+                      </span>
+                      <span class="text-[9px] px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 font-mono font-bold border border-emerald-500/30">
+                        AUTONOMOUS
+                      </span>
+                      <span class="text-[9px] px-2 py-0.5 rounded-full bg-white/10 text-stone-300 font-mono">
+                        KTU AFFILIATED
+                      </span>
+                    </div>
+                    <h3 class="text-base sm:text-lg lg:text-xl font-black text-white tracking-tight">
+                      Department of Computer Science and Business Systems (CSBS)
+                    </h3>
+                    <p class="text-xs text-stone-400 font-mono">
+                      Rajagiri School of Engineering & Technology (RSET), Kochi, Kerala
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2 text-[11px] font-mono text-stone-300 bg-black/60 px-4 py-2.5 rounded-xl border border-white/10 self-stretch lg:self-auto justify-center">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span>Batch 2022–2026 • Final Year Capstone Project</span>
+                </div>
               </div>
 
               <!-- Grand Editorial Thesis Quotation -->
-              <blockquote class="text-2xl sm:text-3xl lg:text-4xl font-light font-serif italic text-white/95 leading-snug">
-                "Every demolition site is an above-ground quarry. We engineered ReBuild to prove that circularity in heavy infrastructure isn't just an abstract theory — it is superior economics, faster local supply chains, and zero landfill waste."
-              </blockquote>
+              <div class="max-w-4xl space-y-4">
+                <blockquote class="text-2xl sm:text-3xl lg:text-4xl font-light font-serif italic text-white/95 leading-snug">
+                  "Every demolition site is an above-ground quarry. We engineered ReBuild to prove that circularity in heavy infrastructure isn't just an abstract theory — it is superior economics, faster local supply chains, and zero landfill waste."
+                </blockquote>
 
-              <div class="flex flex-wrap items-center gap-3 text-xs font-mono text-white/60">
-                <span class="text-emerald-400 font-semibold">STUDENT INNOVATION & RESEARCH PROJECT</span>
-                <span>•</span>
-                <span>DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING</span>
-                <span>•</span>
-                <span>INTERDISCIPLINARY CIVIL SUSTAINABILITY</span>
+                <p class="text-xs sm:text-sm text-stone-400 max-w-2xl font-mono leading-relaxed">
+                  Conceived and developed by a specialized student engineering team at Rajagiri School of Engineering & Technology, bridging enterprise software engineering, computer vision deep learning, and geospatial haulage logistics.
+                </p>
               </div>
+
             </div>
 
-            <!-- Middle Row: 4-Member Premium Student Engineering Team Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
+            <!-- Middle Row: 4-Member Luxury Student Engineering Team Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative z-10">
               
               <!-- Member 1: Ihsan Muhammed -->
-              <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-emerald-500/40 hover:bg-white/[0.06] transition-all duration-300 group flex flex-col justify-between">
+              <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-emerald-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(16,185,129,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
                 <div>
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="w-11 h-11 rounded-xl bg-emerald-500/10 text-emerald-300 border border-emerald-500/25 flex items-center justify-center font-bold text-sm font-mono tracking-wider group-hover:scale-105 transition-transform">
+                  <!-- Avatar + Badge -->
+                  <div class="flex items-center justify-between mb-5">
+                    <div class="w-13 h-13 rounded-2xl bg-gradient-to-br from-emerald-500/25 to-emerald-950/40 text-emerald-300 border border-emerald-500/40 flex items-center justify-center font-black text-sm font-mono tracking-wider shadow-[0_0_20px_rgba(16,185,129,0.25)] group-hover:scale-105 transition-transform">
                       IM
                     </div>
-                    <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-md bg-emerald-500/15 text-emerald-300 font-bold border border-emerald-500/20">
+                    <span class="text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 font-bold border border-emerald-500/30">
                       LEAD ARCHITECT
                     </span>
                   </div>
 
-                  <h3 class="text-base font-bold text-white tracking-wide uppercase group-hover:text-emerald-300 transition-colors">
+                  <!-- Name with Luxury Gradient -->
+                  <h3 class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-[#FAF7F2] to-[#D5CEC5] bg-clip-text text-transparent group-hover:text-white transition-colors uppercase">
                     Ihsan Muhammed
                   </h3>
 
-                  <div class="text-[11px] text-white/80 font-mono mt-1 font-medium">
-                    System Architecture & Platform Engineering
+                  <!-- Role Subtitle -->
+                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.1em] text-emerald-400 mt-1 uppercase">
+                    System Architecture & Platform OS
                   </div>
 
-                  <p class="text-xs text-white/60 mt-3 leading-relaxed">
-                    Spearheaded the overall platform architecture, demolition jobsite OS workflow, reactive state management, and end-to-end system integration.
+                  <!-- Hairline Accent -->
+                  <div class="w-8 h-0.5 bg-emerald-500/40 rounded-full mt-3 mb-3"></div>
+
+                  <!-- Description -->
+                  <p class="text-[12.5px] text-stone-300 font-normal leading-relaxed">
+                    Directed overall platform software architecture, demolition jobsite OS workflow, reactive state management, and full-stack PostgreSQL/Node API integration.
                   </p>
                 </div>
 
-                <div class="pt-4 mt-5 border-t border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-emerald-400/90">
-                  <span>Architecture & Demolition OS</span>
-                  <span>01</span>
+                <!-- Technical Contribution Tags -->
+                <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
+                  <div class="flex flex-wrap gap-1.5">
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Angular 19</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Node API</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">PostgreSQL</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-mono text-emerald-400/90 pt-1">
+                    <span>Platform Architecture</span>
+                    <span>01</span>
+                  </div>
                 </div>
               </div>
 
               <!-- Member 2: Abhinav Anil -->
-              <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-amber-500/40 hover:bg-white/[0.06] transition-all duration-300 group flex flex-col justify-between">
+              <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-amber-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(245,158,11,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
                 <div>
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="w-11 h-11 rounded-xl bg-amber-500/10 text-amber-300 border border-amber-500/25 flex items-center justify-center font-bold text-sm font-mono tracking-wider group-hover:scale-105 transition-transform">
+                  <!-- Avatar + Badge -->
+                  <div class="flex items-center justify-between mb-5">
+                    <div class="w-13 h-13 rounded-2xl bg-gradient-to-br from-amber-500/25 to-amber-950/40 text-amber-300 border border-amber-500/40 flex items-center justify-center font-black text-sm font-mono tracking-wider shadow-[0_0_20px_rgba(245,158,11,0.25)] group-hover:scale-105 transition-transform">
                       AA
                     </div>
-                    <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-md bg-amber-500/15 text-amber-300 font-bold border border-amber-500/20">
-                      AI / COMPUTER VISION
+                    <span class="text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 font-bold border border-amber-500/30">
+                      AI & VISION
                     </span>
                   </div>
 
-                  <h3 class="text-base font-bold text-white tracking-wide uppercase group-hover:text-amber-300 transition-colors">
+                  <!-- Name with Luxury Gradient -->
+                  <h3 class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-[#FAF7F2] to-[#D5CEC5] bg-clip-text text-transparent group-hover:text-white transition-colors uppercase">
                     Abhinav Anil
                   </h3>
 
-                  <div class="text-[11px] text-white/80 font-mono mt-1 font-medium">
+                  <!-- Role Subtitle -->
+                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.1em] text-amber-400 mt-1 uppercase">
                     Deep Learning & Computer Vision Lead
                   </div>
 
-                  <p class="text-xs text-white/60 mt-3 leading-relaxed">
-                    Designed and trained the ResNet-34 deep convolutional neural network for 12-class industrial C&D material detection and edge inference optimization.
+                  <!-- Hairline Accent -->
+                  <div class="w-8 h-0.5 bg-amber-500/40 rounded-full mt-3 mb-3"></div>
+
+                  <!-- Description -->
+                  <p class="text-[12.5px] text-stone-300 font-normal leading-relaxed">
+                    Designed, trained, and optimized the ResNet-34 deep convolutional neural network for 12-class industrial C&D debris classification and real-time tensor inference.
                   </p>
                 </div>
 
-                <div class="pt-4 mt-5 border-t border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-amber-300/90">
-                  <span>PyTorch ResNet-34 & Vision Engine</span>
-                  <span>02</span>
+                <!-- Technical Contribution Tags -->
+                <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
+                  <div class="flex flex-wrap gap-1.5">
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">PyTorch</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">ResNet-34</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Inference API</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-mono text-amber-300/90 pt-1">
+                    <span>Vision Inference Model</span>
+                    <span>02</span>
+                  </div>
                 </div>
               </div>
 
               <!-- Member 3: Muhammed Farzin -->
-              <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-blue-500/40 hover:bg-white/[0.06] transition-all duration-300 group flex flex-col justify-between">
+              <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-blue-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(59,130,246,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
                 <div>
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="w-11 h-11 rounded-xl bg-blue-500/10 text-blue-300 border border-blue-500/25 flex items-center justify-center font-bold text-sm font-mono tracking-wider group-hover:scale-105 transition-transform">
+                  <!-- Avatar + Badge -->
+                  <div class="flex items-center justify-between mb-5">
+                    <div class="w-13 h-13 rounded-2xl bg-gradient-to-br from-blue-500/25 to-blue-950/40 text-blue-300 border border-blue-500/40 flex items-center justify-center font-black text-sm font-mono tracking-wider shadow-[0_0_20px_rgba(59,130,246,0.25)] group-hover:scale-105 transition-transform">
                       MF
                     </div>
-                    <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-md bg-blue-500/15 text-blue-300 font-bold border border-blue-500/20">
+                    <span class="text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-blue-500/15 text-blue-300 font-bold border border-blue-500/30">
                       GEOSPATIAL SYSTEMS
                     </span>
                   </div>
 
-                  <h3 class="text-base font-bold text-white tracking-wide uppercase group-hover:text-blue-300 transition-colors">
+                  <!-- Name with Luxury Gradient -->
+                  <h3 class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-[#FAF7F2] to-[#D5CEC5] bg-clip-text text-transparent group-hover:text-white transition-colors uppercase">
                     Muhammed Farzin
                   </h3>
 
-                  <div class="text-[11px] text-white/80 font-mono mt-1 font-medium">
-                    Geospatial Intelligence & Logistics Algorithms
+                  <!-- Role Subtitle -->
+                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.1em] text-blue-400 mt-1 uppercase">
+                    Geospatial Intelligence & Routing Engine
                   </div>
 
-                  <p class="text-xs text-white/60 mt-3 leading-relaxed">
-                    Engineered the Haversine geodesic distance matching matrix, Leaflet interactive geospatial mapping, and low-latency haulage dispatch routing.
+                  <!-- Hairline Accent -->
+                  <div class="w-8 h-0.5 bg-blue-500/40 rounded-full mt-3 mb-3"></div>
+
+                  <!-- Description -->
+                  <p class="text-[12.5px] text-stone-300 font-normal leading-relaxed">
+                    Engineered the Haversine geodesic radial distance matching algorithm, Leaflet interactive geospatial mapping, and low-latency haulage dispatch route matrix.
                   </p>
                 </div>
 
-                <div class="pt-4 mt-5 border-t border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-blue-300/90">
-                  <span>Haversine Matrix & Routing Engine</span>
-                  <span>03</span>
+                <!-- Technical Contribution Tags -->
+                <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
+                  <div class="flex flex-wrap gap-1.5">
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Haversine</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Leaflet</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Routing Matrix</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-mono text-blue-300/90 pt-1">
+                    <span>Geospatial Engine</span>
+                    <span>03</span>
+                  </div>
                 </div>
               </div>
 
               <!-- Member 4: Abdul Hadi -->
-              <div class="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-purple-500/40 hover:bg-white/[0.06] transition-all duration-300 group flex flex-col justify-between">
+              <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-purple-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(168,85,247,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
                 <div>
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="w-11 h-11 rounded-xl bg-purple-500/10 text-purple-300 border border-purple-500/25 flex items-center justify-center font-bold text-sm font-mono tracking-wider group-hover:scale-105 transition-transform">
+                  <!-- Avatar + Badge -->
+                  <div class="flex items-center justify-between mb-5">
+                    <div class="w-13 h-13 rounded-2xl bg-gradient-to-br from-purple-500/25 to-purple-950/40 text-purple-300 border border-purple-500/40 flex items-center justify-center font-black text-sm font-mono tracking-wider shadow-[0_0_20px_rgba(168,85,247,0.25)] group-hover:scale-105 transition-transform">
                       AH
                     </div>
-                    <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-md bg-purple-500/15 text-purple-300 font-bold border border-purple-500/20">
+                    <span class="text-[9px] font-mono tracking-widest uppercase px-2.5 py-1 rounded-full bg-purple-500/15 text-purple-300 font-bold border border-purple-500/30">
                       ESG & INFRASTRUCTURE
                     </span>
                   </div>
 
-                  <h3 class="text-base font-bold text-white tracking-wide uppercase group-hover:text-purple-300 transition-colors">
+                  <!-- Name with Luxury Gradient -->
+                  <h3 class="text-xl font-black tracking-tight bg-gradient-to-r from-white via-[#FAF7F2] to-[#D5CEC5] bg-clip-text text-transparent group-hover:text-white transition-colors uppercase">
                     Abdul Hadi
                   </h3>
 
-                  <div class="text-[11px] text-white/80 font-mono mt-1 font-medium">
-                    Sustainability Analytics & Infrastructure Systems
+                  <!-- Role Subtitle -->
+                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.1em] text-purple-400 mt-1 uppercase">
+                    Sustainability Analytics & Telematics
                   </div>
 
-                  <p class="text-xs text-white/60 mt-3 leading-relaxed">
-                    Developed the Scope 3 GHG carbon avoidance calculation models, ISO 14021 compliance auditing schemas, and heavy equipment allocation algorithms.
+                  <!-- Hairline Accent -->
+                  <div class="w-8 h-0.5 bg-purple-500/40 rounded-full mt-3 mb-3"></div>
+
+                  <!-- Description -->
+                  <p class="text-[12.5px] text-stone-300 font-normal leading-relaxed">
+                    Developed Scope 3 GHG carbon avoidance calculation models, ISO 14021 compliance auditing schemas, heavy machinery telematics, and workforce rosters.
                   </p>
                 </div>
 
-                <div class="pt-4 mt-5 border-t border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-purple-300/90">
-                  <span>Scope 3 Carbon & Machinery Matrix</span>
-                  <span>04</span>
+                <!-- Technical Contribution Tags -->
+                <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
+                  <div class="flex flex-wrap gap-1.5">
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Scope 3 GHG</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">ISO 14021</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300">Telematics</span>
+                  </div>
+                  <div class="flex items-center justify-between text-[10px] font-mono text-purple-300/90 pt-1">
+                    <span>Carbon Analytics</span>
+                    <span>04</span>
+                  </div>
                 </div>
               </div>
 
             </div>
 
             <!-- Bottom Row: Engineering Tenets -->
-            <div class="pt-6 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 text-xs">
-              <div class="space-y-1.5">
-                <span class="font-mono text-emerald-400 font-bold block text-[11px]">01 / CLOSED-LOOP INFRASTRUCTURE</span>
-                <p class="text-white/70 leading-relaxed">
+            <div class="pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 text-xs">
+              <div class="space-y-1.5 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <span class="font-mono text-emerald-400 font-bold block text-[11px] tracking-wider uppercase">01 / CLOSED-LOOP INDUSTRIAL OS</span>
+                <p class="text-stone-300/80 leading-relaxed">
                   Engineering practical software systems that convert civil demolition debris into certified secondary construction commodities.
                 </p>
               </div>
 
-              <div class="space-y-1.5">
-                <span class="font-mono text-amber-300 font-bold block text-[11px]">02 / COMPUTATIONAL PROVENANCE</span>
-                <p class="text-white/70 leading-relaxed">
+              <div class="space-y-1.5 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <span class="font-mono text-amber-300 font-bold block text-[11px] tracking-wider uppercase">02 / COMPUTATIONAL PROVENANCE</span>
+                <p class="text-stone-300/80 leading-relaxed">
                   Applying convolutional neural networks and cryptographic transfer receipts to verify structural material integrity at the source.
                 </p>
               </div>
 
-              <div class="space-y-1.5">
-                <span class="font-mono text-blue-300 font-bold block text-[11px]">03 / GEODESIC TRANSIT OPTIMIZATION</span>
-                <p class="text-white/70 leading-relaxed">
+              <div class="space-y-1.5 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
+                <span class="font-mono text-blue-300 font-bold block text-[11px] tracking-wider uppercase">03 / GEODESIC ROUTING MATRIX</span>
+                <p class="text-stone-300/80 leading-relaxed">
                   Mathematical haulage boundaries ensuring local secondary commodity transit produces lower net emissions than virgin quarry extraction.
                 </p>
               </div>
@@ -960,7 +1048,7 @@ export interface MaterialDemo {
           </div>
 
           <div class="text-[11px] font-mono">
-            © 2026 ReBuild Technologies. Engineered by Ihsan Muhammed, Abhinav Anil, Muhammed Farzin & Abdul Hadi. Student Engineering & Research Initiative.
+            © 2026 ReBuild Technologies. Engineered by Ihsan Muhammed, Abhinav Anil, Muhammed Farzin & Abdul Hadi. Department of Computer Science and Business Systems, Rajagiri School of Engineering & Technology (RSET).
           </div>
         </div>
       </footer>
