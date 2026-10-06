@@ -2,6 +2,7 @@ import { Injectable, signal, computed } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MarketplaceListing, BuyerRequest, MaterialCategory, MaterialCondition } from '../models/all.models';
 import { ToastService } from './toast.service';
+import { NotificationService } from './notification.service';
 
 const API_BASE = 'http://localhost:8000/api';
 
@@ -68,7 +69,8 @@ export class MarketplaceService {
 
   constructor(
     private http: HttpClient,
-    private toast: ToastService
+    private toast: ToastService,
+    private notificationService: NotificationService
   ) {
     const savedLoc = localStorage.getItem('rebuild_buyer_location');
     if (savedLoc) {
@@ -302,6 +304,17 @@ export class MarketplaceService {
     this.requestsSignal.update(list => [newRequest, ...list]);
     localStorage.setItem('rebuild_marketplace_requests', JSON.stringify(this.requestsSignal()));
 
+    // Record system notification: Material is taken / order placed by buyer
+    this.notificationService.addNotification({
+      title: 'Material Order Received',
+      message: `${listing.title} (${quantityKg.toLocaleString()} kg) has been taken! Order placed by ${newRequest.buyerName}.`,
+      materialTitle: listing.title,
+      orderedBy: newRequest.buyerName,
+      quantityKg,
+      type: 'order',
+      link: '/seller'
+    });
+
     this.http.post<BuyerRequest>(`${API_BASE}/marketplace/requests`, newRequest).subscribe({
       next: (created) => {
         this.requestsSignal.update(list => list.map(r => r.id === newRequest.id ? created : r));
@@ -322,6 +335,21 @@ export class MarketplaceService {
       list.map(r => (r.id === requestId ? { ...r, status } : r))
     );
     localStorage.setItem('rebuild_marketplace_requests', JSON.stringify(this.requestsSignal()));
+
+    // Trigger notification if accepted or dispatched
+    if (targetReq && (status === 'ACCEPTED' || status === 'DISPATCHED')) {
+      this.notificationService.addNotification({
+        title: status === 'ACCEPTED' ? 'Order Confirmed & Taken' : 'Material Dispatched',
+        message: status === 'ACCEPTED' 
+          ? `Order for ${targetReq.listingTitle || 'material'} has been accepted and taken by ${targetReq.buyerName}.`
+          : `Material ${targetReq.listingTitle || ''} is out for delivery to ${targetReq.buyerName}.`,
+        materialTitle: targetReq.listingTitle,
+        orderedBy: targetReq.buyerName,
+        quantityKg: targetReq.quantityRequestedKg,
+        type: status === 'ACCEPTED' ? 'order' : 'dispatch',
+        link: '/seller'
+      });
+    }
 
     // Synchronize listing status
     if (targetReq) {
@@ -360,6 +388,8 @@ export class MarketplaceService {
   }
 
   markListingSold(listingId: string, soldTo: string = 'Anita Desai') {
+    const targetListing = this.listingsSignal().find(l => l.id === listingId);
+
     this.listingsSignal.update(list =>
       list.map(l => l.id === listingId ? {
         ...l,
@@ -369,6 +399,17 @@ export class MarketplaceService {
       } : l)
     );
     localStorage.setItem('rebuild_marketplace_listings', JSON.stringify(this.listingsSignal()));
+
+    // Notify that material is taken and marked sold
+    this.notificationService.addNotification({
+      title: 'Material Taken & Sold',
+      message: `${targetListing?.title || 'Material lot'} has been marked as SOLD and taken by ${soldTo}.`,
+      materialTitle: targetListing?.title,
+      orderedBy: soldTo,
+      quantityKg: targetListing?.quantityKg,
+      type: 'order',
+      link: '/seller'
+    });
 
     this.http.put(`${API_BASE}/marketplace/listings/${listingId}/status`, { status: 'SOLD', soldTo }).subscribe({
       next: () => {

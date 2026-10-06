@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, Input, HostListener, ElementRef } from
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { NotificationService, AppNotification } from '../../core/services/notification.service';
 import { UserRole } from '../../core/models/all.models';
 
 @Component({
@@ -74,16 +75,141 @@ import { UserRole } from '../../core/models/all.models';
           Public Page
         </a>
 
-        <!-- Notification Bell -->
-        <button
-          class="relative p-2 text-[#78716C] hover:text-[#1C1917] rounded-xl hover:bg-white/60 transition-colors"
-          title="Notifications"
-        >
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-          </svg>
-          <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-[#16A34A] rounded-full"></span>
-        </button>
+        <!-- Notification Bell & Center -->
+        <div class="relative">
+          <button
+            type="button"
+            (click)="toggleNotifications($event)"
+            class="relative p-2 rounded-xl transition-all cursor-pointer flex items-center justify-center"
+            [ngClass]="{
+              'bg-white text-[#1C1917] shadow-sm border border-[#E2DBD1]': isNotificationsOpen,
+              'text-[#78716C] hover:text-[#1C1917] hover:bg-white/60 border border-transparent': !isNotificationsOpen
+            }"
+            title="Material & Order Notifications"
+            aria-label="View notifications"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+            <!-- Unread badge -->
+            <span
+              *ngIf="notificationService.unreadCount() > 0"
+              class="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-[#16A34A] text-white text-[10px] font-bold font-mono flex items-center justify-center shadow-sm"
+            >
+              {{ notificationService.unreadCount() }}
+            </span>
+          </button>
+
+          <!-- Notification Dropdown Panel -->
+          <div
+            *ngIf="isNotificationsOpen"
+            class="absolute right-0 sm:right-auto sm:left-1/2 sm:-translate-x-1/2 top-full mt-2 w-80 sm:w-96 bg-white border border-[#E5DFD7] rounded-3xl shadow-2xl overflow-hidden z-50 animate-in fade-in zoom-in-95 duration-100 text-[#1C1917]"
+            (click)="$event.stopPropagation()"
+          >
+            <!-- Header -->
+            <div class="p-4 bg-[#F9F7F4] border-b border-[#E5DFD7] flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-lg bg-[#EBF7EE] text-[#16A34A] flex items-center justify-center text-xs font-bold">
+                  🔔
+                </div>
+                <div>
+                  <h4 class="text-xs font-bold text-[#1C1917]">Platform Notifications</h4>
+                  <p class="text-[10px] text-[#78716C]">Material orders & claims</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button
+                  *ngIf="notificationService.unreadCount() > 0"
+                  type="button"
+                  (click)="notificationService.markAllAsRead()"
+                  class="text-[10px] font-semibold text-[#16A34A] hover:underline cursor-pointer"
+                >
+                  Mark all read
+                </button>
+              </div>
+            </div>
+
+            <!-- List of Notifications -->
+            <div class="max-h-[360px] overflow-y-auto divide-y divide-[#E5DFD7]/60 text-xs">
+              <div
+                *ngFor="let notif of notificationService.notifications()"
+                (click)="onNotificationClick(notif)"
+                class="p-3.5 hover:bg-[#F9F7F4] transition-colors cursor-pointer flex items-start gap-3 relative"
+                [ngClass]="{ 'bg-[#FAF8F5]': !notif.read }"
+              >
+                <!-- Icon -->
+                <div
+                  class="w-8 h-8 rounded-xl flex-shrink-0 flex items-center justify-center text-sm font-bold shadow-sm"
+                  [ngClass]="{
+                    'bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7]': notif.type === 'order',
+                    'bg-sky-50 text-sky-700 border border-sky-200': notif.type === 'dispatch',
+                    'bg-amber-50 text-amber-800 border border-amber-200': notif.type === 'system'
+                  }"
+                >
+                  <span *ngIf="notif.type === 'order'">📦</span>
+                  <span *ngIf="notif.type === 'dispatch'">🚚</span>
+                  <span *ngIf="notif.type === 'system'">⚙️</span>
+                </div>
+
+                <!-- Text Content -->
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-1 mb-0.5">
+                    <span class="font-bold text-[#1C1917] text-xs truncate">{{ notif.title }}</span>
+                    <span class="text-[10px] text-[#78716C] font-mono flex-shrink-0">{{ notif.timestamp }}</span>
+                  </div>
+
+                  <!-- Material is taken / order message -->
+                  <p class="text-[11px] text-[#44403C] leading-snug mb-1.5">
+                    {{ notif.message }}
+                  </p>
+
+                  <!-- Highlight badge of who ordered -->
+                  <div class="flex flex-wrap items-center gap-1.5 text-[10px] font-mono">
+                    <span *ngIf="notif.orderedBy" class="px-2 py-0.5 rounded-md bg-[#EBF7EE] text-[#16A34A] font-bold border border-[#DCFCE7] inline-flex items-center gap-1">
+                      <span>👤 Order by:</span>
+                      <span>{{ notif.orderedBy }}</span>
+                    </span>
+                    <span *ngIf="notif.quantityKg" class="px-1.5 py-0.5 rounded-md bg-[#F2ECE4] text-[#78716C]">
+                      {{ notif.quantityKg | number }} kg
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Unread Indicator Dot -->
+                <span
+                  *ngIf="!notif.read"
+                  class="w-2 h-2 rounded-full bg-[#16A34A] flex-shrink-0 mt-1.5 shadow-sm"
+                  title="Unread notification"
+                ></span>
+              </div>
+
+              <!-- Empty State -->
+              <div *ngIf="notificationService.notifications().length === 0" class="p-8 text-center text-xs text-[#78716C] space-y-1">
+                <div class="text-2xl">✨</div>
+                <div class="font-bold text-[#1C1917]">No notifications</div>
+                <p class="text-[11px]">Material order updates will appear here.</p>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="p-2.5 bg-[#F9F7F4] border-t border-[#E5DFD7] flex items-center justify-between text-xs">
+              <a
+                routerLink="/seller"
+                (click)="isNotificationsOpen = false"
+                class="text-[11px] font-semibold text-[#1C1917] hover:text-[#16A34A] transition-colors inline-flex items-center gap-1 cursor-pointer"
+              >
+                View Dispatches & Orders →
+              </a>
+              <button
+                type="button"
+                (click)="notificationService.clearAll()"
+                class="text-[10px] text-[#78716C] hover:text-rose-600 transition-colors cursor-pointer"
+              >
+                Clear all
+              </button>
+            </div>
+          </div>
+        </div>
 
         <!-- REAL ENTERPRISE USER PROFILE & ACCOUNT MENU -->
         <div class="relative pl-2 border-l border-[#E2DBD1]">
@@ -200,17 +326,43 @@ export class NavbarComponent {
   @Output() openSearch = new EventEmitter<void>();
 
   isMenuOpen: boolean = false;
+  isNotificationsOpen: boolean = false;
 
-  constructor(public authService: AuthService, private elementRef: ElementRef) {}
+  constructor(
+    public authService: AuthService,
+    public notificationService: NotificationService,
+    private router: Router,
+    private elementRef: ElementRef
+  ) {}
+
+  toggleNotifications(event: Event) {
+    event.stopPropagation();
+    this.isNotificationsOpen = !this.isNotificationsOpen;
+    if (this.isNotificationsOpen) {
+      this.isMenuOpen = false;
+    }
+  }
+
+  onNotificationClick(notif: AppNotification) {
+    this.notificationService.markAsRead(notif.id);
+    if (notif.link) {
+      this.isNotificationsOpen = false;
+      this.router.navigate([notif.link]);
+    }
+  }
 
   toggleMenu(event: Event) {
     event.stopPropagation();
     this.isMenuOpen = !this.isMenuOpen;
+    if (this.isMenuOpen) {
+      this.isNotificationsOpen = false;
+    }
   }
 
   onSignOut(event: Event) {
     event.stopPropagation();
     this.isMenuOpen = false;
+    this.isNotificationsOpen = false;
     this.authService.logout();
   }
 
@@ -218,6 +370,7 @@ export class NavbarComponent {
   onDocumentClick(event: MouseEvent) {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.isMenuOpen = false;
+      this.isNotificationsOpen = false;
     }
   }
 
