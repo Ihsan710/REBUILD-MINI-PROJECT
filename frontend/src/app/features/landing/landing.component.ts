@@ -52,6 +52,47 @@ export interface MaterialDemo {
             </div>
           </a>
 
+          <!-- Clean Aesthetic Navigation Island -->
+          <div class="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-[#E2DBD1]/90 shadow-[0_2px_16px_rgba(0,0,0,0.04)]">
+            <button
+              (click)="scrollToSection('hero', $event)"
+              class="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#78716C] hover:text-[#1C1917] hover:bg-black/[0.04] transition-all cursor-pointer"
+            >
+              Overview
+            </button>
+
+            <button
+              (click)="scrollToSection('ai-scanner', $event)"
+              class="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#78716C] hover:text-[#1C1917] hover:bg-black/[0.04] transition-all cursor-pointer flex items-center gap-1.5"
+            >
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+              <span>AI Scanner</span>
+            </button>
+
+            <button
+              (click)="scrollToSection('marketplace', $event)"
+              class="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#78716C] hover:text-[#1C1917] hover:bg-black/[0.04] transition-all cursor-pointer"
+            >
+              Marketplace
+            </button>
+
+            <button
+              (click)="scrollToSection('calculator', $event)"
+              class="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#78716C] hover:text-[#1C1917] hover:bg-black/[0.04] transition-all cursor-pointer"
+            >
+              Dispatch Matrix
+            </button>
+
+            <div class="w-[1px] h-4 bg-[#E2DBD1] mx-1"></div>
+
+            <button
+              (click)="scrollToSection('founder', $event)"
+              class="px-3.5 py-1.5 rounded-full text-xs font-semibold text-[#1C1917] bg-black/[0.04] hover:bg-black/[0.07] transition-all cursor-pointer flex items-center gap-1.5"
+            >
+              <span>Research Team</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.5 rounded-full bg-white text-[#78716C] border border-[#E2DBD1]">CSBS</span>
+            </button>
+          </div>
 
           <!-- Header Actions -->
           <div class="flex items-center gap-3">
