@@ -235,18 +235,9 @@ import { BadgeComponent } from '../../shared/components/badge.component';
             <div>
               <div class="relative mb-4">
                 <img [src]="resolveImageUrl(item.imageUrl, item.material)" (error)="onImgError($event, item.material)" [alt]="item.title" class="w-full h-40 object-cover rounded-xl border border-[#E5DFD7]" />
-                <div *ngIf="item.status === 'SOLD'" class="absolute inset-0 bg-black/60 rounded-xl flex flex-col items-center justify-center p-3 text-center">
-                  <span class="px-3 py-1 rounded-full text-xs font-bold font-mono tracking-wider bg-rose-600 text-white shadow-lg mb-1">
+                <div *ngIf="item.status === 'SOLD'" class="absolute inset-0 bg-black/60 rounded-xl flex items-center justify-center p-3 text-center">
+                  <span class="px-3.5 py-1.5 rounded-full text-xs font-bold font-mono tracking-wider bg-rose-600 text-white shadow-xl">
                     🚫 SOLD OUT
-                  </span>
-                  <span *ngIf="item.soldTo === 'Anita Desai'" class="text-[11px] text-emerald-300 font-semibold font-mono">
-                    ✓ Secured by You (Anita Desai)
-                  </span>
-                  <span *ngIf="item.soldTo && item.soldTo !== 'Anita Desai'" class="text-[11px] text-stone-200">
-                    Sold to {{ item.soldTo }}
-                  </span>
-                  <span *ngIf="!item.soldTo" class="text-[11px] text-stone-200">
-                    Claimed & Unavailable to Others
                   </span>
                 </div>
               </div>
@@ -283,7 +274,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
 
               <div *ngIf="item.status === 'SOLD'">
                 <button disabled class="px-3 py-1.5 rounded-xl bg-stone-200 text-stone-500 text-xs font-semibold cursor-not-allowed border border-stone-300">
-                  {{ item.soldTo === 'Anita Desai' ? '✓ Ordered by You' : 'Sold Out' }}
+                  Sold Out
                 </button>
               </div>
               <div *ngIf="item.status !== 'SOLD'">

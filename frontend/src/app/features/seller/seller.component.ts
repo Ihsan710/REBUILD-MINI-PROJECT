@@ -267,8 +267,7 @@ import { StatCardComponent } from '../../shared/components/stat-card.component';
                 </td>
                 <td class="py-3">
                   <span *ngIf="item.status === 'SOLD'" class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800 border border-rose-300 inline-flex items-center gap-1">
-                    <span>🚫 SOLD</span>
-                    <span *ngIf="item.soldTo" class="font-normal font-sans">({{ item.soldTo }})</span>
+                    <span>🚫 SOLD OUT</span>
                   </span>
                   <span *ngIf="item.status !== 'SOLD'" class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#EBF7EE] text-[#1E7E34] border border-[#DCFCE7]">
                     {{ item.status }}

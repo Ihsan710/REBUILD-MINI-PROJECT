@@ -179,18 +179,9 @@ import { BadgeComponent } from '../../shared/components/badge.component';
             <div class="relative h-44 rounded-xl overflow-hidden mb-4 border border-[#E5DFD7] bg-black">
               <img [src]="resolveImageUrl(listing.imageUrl, listing.material)" (error)="onImgError($event, listing.material)" [alt]="listing.title" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
               
-              <div *ngIf="listing.status === 'SOLD'" class="absolute inset-0 bg-black/60 rounded-xl flex flex-col items-center justify-center p-3 text-center">
-                <span class="px-3 py-1 rounded-full text-xs font-bold font-mono tracking-wider bg-rose-600 text-white shadow-lg mb-1">
+              <div *ngIf="listing.status === 'SOLD'" class="absolute inset-0 bg-black/60 rounded-xl flex items-center justify-center p-3 text-center">
+                <span class="px-3.5 py-1.5 rounded-full text-xs font-bold font-mono tracking-wider bg-rose-600 text-white shadow-xl">
                   🚫 SOLD OUT
-                </span>
-                <span *ngIf="listing.soldTo === 'Anita Desai'" class="text-[11px] text-emerald-300 font-semibold font-mono">
-                  ✓ Claimed by Anita Desai
-                </span>
-                <span *ngIf="listing.soldTo && listing.soldTo !== 'Anita Desai'" class="text-[11px] text-stone-200">
-                  Sold to {{ listing.soldTo }}
-                </span>
-                <span *ngIf="!listing.soldTo" class="text-[11px] text-stone-200">
-                  Claimed & Unavailable to Others
                 </span>
               </div>
 
@@ -231,7 +222,6 @@ import { BadgeComponent } from '../../shared/components/badge.component';
             <div class="text-right">
               <div *ngIf="listing.status === 'SOLD'">
                 <span class="text-xs font-mono font-bold text-rose-600 block">SOLD OUT</span>
-                <div class="text-[10px] text-[#78716C] font-mono">To {{ listing.soldTo || 'Buyer' }}</div>
               </div>
               <div *ngIf="listing.status !== 'SOLD'">
                 <span *ngIf="listing.distanceKm != null && listing.distanceKm <= 15" class="text-[#16A34A] font-mono font-bold block">
@@ -271,7 +261,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
             <div>
               <div class="flex items-center gap-2">
                 <span *ngIf="selectedMaterial.status === 'SOLD'" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300">
-                  SOLD OUT (To: {{ selectedMaterial.soldTo || 'Anita Desai' }})
+                  🚫 SOLD OUT
                 </span>
                 <span *ngIf="selectedMaterial.status !== 'SOLD'" class="badge-green">{{ selectedMaterial.condition }}</span>
                 <span class="text-xs font-mono text-[#78716C]">{{ selectedMaterial.material }} Category</span>
@@ -288,7 +278,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
             </div>
 
             <div *ngIf="selectedMaterial.status === 'SOLD'" class="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-xs text-rose-900 leading-relaxed font-semibold">
-              🚫 <strong>This material lot has been SOLD:</strong> Procured and claimed by <b>{{ selectedMaterial.soldTo || 'Anita Desai' }}</b>. This item is no longer available to other buyers on the marketplace.
+              🚫 <strong>This material lot is SOLD OUT:</strong> This item has been procured and is no longer available on the marketplace.
             </div>
 
             <div class="grid grid-cols-3 gap-3 text-center text-xs font-mono">
@@ -510,7 +500,7 @@ export class MarketplaceComponent implements OnInit, AfterViewInit, OnDestroy {
       marker.bindPopup(`
         <div style="font-size:12px; font-family:sans-serif; color:#1C1917;">
           <b style="color:${markerColor};">${listing.title}</b><br/>
-          ${isSold ? `<span style="color:#E11D48; font-weight:bold; font-size:11px;">[🚫 SOLD OUT - To ${listing.soldTo || 'Anita Desai'}]</span><br/>` : ''}
+          ${isSold ? `<span style="color:#E11D48; font-weight:bold; font-size:11px;">[🚫 SOLD OUT]</span><br/>` : ''}
           <span>${listing.quantityKg} kg • ${listing.isFree ? 'FREE' : '₹' + listing.pricePerKg + '/kg'}</span><br/>
           <span style="color:#D97706; font-weight:bold;">${dist} km from your site</span><br/>
           <small style="color:#78716C;">${listing.sellerCompany}</small>
