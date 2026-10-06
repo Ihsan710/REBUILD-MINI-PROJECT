@@ -764,33 +764,24 @@ export interface MaterialDemo {
                 </div>
 
                 <!-- Faculty Project Guide Card (5 Cols) -->
-                <div class="lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-emerald-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(16,185,129,0.18)] backdrop-blur-xl flex flex-col justify-between relative overflow-hidden group transition-all duration-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
-                  <!-- Ambient soft glow -->
-                  <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-emerald-500/[0.08] rounded-full blur-3xl pointer-events-none group-hover:bg-emerald-500/[0.16] transition-colors"></div>
-
-                  <div class="space-y-4 relative z-10">
-                    <!-- Top Telemetry Header -->
-                    <div class="flex items-center justify-between pb-3.5 border-b border-white/[0.08]">
-                      <div class="flex items-center gap-2">
-                        <span class="relative flex h-2 w-2">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                        </span>
-                        <span class="text-[10px] font-mono font-bold tracking-[0.22em] text-emerald-400 uppercase">
-                          PROJECT GUIDE
-                        </span>
-                      </div>
-                      <span class="text-[9px] font-mono tracking-widest uppercase px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 font-bold border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.12)] backdrop-blur-md">
+                <div class="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 backdrop-blur-xl flex flex-col justify-between transition-all duration-300">
+                  <div class="space-y-4">
+                    <!-- Top Badge Row -->
+                    <div class="flex items-center justify-between pb-3.5 border-b border-white/10">
+                      <span class="text-[11px] font-mono tracking-widest uppercase text-stone-400">
+                        PROJECT GUIDE
+                      </span>
+                      <span class="text-[10px] font-mono tracking-wider uppercase px-2.5 py-1 rounded-full bg-white/5 text-stone-300 border border-white/10">
                         FACULTY SUPERVISOR
                       </span>
                     </div>
 
                     <!-- Guide Name & Department -->
                     <div>
-                      <h4 class="text-2xl sm:text-3xl font-black tracking-tight text-white group-hover:text-emerald-300 transition-colors uppercase">
+                      <h4 class="text-2xl sm:text-3xl font-bold tracking-tight text-white uppercase">
                         Mr. Ajith Jacob
                       </h4>
-                      <div class="text-[11.5px] font-mono font-semibold tracking-[0.1em] text-emerald-400/90 mt-1 uppercase">
+                      <div class="text-xs font-mono text-stone-300 mt-1 uppercase">
                         Assistant Professor
                       </div>
                       <div class="text-xs font-mono text-stone-400 mt-0.5">
@@ -798,17 +789,17 @@ export interface MaterialDemo {
                       </div>
                     </div>
 
-                    <div class="w-10 h-0.5 bg-emerald-500/40 rounded-full"></div>
+                    <div class="w-8 h-[1px] bg-white/20"></div>
 
-                    <p class="text-[12.5px] text-stone-300 font-normal leading-relaxed">
-                      Academic supervision, technical architectural direction, and research mentorship for the B.Tech Mini Project initiative at Rajagiri School of Engineering & Technology (RSET).
+                    <p class="text-xs sm:text-[13px] text-stone-300 leading-relaxed">
+                      Academic supervision, technical direction, and research mentorship for the B.Tech Mini Project initiative at Rajagiri School of Engineering & Technology (RSET).
                     </p>
                   </div>
 
                   <!-- Guide Bottom Spec -->
-                  <div class="pt-4 mt-5 border-t border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-stone-400 relative z-10">
-                    <span class="text-stone-300">RSET CSBS Academic Mentorship</span>
-                    <span class="text-emerald-400/90 font-bold">KTU Autonomous</span>
+                  <div class="pt-4 mt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-stone-400">
+                    <span>RSET CSBS Academic Mentorship</span>
+                    <span>KTU Autonomous</span>
                   </div>
                 </div>
 
@@ -816,231 +807,173 @@ export interface MaterialDemo {
 
             </div>
 
-            <!-- Middle Row: 4-Member Luxury Student Engineering Team Grid -->
+            <!-- Middle Row: 4-Member Student Engineering Team Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 relative z-10">
               
               <!-- Member 1: Ihsan Muhammed -->
-              <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-emerald-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(16,185,129,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
+              <div class="p-6 sm:p-7 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  <!-- Top Row: Engineering Telemetry Index & Glowing Role Capsule -->
-                  <div class="flex items-center justify-between mb-5 pb-3.5 border-b border-white/[0.06]">
-                    <div class="flex items-center gap-2">
-                      <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
-                      </span>
-                      <span class="text-[10px] font-mono font-bold tracking-[0.22em] text-stone-400 group-hover:text-emerald-400 transition-colors uppercase">
-                        ENG // 01
-                      </span>
-                    </div>
-
-                    <span class="inline-flex items-center gap-1.5 text-[9px] font-mono tracking-[0.16em] uppercase px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 font-bold border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.15)] backdrop-blur-md">
-                      <svg class="w-2.5 h-2.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                      </svg>
+                  <!-- Role Badge Header -->
+                  <div class="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
+                    <span class="text-[10px] font-mono tracking-wider uppercase px-2.5 py-1 rounded-full bg-white/5 text-stone-300 border border-white/10 font-medium">
                       LEAD ARCHITECT
                     </span>
                   </div>
 
                   <!-- Name -->
-                  <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-emerald-300 transition-colors uppercase">
+                  <h3 class="text-xl font-bold tracking-tight text-white uppercase">
                     Ihsan Muhammed
                   </h3>
 
                   <!-- Role Subtitle -->
-                  <div class="text-[11px] font-mono font-semibold tracking-[0.12em] text-emerald-400 mt-1 uppercase">
+                  <div class="text-xs font-mono text-stone-400 mt-1 uppercase">
                     System Architecture & Platform OS
                   </div>
 
-                  <!-- Hairline Accent -->
-                  <div class="w-8 h-0.5 bg-emerald-500/40 rounded-full mt-3 mb-3"></div>
+                  <!-- Subtle Hairline Accent -->
+                  <div class="w-8 h-[1px] bg-white/20 my-3.5"></div>
 
                   <!-- Description -->
-                  <p class="text-[12.5px] text-stone-300 font-normal leading-relaxed">
+                  <p class="text-xs text-stone-300 leading-relaxed">
                     Directed overall platform software architecture, demolition jobsite OS workflow, reactive state management, and full-stack PostgreSQL/Node API integration.
                   </p>
                 </div>
 
                 <!-- Technical Contribution Tags -->
-                <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
+                <div class="pt-4 mt-5 border-t border-white/10 space-y-2">
                   <div class="flex flex-wrap gap-1.5">
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-emerald-500/30 transition-colors">Angular 19</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-emerald-500/30 transition-colors">Node API</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-emerald-500/30 transition-colors">PostgreSQL</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">Angular 19</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">Node API</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">PostgreSQL</span>
                   </div>
-                  <div class="flex items-center justify-between text-[10px] font-mono text-emerald-400/90 pt-1">
-                    <span>Platform Architecture</span>
-                    <span>#01</span>
+                  <div class="text-[10px] font-mono text-stone-400 pt-1">
+                    Platform Architecture
                   </div>
                 </div>
               </div>
 
               <!-- Member 2: Abhinav Anil -->
-              <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-amber-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(245,158,11,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
+              <div class="p-6 sm:p-7 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  <!-- Top Row: Engineering Telemetry Index & Glowing Role Capsule -->
-                  <div class="flex items-center justify-between mb-5 pb-3.5 border-b border-white/[0.06]">
-                    <div class="flex items-center gap-2">
-                      <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
-                      </span>
-                      <span class="text-[10px] font-mono font-bold tracking-[0.22em] text-stone-400 group-hover:text-amber-400 transition-colors uppercase">
-                        ENG // 02
-                      </span>
-                    </div>
-
-                    <span class="inline-flex items-center gap-1.5 text-[9px] font-mono tracking-[0.16em] uppercase px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 font-bold border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.15)] backdrop-blur-md">
-                      <svg class="w-2.5 h-2.5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M3 12h3m12 0h3M12 3v3m0 12v3"/>
-                      </svg>
+                  <!-- Role Badge Header -->
+                  <div class="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
+                    <span class="text-[10px] font-mono tracking-wider uppercase px-2.5 py-1 rounded-full bg-white/5 text-stone-300 border border-white/10 font-medium">
                       AI & VISION
                     </span>
                   </div>
 
                   <!-- Name -->
-                  <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-amber-300 transition-colors uppercase">
+                  <h3 class="text-xl font-bold tracking-tight text-white uppercase">
                     Abhinav Anil
                   </h3>
 
                   <!-- Role Subtitle -->
-                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.12em] text-amber-400 mt-1 uppercase">
+                  <div class="text-xs font-mono text-stone-400 mt-1 uppercase">
                     Deep Learning & Computer Vision Lead
                   </div>
 
-                  <!-- Hairline Accent -->
-                  <div class="w-8 h-0.5 bg-amber-500/40 rounded-full mt-3 mb-3"></div>
+                  <!-- Subtle Hairline Accent -->
+                  <div class="w-8 h-[1px] bg-white/20 my-3.5"></div>
 
                   <!-- Description -->
-                  <p class="text-[12.5px] text-stone-300 font-normal leading-relaxed">
+                  <p class="text-xs text-stone-300 leading-relaxed">
                     Designed, trained, and optimized the ResNet-34 deep convolutional neural network for 12-class industrial C&D debris classification and real-time tensor inference.
                   </p>
                 </div>
 
                 <!-- Technical Contribution Tags -->
-                <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
+                <div class="pt-4 mt-5 border-t border-white/10 space-y-2">
                   <div class="flex flex-wrap gap-1.5">
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-amber-500/30 transition-colors">PyTorch</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-amber-500/30 transition-colors">ResNet-34</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-amber-500/30 transition-colors">Inference API</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">PyTorch</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">ResNet-34</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">Inference API</span>
                   </div>
-                  <div class="flex items-center justify-between text-[10px] font-mono text-amber-300/90 pt-1">
-                    <span>Vision Inference Model</span>
-                    <span>#02</span>
+                  <div class="text-[10px] font-mono text-stone-400 pt-1">
+                    Vision Inference Model
                   </div>
                 </div>
               </div>
 
               <!-- Member 3: Muhammed Farzin -->
-              <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-blue-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(59,130,246,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
+              <div class="p-6 sm:p-7 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  <!-- Top Row: Engineering Telemetry Index & Glowing Role Capsule -->
-                  <div class="flex items-center justify-between mb-5 pb-3.5 border-b border-white/[0.06]">
-                    <div class="flex items-center gap-2">
-                      <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
-                      </span>
-                      <span class="text-[10px] font-mono font-bold tracking-[0.22em] text-stone-400 group-hover:text-blue-400 transition-colors uppercase">
-                        ENG // 03
-                      </span>
-                    </div>
-
-                    <span class="inline-flex items-center gap-1.5 text-[9px] font-mono tracking-[0.16em] uppercase px-3 py-1 rounded-full bg-blue-500/10 text-blue-300 font-bold border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.15)] backdrop-blur-md">
-                      <svg class="w-2.5 h-2.5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <circle cx="12" cy="12" r="9"/>
-                        <polygon points="12 6 15 14 12 12 9 14" fill="currentColor"/>
-                      </svg>
+                  <!-- Role Badge Header -->
+                  <div class="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
+                    <span class="text-[10px] font-mono tracking-wider uppercase px-2.5 py-1 rounded-full bg-white/5 text-stone-300 border border-white/10 font-medium">
                       GEOSPATIAL SYSTEMS
                     </span>
                   </div>
 
                   <!-- Name -->
-                  <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-blue-300 transition-colors uppercase">
+                  <h3 class="text-xl font-bold tracking-tight text-white uppercase">
                     Muhammed Farzin
                   </h3>
 
                   <!-- Role Subtitle -->
-                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.12em] text-blue-400 mt-1 uppercase">
+                  <div class="text-xs font-mono text-stone-400 mt-1 uppercase">
                     Geospatial Intelligence & Routing Engine
                   </div>
 
-                  <!-- Hairline Accent -->
-                  <div class="w-8 h-0.5 bg-blue-500/40 rounded-full mt-3 mb-3"></div>
+                  <!-- Subtle Hairline Accent -->
+                  <div class="w-8 h-[1px] bg-white/20 my-3.5"></div>
 
                   <!-- Description -->
-                  <p class="text-[12.5px] text-stone-300 font-normal leading-relaxed">
+                  <p class="text-xs text-stone-300 leading-relaxed">
                     Engineered the Haversine geodesic radial distance matching algorithm, Leaflet interactive geospatial mapping, and low-latency haulage dispatch route matrix.
                   </p>
                 </div>
 
                 <!-- Technical Contribution Tags -->
-                <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
+                <div class="pt-4 mt-5 border-t border-white/10 space-y-2">
                   <div class="flex flex-wrap gap-1.5">
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-blue-500/30 transition-colors">Haversine</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-blue-500/30 transition-colors">Leaflet</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-blue-500/30 transition-colors">Routing Matrix</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">Haversine</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">Leaflet</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">Routing Matrix</span>
                   </div>
-                  <div class="flex items-center justify-between text-[10px] font-mono text-blue-300/90 pt-1">
-                    <span>Geospatial Engine</span>
-                    <span>#03</span>
+                  <div class="text-[10px] font-mono text-stone-400 pt-1">
+                    Geospatial Engine
                   </div>
                 </div>
               </div>
 
               <!-- Member 4: Abdul Hadi -->
-              <div class="p-6 sm:p-7 rounded-[26px] bg-gradient-to-b from-white/[0.06] via-white/[0.02] to-transparent border border-white/[0.12] hover:border-purple-400/50 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(168,85,247,0.2)] transition-all duration-500 group flex flex-col justify-between shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]">
+              <div class="p-6 sm:p-7 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/20 transition-all duration-300 flex flex-col justify-between">
                 <div>
-                  <!-- Top Row: Engineering Telemetry Index & Glowing Role Capsule -->
-                  <div class="flex items-center justify-between mb-5 pb-3.5 border-b border-white/[0.06]">
-                    <div class="flex items-center gap-2">
-                      <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-purple-400"></span>
-                      </span>
-                      <span class="text-[10px] font-mono font-bold tracking-[0.22em] text-stone-400 group-hover:text-purple-400 transition-colors uppercase">
-                        ENG // 04
-                      </span>
-                    </div>
-
-                    <span class="inline-flex items-center gap-1.5 text-[9px] font-mono tracking-[0.16em] uppercase px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 font-bold border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)] backdrop-blur-md">
-                      <svg class="w-2.5 h-2.5 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                      </svg>
+                  <!-- Role Badge Header -->
+                  <div class="flex items-center justify-between mb-5 pb-3 border-b border-white/10">
+                    <span class="text-[10px] font-mono tracking-wider uppercase px-2.5 py-1 rounded-full bg-white/5 text-stone-300 border border-white/10 font-medium">
                       ESG & INFRASTRUCTURE
                     </span>
                   </div>
 
                   <!-- Name -->
-                  <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white group-hover:text-purple-300 transition-colors uppercase">
+                  <h3 class="text-xl font-bold tracking-tight text-white uppercase">
                     Abdul Hadi
                   </h3>
 
                   <!-- Role Subtitle -->
-                  <div class="text-[10.5px] font-mono font-semibold tracking-[0.12em] text-purple-400 mt-1 uppercase">
+                  <div class="text-xs font-mono text-stone-400 mt-1 uppercase">
                     Sustainability Analytics & Telematics
                   </div>
 
-                  <!-- Hairline Accent -->
-                  <div class="w-8 h-0.5 bg-purple-500/40 rounded-full mt-3 mb-3"></div>
+                  <!-- Subtle Hairline Accent -->
+                  <div class="w-8 h-[1px] bg-white/20 my-3.5"></div>
 
                   <!-- Description -->
-                  <p class="text-[12.5px] text-stone-300 font-normal leading-relaxed">
+                  <p class="text-xs text-stone-300 leading-relaxed">
                     Developed Scope 3 GHG carbon avoidance calculation models, ISO 14021 compliance auditing schemas, heavy machinery telematics, and workforce rosters.
                   </p>
                 </div>
 
                 <!-- Technical Contribution Tags -->
-                <div class="pt-5 mt-6 border-t border-white/[0.08] space-y-2">
+                <div class="pt-4 mt-5 border-t border-white/10 space-y-2">
                   <div class="flex flex-wrap gap-1.5">
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-purple-500/30 transition-colors">Scope 3 GHG</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-purple-500/30 transition-colors">ISO 14021</span>
-                    <span class="px-2 py-0.5 rounded-md bg-white/[0.04] border border-white/[0.08] text-[9.5px] font-mono text-stone-300 group-hover:border-purple-500/30 transition-colors">Telematics</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">Scope 3 GHG</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">ISO 14021</span>
+                    <span class="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-stone-300">Telematics</span>
                   </div>
-                  <div class="flex items-center justify-between text-[10px] font-mono text-purple-300/90 pt-1">
-                    <span>Carbon Analytics</span>
-                    <span>#04</span>
+                  <div class="text-[10px] font-mono text-stone-400 pt-1">
+                    Carbon Analytics
                   </div>
                 </div>
               </div>
