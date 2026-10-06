@@ -27,8 +27,8 @@ interface MaterialDemo {
       <!-- TOP ARCHITECTURAL STICKY NAVBAR -->
       <nav class="sticky top-0 z-50 bg-[#EDE7DF]/85 backdrop-blur-xl border-b border-[#E2DBD1] transition-all">
         <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
-          <!-- Brand Emblem -->
-          <a routerLink="/dashboard" class="flex items-center gap-3 group cursor-pointer">
+          <!-- Brand Emblem (Click to scroll to top / Home) -->
+          <a routerLink="/" (click)="scrollToSection('hero', $event)" class="flex items-center gap-3 group cursor-pointer" title="ReBuild Home">
             <div class="w-10 h-10 rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-[#E2DBD1] flex items-center justify-center text-lg font-bold text-[#1C1917] group-hover:scale-105 transition-transform">
               ✱
             </div>

@@ -22,16 +22,25 @@ import { UserRole } from '../../core/models/all.models';
         <!-- Warm Soft Architectural Tint Overlay -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/50"></div>
 
-        <!-- Top brand emblem -->
-        <div class="flex items-center gap-3 relative z-10">
-          <div class="w-10 h-10 rounded-2xl bg-white/90 backdrop-blur-md shadow-lg border border-white/40 flex items-center justify-center text-[#1C1917] text-lg font-bold">
+        <!-- Top brand emblem (Clickable to go home) -->
+        <a
+          routerLink="/"
+          class="flex items-center gap-3 relative z-10 group cursor-pointer w-fit select-none"
+          title="Return to ReBuild Home"
+        >
+          <div class="w-10 h-10 rounded-2xl bg-white/90 backdrop-blur-md shadow-lg border border-white/40 flex items-center justify-center text-[#1C1917] text-lg font-bold group-hover:scale-105 group-hover:bg-white group-active:scale-95 transition-all">
             ✱
           </div>
           <div>
-            <span class="font-extrabold text-xl tracking-tight text-white drop-shadow">REBUILD</span>
+            <div class="flex items-center gap-2">
+              <span class="font-extrabold text-xl tracking-tight text-white drop-shadow group-hover:text-white/95">REBUILD</span>
+              <span class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-white/20 text-white/90 backdrop-blur-sm border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity">
+                ← Home
+              </span>
+            </div>
             <span class="block text-[9px] font-mono tracking-widest text-white/80 uppercase -mt-0.5">Circular Architecture OS</span>
           </div>
-        </div>
+        </a>
 
         <!-- Center Vision & Sustainable Credentials -->
         <div class="max-w-md relative z-10 space-y-6 text-white">
@@ -71,6 +80,25 @@ import { UserRole } from '../../core/models/all.models';
       <div class="flex items-center justify-center p-6 sm:p-12">
         <div class="w-full max-w-md space-y-6 bg-white rounded-3xl p-8 sm:p-10 shadow-[0_4px_30px_rgba(0,0,0,0.04)] border border-[#E5DFD7]">
           
+          <!-- Mobile Brand Emblem Header (visible when left showcase is hidden) -->
+          <div class="flex lg:hidden items-center justify-between pb-4 border-b border-[#E2DDD5]">
+            <a routerLink="/" class="flex items-center gap-2.5 group cursor-pointer" title="Return to ReBuild Home">
+              <div class="w-9 h-9 rounded-xl bg-[#1C1917] text-white flex items-center justify-center text-sm font-bold group-hover:scale-105 group-active:scale-95 transition-all shadow-sm">
+                ✱
+              </div>
+              <div>
+                <span class="font-extrabold text-base tracking-tight text-[#1C1917]">REBUILD</span>
+                <span class="block text-[8px] font-mono tracking-widest text-[#78716C] uppercase -mt-0.5">Circular Architecture OS</span>
+              </div>
+            </a>
+            <a routerLink="/" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-[#78716C] hover:text-[#1C1917] hover:bg-[#F6F3EF] border border-transparent hover:border-[#E2DDD5] transition-all">
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Home
+            </a>
+          </div>
+
           <!-- Auth Toggle Tabs -->
           <div class="flex p-1.5 rounded-2xl bg-[#F6F3EF] border border-[#E2DDD5]">
             <button
