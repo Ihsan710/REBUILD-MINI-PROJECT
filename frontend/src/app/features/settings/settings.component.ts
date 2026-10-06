@@ -177,8 +177,8 @@ import { ToastService } from '../../core/services/toast.service';
 })
 export class SettingsComponent implements OnInit {
   companyName: string = 'Skyline Infrastructure & Developers';
-  adminName: string = 'Ihsan Al-Mansoor';
-  email: string = 'ihsan@skylinebuilders.com';
+  adminName: string = 'Ihsan Muhammed';
+  email: string = 'ihsan@rebuildos.com';
   location: string = 'Bangalore, India';
   phone: string = '+91 98450 12345';
 

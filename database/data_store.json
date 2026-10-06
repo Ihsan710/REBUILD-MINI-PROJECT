@@ -2,7 +2,7 @@
   "users": [
     {
       "id": "usr-ihsan-contractor",
-      "name": "Ihsan Al-Mansoor",
+      "name": "Ihsan Muhammed",
       "email": "ihsan@skylinebuilders.com",
       "password_hash": "$2b$12$igEs/KB8EifytfzDxkb0/.sKgC3tHwBQ7ipJ0/bETYCZM/MPbSF/a",
       "role": "contractor",
@@ -92,14 +92,14 @@
       "status": "Active",
       "phase": "Demolition",
       "startDate": "2026-01-15",
-      "totalWasteKg": 7434,
-      "reusedKg": 4374,
+      "totalWasteKg": 31188,
+      "reusedKg": 28128,
       "recycledKg": 1420,
       "landfillKg": 1640,
-      "diversionRate": 77.9,
+      "diversionRate": 94.7,
       "activeWorkers": 14,
       "machinesAssigned": 4,
-      "siteManager": "Ihsan Al-Mansoor",
+      "siteManager": "Ihsan Muhammed",
       "budgetSaved": 48500
     },
     {
@@ -150,6 +150,122 @@
     }
   ],
   "wasteRecords": [
+    {
+      "id": "wst-mupdht9o",
+      "projectId": "proj-skyline-01",
+      "projectName": "Skyline Heights Commercial Complex",
+      "material": "Metal",
+      "quantityKg": 400,
+      "condition": "Reusable",
+      "phase": "Structural",
+      "imageUrl": "http://localhost:8000/assets/uploads/upload_1790849400660_kdzzj.jpg",
+      "aiPrediction": {
+        "detectedMaterial": "Metal",
+        "confidence": 98,
+        "isValidMaterial": true,
+        "secondaryPrediction": {
+          "material": "Drywall",
+          "confidence": 0.9
+        },
+        "detectedFeatures": [
+          "High specular highlight contrast",
+          "Structural steel rebar & pipe geometry",
+          "Metallic sheen index"
+        ],
+        "boundingBox": {
+          "x": 12,
+          "y": 14,
+          "width": 76,
+          "height": 72
+        },
+        "isConfirmed": false,
+        "isUserCorrected": false,
+        "inferenceTimeMs": 148,
+        "modelArchitecture": "Vision-CNN-CDW-ResNet34 (7-Class Custom CDW)",
+        "volumetricEstimate": {
+          "estimatedVolumeM3": 1.27,
+          "bulkDensityKgM3": 7850,
+          "suggestedWeightKg": 8474,
+          "pileGeometry": "Conical Stockpile (~1.7m footprint)",
+          "packingFactor": 0.85
+        },
+        "hazardAssessment": {
+          "isContaminated": false,
+          "hazardLevel": "None",
+          "warnings": [
+            "100% recyclable structural grade",
+            "Zero pressurized or sealed cylinder hazards"
+          ]
+        }
+      },
+      "gpsLocation": {
+        "lat": 9.992492419069961,
+        "lng": 76.35885962799884,
+        "address": "Kanayannur, Kerala, India (9.9925° N, 76.3589° E)"
+      },
+      "loggedBy": "Ihsan Muhammed",
+      "createdAt": "2026-10-01T10:10:00.684Z",
+      "status": "Listed on Marketplace",
+      "notes": ""
+    },
+    {
+      "id": "wst-mupcdk6q",
+      "projectId": "proj-skyline-01",
+      "projectName": "Skyline Heights Commercial Complex",
+      "material": "Metal",
+      "quantityKg": 23354,
+      "condition": "Reusable",
+      "phase": "Demolition",
+      "imageUrl": "http://localhost:8000/assets/uploads/upload_1790847522648_gy2hx.jpg",
+      "aiPrediction": {
+        "detectedMaterial": "Metal",
+        "confidence": 98,
+        "isValidMaterial": true,
+        "secondaryPrediction": {
+          "material": "Drywall",
+          "confidence": 0.9
+        },
+        "detectedFeatures": [
+          "High specular highlight contrast",
+          "Structural steel rebar & pipe geometry",
+          "Metallic sheen index"
+        ],
+        "boundingBox": {
+          "x": 12,
+          "y": 14,
+          "width": 76,
+          "height": 72
+        },
+        "isConfirmed": false,
+        "isUserCorrected": false,
+        "inferenceTimeMs": 149,
+        "modelArchitecture": "Vision-CNN-CDW-ResNet34 (7-Class Custom CDW)",
+        "volumetricEstimate": {
+          "estimatedVolumeM3": 1.27,
+          "bulkDensityKgM3": 7850,
+          "suggestedWeightKg": 8474,
+          "pileGeometry": "Conical Stockpile (~1.7m footprint)",
+          "packingFactor": 0.85
+        },
+        "hazardAssessment": {
+          "isContaminated": false,
+          "hazardLevel": "None",
+          "warnings": [
+            "100% recyclable structural grade",
+            "Zero pressurized or sealed cylinder hazards"
+          ]
+        }
+      },
+      "gpsLocation": {
+        "lat": 9.99252862372269,
+        "lng": 76.35885203337423,
+        "address": "Kanayannur, Kerala, India (9.9925° N, 76.3589° E)"
+      },
+      "loggedBy": "Ihsan Muhammed",
+      "createdAt": "2026-10-01T09:38:42.674Z",
+      "status": "Listed on Marketplace",
+      "notes": ""
+    },
     {
       "id": "wst-mupbsuih",
       "projectId": "proj-skyline-01",
@@ -203,7 +319,7 @@
         "lng": 76.35883438609757,
         "address": "Kanayannur, Kerala, India (9.9925° N, 76.3588° E)"
       },
-      "loggedBy": "Ihsan Al-Mansoor",
+      "loggedBy": "Ihsan Muhammed",
       "createdAt": "2026-10-01T09:22:36.281Z",
       "status": "Listed on Marketplace",
       "notes": ""
@@ -261,7 +377,7 @@
         "lng": 76.35882162262327,
         "address": "Kanayannur, Kerala, India (9.9925° N, 76.3588° E)"
       },
-      "loggedBy": "Ihsan Al-Mansoor",
+      "loggedBy": "Ihsan Muhammed",
       "createdAt": "2026-10-01T09:04:09.607Z",
       "status": "Listed on Marketplace",
       "notes": ""
@@ -320,7 +436,7 @@
         "lng": 76.35906020236438,
         "address": "Kanayannur, Kerala, India (9.9926° N, 76.3591° E)"
       },
-      "loggedBy": "Ihsan Al-Mansoor",
+      "loggedBy": "Ihsan Muhammed",
       "createdAt": "2026-10-01T08:07:23.289Z",
       "status": "Listed on Marketplace",
       "notes": ""
@@ -378,7 +494,7 @@
         "lng": 77.6412,
         "address": "Skyline Heights Commercial Complex (Indiranagar 100ft Rd, Bangalore)"
       },
-      "loggedBy": "Ihsan Al-Mansoor",
+      "loggedBy": "Ihsan Muhammed",
       "createdAt": "2026-09-26T17:46:07.385Z",
       "status": "Listed on Marketplace",
       "notes": ""
@@ -437,7 +553,7 @@
         "lng": 76.39164149999999,
         "address": "Kunnatnad, Kerala, India (9.9954° N, 76.3916° E)"
       },
-      "loggedBy": "Ihsan Al-Mansoor",
+      "loggedBy": "Ihsan Muhammed",
       "createdAt": "2026-09-26T17:28:32.472Z",
       "status": "Listed on Marketplace",
       "notes": ""
@@ -469,7 +585,7 @@
         "lng": 77.6412,
         "address": "Indiranagar 100ft Rd, Bangalore"
       },
-      "loggedBy": "Ihsan Al-Mansoor",
+      "loggedBy": "Ihsan Muhammed",
       "createdAt": "2026-09-01T10:30:00.000Z",
       "status": "Listed on Marketplace",
       "notes": "Clean palletized red masonry from 3rd floor demolition."
@@ -501,7 +617,7 @@
         "lng": 77.6412,
         "address": "Indiranagar 100ft Rd, Bangalore"
       },
-      "loggedBy": "Ihsan Al-Mansoor",
+      "loggedBy": "Ihsan Muhammed",
       "createdAt": "2026-09-01T11:45:00.000Z",
       "status": "Listed on Marketplace",
       "notes": "Structural steel rebar offcuts tied in bundles."
@@ -541,6 +657,62 @@
   ],
   "marketplaceListings": [
     {
+      "id": "mkt-j61x2em",
+      "title": "Metal (Logged from Skyline Heights Commercial Complex)",
+      "material": "Metal",
+      "quantityKg": 0,
+      "condition": "Reusable",
+      "pricePerKg": 8,
+      "isFree": false,
+      "sellerId": "usr-ihsan-contractor",
+      "sellerName": "Ihsan Muhammed",
+      "sellerCompany": "Skyline Heights Commercial Complex",
+      "sellerPhone": "+91 98450 12345",
+      "sellerEmail": "ihsan@skylinebuilders.com",
+      "locationName": "Kanayannur, Kerala, India (9.9925° N, 76.3589° E)",
+      "coordinates": [
+        9.992492419069961,
+        76.35885962799884
+      ],
+      "distanceKm": 355.1,
+      "imageUrl": "http://localhost:8000/assets/uploads/upload_1790849400660_kdzzj.jpg",
+      "description": "Auto-cataloged circular lot from site manifest (High reusable potential).",
+      "status": "SOLD",
+      "viewsCount": 1,
+      "inquiriesCount": 1,
+      "createdAt": "2026-10-01T10:10:00.684Z",
+      "soldTo": "Anita Desai",
+      "soldDate": "2026-10-01T10:10:38.120Z"
+    },
+    {
+      "id": "mkt-vny5zv4",
+      "title": "Metal (Logged from Skyline Heights Commercial Complex)",
+      "material": "Metal",
+      "quantityKg": 0,
+      "condition": "Reusable",
+      "pricePerKg": 8,
+      "isFree": false,
+      "sellerId": "usr-ihsan-contractor",
+      "sellerName": "Ihsan Muhammed",
+      "sellerCompany": "Skyline Heights Commercial Complex",
+      "sellerPhone": "+91 98450 12345",
+      "sellerEmail": "ihsan@skylinebuilders.com",
+      "locationName": "Kanayannur, Kerala, India (9.9925° N, 76.3589° E)",
+      "coordinates": [
+        9.99252862372269,
+        76.35885203337423
+      ],
+      "distanceKm": 355.1,
+      "imageUrl": "http://localhost:8000/assets/uploads/upload_1790847522648_gy2hx.jpg",
+      "description": "Auto-cataloged circular lot from site manifest (High reusable potential).",
+      "status": "SOLD",
+      "viewsCount": 1,
+      "inquiriesCount": 1,
+      "createdAt": "2026-10-01T09:38:42.674Z",
+      "soldTo": "Anita Desai",
+      "soldDate": "2026-10-01T09:39:01.651Z"
+    },
+    {
       "id": "mkt-2f0ne25",
       "title": "Drywall (Logged from Skyline Heights Commercial Complex)",
       "material": "Drywall",
@@ -549,7 +721,7 @@
       "pricePerKg": 8,
       "isFree": false,
       "sellerId": "usr-ihsan-contractor",
-      "sellerName": "Ihsan Al-Mansoor",
+      "sellerName": "Ihsan Muhammed",
       "sellerCompany": "Skyline Heights Commercial Complex",
       "sellerPhone": "+91 98450 12345",
       "sellerEmail": "ihsan@skylinebuilders.com",
@@ -577,7 +749,7 @@
       "pricePerKg": 8,
       "isFree": false,
       "sellerId": "usr-ihsan-contractor",
-      "sellerName": "Ihsan Al-Mansoor",
+      "sellerName": "Ihsan Muhammed",
       "sellerCompany": "Skyline Heights Commercial Complex",
       "sellerPhone": "+91 98450 12345",
       "sellerEmail": "ihsan@skylinebuilders.com",
@@ -589,21 +761,23 @@
       "distanceKm": 355.1,
       "imageUrl": "http://localhost:8000/assets/uploads/upload_1790845449582_6rrmj.jpg",
       "description": "Auto-cataloged circular lot from site manifest (High reusable potential).",
-      "status": "AVAILABLE",
+      "status": "SOLD",
       "viewsCount": 1,
       "inquiriesCount": 0,
-      "createdAt": "2026-10-01T09:04:09.607Z"
+      "createdAt": "2026-10-01T09:04:09.607Z",
+      "soldTo": "Anita Desai",
+      "soldDate": "2026-10-01T09:40:17.540Z"
     },
     {
       "id": "mkt-1axajus",
       "title": "Brick (Logged from Skyline Heights Commercial Complex)",
       "material": "Brick",
-      "quantityKg": 490,
+      "quantityKg": 0,
       "condition": "Reusable",
       "pricePerKg": 8,
       "isFree": false,
       "sellerId": "usr-ihsan-contractor",
-      "sellerName": "Ihsan Al-Mansoor",
+      "sellerName": "Ihsan Muhammed",
       "sellerCompany": "Skyline Heights Commercial Complex",
       "sellerPhone": "+91 98450 12345",
       "sellerEmail": "ihsan@skylinebuilders.com",
@@ -615,10 +789,12 @@
       "distanceKm": 4.8,
       "imageUrl": "/assets/uploads/upload_1790842043266_oo8vr.jpg",
       "description": "Auto-cataloged circular lot from site manifest (High reusable potential).",
-      "status": "AVAILABLE",
+      "status": "SOLD",
       "viewsCount": 1,
-      "inquiriesCount": 0,
-      "createdAt": "2026-10-01T08:07:23.289Z"
+      "inquiriesCount": 1,
+      "createdAt": "2026-10-01T08:07:23.289Z",
+      "soldTo": "Anita Desai",
+      "soldDate": "2026-10-06T14:02:39.966Z"
     },
     {
       "id": "mkt-pau9ook",
@@ -629,7 +805,7 @@
       "pricePerKg": 8,
       "isFree": false,
       "sellerId": "usr-ihsan-contractor",
-      "sellerName": "Ihsan Al-Mansoor",
+      "sellerName": "Ihsan Muhammed",
       "sellerCompany": "Skyline Heights Commercial Complex",
       "sellerPhone": "+91 98450 12345",
       "sellerEmail": "ihsan@skylinebuilders.com",
@@ -655,7 +831,7 @@
       "pricePerKg": 8,
       "isFree": false,
       "sellerId": "usr-ihsan-contractor",
-      "sellerName": "Ihsan Al-Mansoor",
+      "sellerName": "Ihsan Muhammed",
       "sellerCompany": "Skyline Heights Commercial Complex",
       "sellerPhone": "+91 98450 12345",
       "sellerEmail": "ihsan@skylinebuilders.com",
@@ -681,7 +857,7 @@
       "pricePerKg": 8,
       "isFree": false,
       "sellerId": "usr-ihsan-contractor",
-      "sellerName": "Ihsan Al-Mansoor",
+      "sellerName": "Ihsan Muhammed",
       "sellerCompany": "Skyline Infrastructure & Developers",
       "sellerPhone": "+91 98450 12345",
       "sellerEmail": "ihsan@skylinebuilders.com",
@@ -752,6 +928,63 @@
     }
   ],
   "buyerRequests": [
+    {
+      "id": "req-ny8vpw",
+      "listingId": "mkt-1axajus",
+      "listingTitle": "Brick (Logged from Skyline Heights Commercial Complex)",
+      "material": "Brick",
+      "quantityRequestedKg": 490,
+      "buyerId": "usr-anita-buyer",
+      "buyerName": "Anita Desai",
+      "buyerCompany": "EcoBlocks Pavers Ltd",
+      "buyerCoordinates": [
+        9.992492419069961,
+        76.35885962799884
+      ],
+      "distanceKm": 4.8,
+      "status": "PENDING",
+      "offerPriceTotal": 3920,
+      "deliveryOption": "Self Pickup",
+      "requestDate": "2026-10-06T14:02:39.966Z"
+    },
+    {
+      "id": "req-kh30iu",
+      "listingId": "mkt-j61x2em",
+      "listingTitle": "Metal (Logged from Skyline Heights Commercial Complex)",
+      "material": "Metal",
+      "quantityRequestedKg": 400,
+      "buyerId": "usr-anita-buyer",
+      "buyerName": "Anita Desai",
+      "buyerCompany": "EcoBlocks Pavers Ltd",
+      "buyerCoordinates": [
+        9.992492419069961,
+        76.35885962799884
+      ],
+      "distanceKm": 4.8,
+      "status": "COMPLETED",
+      "offerPriceTotal": 3200,
+      "deliveryOption": "Self Pickup",
+      "requestDate": "2026-10-01T10:10:38.120Z"
+    },
+    {
+      "id": "req-yq244s",
+      "listingId": "mkt-vny5zv4",
+      "listingTitle": "Metal (Logged from Skyline Heights Commercial Complex)",
+      "material": "Metal",
+      "quantityRequestedKg": 23354,
+      "buyerId": "usr-anita-buyer",
+      "buyerName": "Anita Desai",
+      "buyerCompany": "EcoBlocks Pavers Ltd",
+      "buyerCoordinates": [
+        9.992492419069961,
+        76.35885962799884
+      ],
+      "distanceKm": 4.8,
+      "status": "ACCEPTED",
+      "offerPriceTotal": 186832,
+      "deliveryOption": "Self Pickup",
+      "requestDate": "2026-10-01T09:39:01.651Z"
+    },
     {
       "id": "req-bv9773",
       "listingId": "mkt-2f0ne25",
@@ -942,6 +1175,55 @@
     }
   ],
   "auditLogs": [
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "anita@ecoblocks.org",
+      "details": "Authenticated as verified [BUYER]",
+      "time": "2026-10-06T14:02:19.218Z",
+      "ip": "::1"
+    },
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "ihsan@skylinebuilders.com",
+      "details": "Authenticated as verified [CONTRACTOR]",
+      "time": "2026-10-01T10:10:53.591Z",
+      "ip": "::1"
+    },
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "anita@ecoblocks.org",
+      "details": "Authenticated as verified [BUYER]",
+      "time": "2026-10-01T10:10:12.726Z",
+      "ip": "::1"
+    },
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "ihsan@skylinebuilders.com",
+      "details": "Authenticated as verified [CONTRACTOR]",
+      "time": "2026-10-01T10:08:35.606Z",
+      "ip": "::1"
+    },
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "ihsan@skylinebuilders.com",
+      "details": "Authenticated as verified [CONTRACTOR]",
+      "time": "2026-10-01T09:43:15.670Z",
+      "ip": "::1"
+    },
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "ihsan@skylinebuilders.com",
+      "details": "Authenticated as verified [CONTRACTOR]",
+      "time": "2026-10-01T09:39:21.661Z",
+      "ip": "::1"
+    },
+    {
+      "event": "ROLE_BASED_LOGIN_SUCCESS",
+      "actor": "anita@ecoblocks.org",
+      "details": "Authenticated as verified [BUYER]",
+      "time": "2026-10-01T09:38:53.285Z",
+      "ip": "::1"
+    },
     {
       "event": "ROLE_BASED_LOGIN_SUCCESS",
       "actor": "ihsan@skylinebuilders.com",

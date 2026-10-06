@@ -333,7 +333,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                 <span>🔒 Single-Buyer Order Lock:</span>
               </div>
               <p>
-                Confirming this purchase order as <b>Anita Desai (EcoBlocks Pavers Ltd)</b> will immediately mark this lot as <b>SOLD</b>. Ihsan Al-Mansoor will be notified to confirm fulfillment, and another buyer will not be able to take this lot.
+                Confirming this purchase order as <b>Anita Desai (EcoBlocks Pavers Ltd)</b> will immediately mark this lot as <b>SOLD</b>. Ihsan Muhammed will be notified to confirm fulfillment, and another buyer will not be able to take this lot.
               </p>
             </div>
 

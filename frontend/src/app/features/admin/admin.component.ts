@@ -183,7 +183,7 @@ export class AdminComponent implements OnInit {
   ];
 
   auditLogs = [
-    { event: 'AI_INFERENCE_CONFIRMED', actor: 'Ihsan Al-Mansoor', details: '800kg Brick manifest verified at Skyline Heights', time: '2026-08-31 10:45:12', ip: '49.207.198.42' },
+    { event: 'AI_INFERENCE_CONFIRMED', actor: 'Ihsan Muhammed', details: '800kg Brick manifest verified at Skyline Heights', time: '2026-08-31 10:45:12', ip: '49.207.198.42' },
     { event: 'MARKETPLACE_ORDER_DISPATCHED', actor: 'Anita Desai', details: 'Request for 1,420kg Fe500D rebar accepted by Rajesh Kumar', time: '2026-08-31 08:30:19', ip: '106.51.78.114' },
     { event: 'MACHINE_TELEMATICS_ALERT', actor: 'CAT-320D-EXC', details: 'Preventive 500h maintenance threshold reached', time: '2026-08-30 16:22:05', ip: '192.168.1.104' },
     { event: 'USER_KYC_APPROVED', actor: 'System Governance', details: 'GreenReclaim C&D Processing Yard verified', time: '2026-08-28 14:10:00', ip: '127.0.0.1' }

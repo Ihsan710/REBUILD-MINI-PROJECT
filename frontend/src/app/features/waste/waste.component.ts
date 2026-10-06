@@ -661,7 +661,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
                     <span class="text-[11px] font-mono text-[#78716C]">{{ currentWtnRecord.phase }} Phase</span>
                   </div>
                   <div class="text-[#78716C] text-[11px]">{{ currentWtnRecord.gpsLocation.address }}</div>
-                  <div class="text-[#78716C] text-[11px]">Contractor: {{ currentWtnRecord.loggedBy || 'Ihsan Al-Mansoor' }}</div>
+                  <div class="text-[#78716C] text-[11px]">Contractor: {{ currentWtnRecord.loggedBy || 'Ihsan Muhammed' }}</div>
                 </div>
 
                 <!-- Cargo & AI Classification -->
@@ -1186,7 +1186,7 @@ export class WasteComponent implements OnInit {
       imageUrl: permanentImageUrl,
       aiPrediction: this.aiResult,
       gpsLocation: this.gpsLocation,
-      loggedBy: 'Ihsan Al-Mansoor',
+      loggedBy: 'Ihsan Muhammed',
       notes: this.notes
     });
 
@@ -1388,7 +1388,7 @@ export class WasteComponent implements OnInit {
     doc.text('SIGNATURE OF TRANSFEROR (PRODUCER)', 18, 210);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(28, 25, 23);
-    doc.text('Digitally Signed: ' + (record.loggedBy || 'Ihsan Al-Mansoor'), 18, 222);
+    doc.text('Digitally Signed: ' + (record.loggedBy || 'Ihsan Muhammed'), 18, 222);
     doc.setFont('helvetica', 'normal');
     doc.text(`Date: ${new Date(record.createdAt).toLocaleDateString()}`, 18, 227);
 

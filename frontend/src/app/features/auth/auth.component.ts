@@ -137,7 +137,7 @@ import { UserRole } from '../../core/models/all.models';
                 [(ngModel)]="name"
                 name="name"
                 required
-                placeholder="e.g. Ihsan Al-Mansoor"
+                placeholder="e.g. Ihsan Muhammed"
                 class="w-full px-3.5 py-2.5 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-xs text-[#1C1917] placeholder-[#A8A29E] focus:outline-none focus:border-[#C5B7A5] transition-colors"
               />
             </div>

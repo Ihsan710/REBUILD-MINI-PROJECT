@@ -478,7 +478,7 @@ app.post('/api/projects', optionalJWT, async (req: AuthRequest, res: Response) =
   const name = sanitizeString(p.name, 150);
   const location = sanitizeString(p.location, 150);
   const city = sanitizeString(p.city || 'Bangalore', 80);
-  const siteManager = sanitizeString(p.siteManager || 'Ihsan Al-Mansoor', 100);
+  const siteManager = sanitizeString(p.siteManager || 'Ihsan Muhammed', 100);
   const phase = sanitizeString(p.phase || 'Demolition', 50);
   const coords = p.coordinates || [12.9716, 77.5946];
 
@@ -607,7 +607,7 @@ app.post('/api/waste', optionalJWT, async (req: AuthRequest, res: Response) => {
   const phase = sanitizeString(w.phase);
   const quantityKg = parseFloat(w.quantityKg);
   const notes = sanitizeString(w.notes || '', 500);
-  const loggedBy = sanitizeString(w.loggedBy || 'Ihsan Al-Mansoor', 100);
+  const loggedBy = sanitizeString(w.loggedBy || 'Ihsan Muhammed', 100);
 
   if (isNaN(quantityKg) || quantityKg <= 0) {
     return res.status(400).json({ error: 'Valid positive material quantity (kg) is required.' });

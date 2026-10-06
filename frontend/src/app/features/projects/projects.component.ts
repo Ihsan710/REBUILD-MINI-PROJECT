@@ -272,7 +272,7 @@ import { BadgeComponent } from '../../shared/components/badge.component';
 
               <div>
                 <label class="font-bold text-[#1C1917] block mb-1">Site Lead / Manager</label>
-                <input type="text" [(ngModel)]="newProjManager" name="manager" required placeholder="e.g. Ihsan Al-Mansoor" class="w-full px-3.5 py-2 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-[#1C1917]" />
+                <input type="text" [(ngModel)]="newProjManager" name="manager" required placeholder="e.g. Ihsan Muhammed" class="w-full px-3.5 py-2 rounded-xl bg-[#F6F3EF] border border-[#E2DDD5] text-[#1C1917]" />
               </div>
             </div>
 
@@ -294,7 +294,7 @@ export class ProjectsComponent implements OnInit {
   newProjName: string = '';
   newProjLocation: string = '';
   newProjPhase: any = 'Demolition';
-  newProjManager: string = 'Ihsan Al-Mansoor';
+  newProjManager: string = 'Ihsan Muhammed';
 
   constructor(
     public projectService: ProjectService,

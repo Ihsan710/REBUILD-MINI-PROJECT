@@ -521,7 +521,7 @@ export interface MaterialDemo {
 
                 <div class="mt-8 pt-6 border-t border-[#E5DFD7] flex items-center justify-between">
                   <a routerLink="/auth/login" class="text-xs font-bold text-[#1C1917] hover:text-[#78716C] flex items-center gap-1.5 group">
-                    <span>Sign In as Contractor (Ihsan Al-Mansoor)</span>
+                    <span>Sign In as Contractor (Ihsan Muhammed)</span>
                     <span class="group-hover:translate-x-1 transition-transform">→</span>
                   </a>
                 </div>
@@ -702,83 +702,162 @@ export interface MaterialDemo {
           </div>
         </section>
 
-        <!-- SECTION 6: FOUNDER SPOTLIGHT & EDITORIAL DIRECTIVE -->
-        <section id="founder" class="space-y-6">
-          <div class="bg-[#1C1917] text-white rounded-[32px] p-8 sm:p-14 shadow-2xl border border-black/40 space-y-10 relative overflow-hidden card-editorial-hover">
+        <!-- SECTION 6: FOUNDING TEAM & EDITORIAL DIRECTIVE -->
+        <section id="founder" class="space-y-8">
+          <div class="bg-[#1C1917] text-white rounded-[32px] p-8 sm:p-12 lg:p-14 shadow-2xl border border-black/40 space-y-12 relative overflow-hidden card-editorial-hover">
             <!-- Subtle Architectural Background Grid Watermark -->
             <div class="absolute -right-20 -bottom-20 w-96 h-96 rounded-full bg-white/[0.03] blur-3xl pointer-events-none"></div>
 
-            <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-10 relative z-10">
+            <!-- Top Row: Directive Badge & Grand Quotation -->
+            <div class="max-w-4xl space-y-6 relative z-10">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white/80 font-mono text-[10px] font-bold tracking-widest uppercase border border-white/15">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>06 / FOUNDING LEADERSHIP • CIRCULAR OS ARCHITECTS</span>
+              </div>
+
+              <!-- Grand Editorial Quotation -->
+              <blockquote class="text-2xl sm:text-3xl lg:text-4xl font-light font-serif italic text-white/95 leading-snug">
+                "Every demolition site is an above-ground quarry. We engineered ReBuild to prove that circularity in heavy infrastructure isn't just an ESG talking point — it is superior economics, faster local supply chains, and zero landfill waste."
+              </blockquote>
+
+              <p class="text-xs sm:text-sm text-white/70 max-w-2xl font-mono">
+                Conceived and built by an interdisciplinary team bridging heavy civil construction engineering, computer vision deep learning, and geospatial haulage logistics.
+              </p>
+            </div>
+
+            <!-- Middle Row: 4-Member Founding Team Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
               
-              <!-- Left Column: Founder Quote & Bio -->
-              <div class="max-w-2xl space-y-6">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white/80 font-mono text-[10px] font-bold tracking-widest uppercase border border-white/15">
-                  <span>06 / LEADERSHIP & VISION • FOUNDER DIRECTIVE</span>
-                </div>
-
-                <!-- Grand Serif Quotation -->
-                <blockquote class="text-2xl sm:text-3xl lg:text-4xl font-light font-serif italic text-white/95 leading-snug">
-                  "Every demolition site is an above-ground quarry. We built ReBuild to prove that circularity in heavy infrastructure isn't just an ESG talking point — it is superior economics, faster local supply chains, and zero landfill waste."
-                </blockquote>
-
-                <!-- Founder Signature & Title -->
-                <div class="pt-4 border-t border-white/15 flex items-center gap-4">
-                  <div class="w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center font-bold text-xl text-white">
-                    IM
-                  </div>
-                  <div>
-                    <h3 class="text-lg font-black tracking-tight text-white uppercase">Ihsan Al-Mansoor</h3>
-                    <p class="text-xs text-white/70 font-mono">Founder & Lead Circular Architect, ReBuild Technologies</p>
-                    <div class="flex items-center gap-2 mt-1 text-[10px] font-mono text-emerald-400">
-                      <span>Certified Demolition Systems</span>
-                      <span>•</span>
-                      <span>Pioneered Zero-Landfill Protocol v2.4</span>
+              <!-- Founder 1: Ihsan Muhammed -->
+              <div class="p-6 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-emerald-500/50 hover:bg-white/[0.08] transition-all group flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 flex items-center justify-center font-bold text-base font-mono">
+                      IM
                     </div>
+                    <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">
+                      LEAD
+                    </span>
                   </div>
+                  <h3 class="text-base font-bold text-white tracking-tight uppercase group-hover:text-emerald-300 transition-colors">
+                    Ihsan Muhammed
+                  </h3>
+                  <div class="text-[11px] text-white/75 font-mono mt-0.5">
+                    Lead Founder & Circular Systems Architect
+                  </div>
+                  <p class="text-xs text-white/60 mt-3 leading-relaxed">
+                    Directed overall system architecture, demolition jobsite OS workflow, and circular zero-landfill protocols.
+                  </p>
+                </div>
+                <div class="pt-4 mt-4 border-t border-white/10 text-[10px] font-mono text-emerald-400">
+                  <span>Systems Architecture & Demolition OS</span>
                 </div>
               </div>
 
-              <!-- Right Column: Founding Engineering Principles -->
-              <div class="lg:max-w-md w-full bg-white/[0.05] p-6 sm:p-8 rounded-2xl border border-white/10 space-y-5 backdrop-blur-md">
-                <h4 class="text-xs font-mono uppercase tracking-widest font-bold text-white/60">
-                  Core Founding Principles
-                </h4>
-
-                <div class="space-y-4 text-xs">
-                  <div class="space-y-1">
-                    <span class="font-mono text-emerald-400 font-bold block text-[11px]">01 / ZERO VIRGIN QUARRY DEFAULT</span>
-                    <p class="text-white/80 leading-relaxed">
-                      All structural concrete and masonry must be classified for downcycling or direct reuse before landfill permits are issued.
-                    </p>
+              <!-- Founder 2: Abhinav Anil -->
+              <div class="p-6 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-amber-500/50 hover:bg-white/[0.08] transition-all group flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-300 border border-amber-500/30 flex items-center justify-center font-bold text-base font-mono">
+                      AA
+                    </div>
+                    <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30">
+                      AI / ML
+                    </span>
                   </div>
-
-                  <div class="space-y-1 pt-3 border-t border-white/10">
-                    <span class="font-mono text-emerald-400 font-bold block text-[11px]">02 / SUB-SECOND PROVENANCE</span>
-                    <p class="text-white/80 leading-relaxed">
-                      Edge-deployed neural vision verifies material composition at the point of demolition, eliminating manual grading fraud.
-                    </p>
+                  <h3 class="text-base font-bold text-white tracking-tight uppercase group-hover:text-amber-300 transition-colors">
+                    Abhinav Anil
+                  </h3>
+                  <div class="text-[11px] text-white/75 font-mono mt-0.5">
+                    Co-Founder & AI Vision Engineering Lead
                   </div>
-
-                  <div class="space-y-1 pt-3 border-t border-white/10">
-                    <span class="font-mono text-emerald-400 font-bold block text-[11px]">03 / 50KM HYPER-LOCAL RADIUS</span>
-                    <p class="text-white/80 leading-relaxed">
-                      Secondary material transit should never exceed 50km to preserve negative net carbon balance against virgin extraction.
-                    </p>
-                  </div>
+                  <p class="text-xs text-white/60 mt-3 leading-relaxed">
+                    Designed and trained the ResNet-34 deep convolutional neural network for 12-class industrial material recognition.
+                  </p>
                 </div>
+                <div class="pt-4 mt-4 border-t border-white/10 text-[10px] font-mono text-amber-300">
+                  <span>PyTorch ResNet-34 & Computer Vision</span>
+                </div>
+              </div>
 
-                <div class="pt-4 border-t border-white/10">
-                  <a
-                    routerLink="/auth/register"
-                    class="w-full py-3 rounded-xl bg-white hover:bg-white/90 text-[#1C1917] font-bold text-xs flex items-center justify-center gap-2 transition-all shadow cursor-pointer"
-                  >
-                    <span>Partner with ReBuild Engineering</span>
-                    <span>→</span>
-                  </a>
+              <!-- Founder 3: Muhammed Farzin -->
+              <div class="p-6 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-blue-500/50 hover:bg-white/[0.08] transition-all group flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-300 border border-blue-500/30 flex items-center justify-center font-bold text-base font-mono">
+                      MF
+                    </div>
+                    <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-bold border border-blue-500/30">
+                      GEO
+                    </span>
+                  </div>
+                  <h3 class="text-base font-bold text-white tracking-tight uppercase group-hover:text-blue-300 transition-colors">
+                    Muhammed Farzin
+                  </h3>
+                  <div class="text-[11px] text-white/75 font-mono mt-0.5">
+                    Co-Founder & Geospatial Logistics Systems
+                  </div>
+                  <p class="text-xs text-white/60 mt-3 leading-relaxed">
+                    Architected the Haversine radial distance matching matrix, Leaflet geospatial mapping, and dispatch routing.
+                  </p>
+                </div>
+                <div class="pt-4 mt-4 border-t border-white/10 text-[10px] font-mono text-blue-300">
+                  <span>Haversine Matrix & Logistics Telematics</span>
+                </div>
+              </div>
+
+              <!-- Founder 4: Abdul Hadi -->
+              <div class="p-6 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-purple-500/50 hover:bg-white/[0.08] transition-all group flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-300 border border-purple-500/30 flex items-center justify-center font-bold text-base font-mono">
+                      AH
+                    </div>
+                    <span class="text-[9px] font-mono uppercase px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-bold border border-purple-500/30">
+                      ESG
+                    </span>
+                  </div>
+                  <h3 class="text-base font-bold text-white tracking-tight uppercase group-hover:text-purple-300 transition-colors">
+                    Abdul Hadi
+                  </h3>
+                  <div class="text-[11px] text-white/75 font-mono mt-0.5">
+                    Co-Founder & Infrastructure ESG Lead
+                  </div>
+                  <p class="text-xs text-white/60 mt-3 leading-relaxed">
+                    Spearheaded Scope 3 GHG carbon avoidance algorithms, ISO 14021 compliance auditing, and machinery roster models.
+                  </p>
+                </div>
+                <div class="pt-4 mt-4 border-t border-white/10 text-[10px] font-mono text-purple-300">
+                  <span>Scope 3 GHG Ledger & Equipment Sharing</span>
                 </div>
               </div>
 
             </div>
+
+            <!-- Bottom Row: Core Founding Principles -->
+            <div class="pt-6 border-t border-white/15 grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 text-xs">
+              <div class="space-y-1">
+                <span class="font-mono text-emerald-400 font-bold block text-[11px]">01 / ZERO VIRGIN QUARRY DEFAULT</span>
+                <p class="text-white/80 leading-relaxed">
+                  All structural concrete and masonry must be classified for downcycling or direct reuse before landfill permits are issued.
+                </p>
+              </div>
+
+              <div class="space-y-1">
+                <span class="font-mono text-amber-300 font-bold block text-[11px]">02 / SUB-SECOND PROVENANCE</span>
+                <p class="text-white/80 leading-relaxed">
+                  Edge neural vision verifies material composition at the point of demolition, eliminating manual grading fraud.
+                </p>
+              </div>
+
+              <div class="space-y-1">
+                <span class="font-mono text-blue-300 font-bold block text-[11px]">03 / 50KM HYPER-LOCAL RADIUS</span>
+                <p class="text-white/80 leading-relaxed">
+                  Secondary material transit should never exceed 50km to preserve negative net carbon balance against virgin extraction.
+                </p>
+              </div>
+            </div>
+
           </div>
         </section>
 
@@ -856,7 +935,7 @@ export interface MaterialDemo {
           </div>
 
           <div class="text-[11px] font-mono">
-            © 2026 ReBuild Technologies Inc. Directed by Ihsan Al-Mansoor. All rights reserved.
+            © 2026 ReBuild Technologies Inc. Founded by Ihsan Muhammed, Abhinav Anil, Muhammed Farzin & Abdul Hadi. All rights reserved.
           </div>
         </div>
       </footer>

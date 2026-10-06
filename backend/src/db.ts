@@ -32,7 +32,7 @@ const DEFAULT_PASSWORD_HASH = bcrypt.hashSync('password123', 12);
 export const INITIAL_VERIFIED_USERS = [
   {
     id: 'usr-ihsan-contractor',
-    name: 'Ihsan Al-Mansoor',
+    name: 'Ihsan Muhammed',
     email: 'ihsan@skylinebuilders.com',
     password_hash: DEFAULT_PASSWORD_HASH,
     role: 'contractor',
@@ -127,7 +127,7 @@ export const INITIAL_PROJECTS = [
     diversionRate: 68.7,
     activeWorkers: 14,
     machinesAssigned: 4,
-    siteManager: 'Ihsan Al-Mansoor',
+    siteManager: 'Ihsan Muhammed',
     budgetSaved: 48500
   },
   {
@@ -192,7 +192,7 @@ export const INITIAL_WASTE_RECORDS = [
       detectedFeatures: ['Terracotta spectral reflectance', 'Mortar separation alignment', 'Granular porous matrix']
     },
     gpsLocation: { lat: 12.9716, lng: 77.6412, address: 'Indiranagar 100ft Rd, Bangalore' },
-    loggedBy: 'Ihsan Al-Mansoor',
+    loggedBy: 'Ihsan Muhammed',
     createdAt: '2026-09-01T10:30:00.000Z',
     status: 'Listed on Marketplace',
     notes: 'Clean palletized red masonry from 3rd floor demolition.'
@@ -216,7 +216,7 @@ export const INITIAL_WASTE_RECORDS = [
       detectedFeatures: ['Specular rebar ribs', 'High tensile steel profile', 'Metallic reflectance']
     },
     gpsLocation: { lat: 12.9716, lng: 77.6412, address: 'Indiranagar 100ft Rd, Bangalore' },
-    loggedBy: 'Ihsan Al-Mansoor',
+    loggedBy: 'Ihsan Muhammed',
     createdAt: '2026-09-01T11:45:00.000Z',
     status: 'Listed on Marketplace',
     notes: 'Structural steel rebar offcuts tied in bundles.'
@@ -257,7 +257,7 @@ export const INITIAL_MARKETPLACE = [
     pricePerKg: 8,
     isFree: false,
     sellerId: 'usr-ihsan-contractor',
-    sellerName: 'Ihsan Al-Mansoor',
+    sellerName: 'Ihsan Muhammed',
     sellerCompany: 'Skyline Infrastructure & Developers',
     sellerPhone: '+91 98450 12345',
     sellerEmail: 'ihsan@skylinebuilders.com',
